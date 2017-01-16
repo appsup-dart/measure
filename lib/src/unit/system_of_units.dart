@@ -307,7 +307,7 @@ abstract class SI extends SystemOfUnits {
     //////////////////////////////
 
     /// The metric unit for velocity quantities (`m/s`).
-    static const Unit<Velocity> METRES_PER_SECOND = const ProductUnit._(const[
+    static const Unit<Velocity> METRES_PER_SECOND = const ProductUnit<Velocity>._(const[
         const _RationalPower<Unit>(METRE),
         const _RationalPower<Unit>(SECOND,const RationalNumber(-1))]);
 
@@ -315,7 +315,7 @@ abstract class SI extends SystemOfUnits {
     static const Unit<Velocity> METERS_PER_SECOND = METRES_PER_SECOND;
 
     /// The metric unit for acceleration quantities (`m/s²`).
-    static const Unit<Acceleration> METRES_PER_SQUARE_SECOND = const ProductUnit._(const[
+    static const Unit<Acceleration> METRES_PER_SQUARE_SECOND = const ProductUnit<Acceleration>._(const[
         const _RationalPower<Unit>(METRE),
         const _RationalPower<Unit>(SECOND,const RationalNumber(-2))]);
 
@@ -323,11 +323,11 @@ abstract class SI extends SystemOfUnits {
     static const Unit<Acceleration> METERS_PER_SQUARE_SECOND = METRES_PER_SQUARE_SECOND;
 
     /// The metric unit for area quantities (`m²`).
-    static const Unit<Area> SQUARE_METRE = const ProductUnit._(const[
+    static const Unit<Area> SQUARE_METRE = const ProductUnit<Area>._(const[
         const _RationalPower<Unit>(METRE,const RationalNumber(2))]);
 
     /// The metric unit for volume quantities (`m³`).
-    static const Unit<Volume> CUBIC_METRE = const ProductUnit._(const[
+    static const Unit<Volume> CUBIC_METRE = const ProductUnit<Volume>._(const[
         const _RationalPower<Unit>(METRE,const RationalNumber(3))]);
 
     /// Equivalent to `KILO(METRE)`.

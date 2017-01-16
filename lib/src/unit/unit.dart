@@ -20,7 +20,7 @@ part of measure;
 /// the cubic root of "liter" is a unit compatible with meter.
 abstract class Unit<Q extends Quantity> {
 
-    static const Unit<Dimensionless> one = const ProductUnit._(const []);
+    static const Unit<Dimensionless> one = const ProductUnit<Dimensionless>._(const []);
 
     const Unit._();
 
