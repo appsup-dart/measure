@@ -15,7 +15,8 @@ abstract class UnitConverter {
     const factory UnitConverter.add(double offset) = AddConverter._;
     const factory UnitConverter.multiply(double factor) = MultiplyConverter._;
     const factory UnitConverter.log(double base) = LogConverter._;
-    const factory UnitConverter.rationalMultiply(RationalNumber factor) = RationalConverter._;
+    factory UnitConverter.rationalMultiply(int factor, [int divisor = 1]) =>
+        new RationalConverter._(new RationalNumber(factor, divisor));
 
     /// The inverse of this converter.
     UnitConverter get inverse;
