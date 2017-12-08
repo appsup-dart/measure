@@ -7,7 +7,7 @@ class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
     final List<_RationalPower<Unit>> _elements;
 
 
-    const ProductUnit._(this._elements) : super._();
+    const ProductUnit._(this._elements) : super();
 
     @override
     Unit get standardUnit => throw new UnimplementedError();

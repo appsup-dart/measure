@@ -10,7 +10,7 @@ class AlternateUnit<Q extends Quantity> extends DerivedUnit<Q> {
     /// The parent unit from which this alternate unit is derived
     final Unit parent;
 
-    const AlternateUnit._(this.symbol, this.parent) : super._();
+    const AlternateUnit(this.symbol, this.parent) : super();
 
 
     @override

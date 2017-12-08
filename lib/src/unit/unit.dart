@@ -22,7 +22,7 @@ abstract class Unit<Q extends Quantity> {
 
     static const Unit<Dimensionless> one = const ProductUnit<Dimensionless>._(const []);
 
-    const Unit._();
+    const Unit();
 
     //////////////////////////////////////////////////////
     // Contract methods (for sub-classes to implement). //
@@ -78,11 +78,11 @@ abstract class Unit<Q extends Quantity> {
             UnitConverter toParent = tf.toParentUnit.concatenate(operation);
             if (toParent == UnitConverter.identity)
                 return parent;
-            return new TransformedUnit<Q>._(parent, toParent);
+            return new TransformedUnit<Q>(parent, toParent);
         }
         if (operation == UnitConverter.identity)
             return this;
-        return new TransformedUnit<Q>._(this, operation);
+        return new TransformedUnit<Q>(this, operation);
     }
 
 

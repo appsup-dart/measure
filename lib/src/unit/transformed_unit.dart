@@ -12,7 +12,7 @@ class TransformedUnit<Q extends Quantity> extends DerivedUnit<Q> {
     /// The converter to the parent unit.
     final UnitConverter toParentUnit;
 
-    const TransformedUnit._(this.parentUnit, this.toParentUnit) : super._();
+    const TransformedUnit(this.parentUnit, this.toParentUnit) : super();
 
     @override
     Unit get standardUnit => parentUnit.standardUnit;

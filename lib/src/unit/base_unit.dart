@@ -9,7 +9,7 @@ class BaseUnit<Q extends Quantity> extends Unit<Q> {
     /// The unique symbol for this base unit
     final String symbol;
 
-    const BaseUnit._(this.symbol) : super._();
+    const BaseUnit(this.symbol) : super();
 
     @override
     BaseUnit<Q> get standardUnit => this;
