@@ -11,7 +11,12 @@ abstract class UnitConverter {
     static const UnitConverter identity = const _IdentityConverter();
 
     const UnitConverter._();
-    
+
+    const factory UnitConverter.add(double offset) = AddConverter._;
+    const factory UnitConverter.multiply(double factor) = MultiplyConverter._;
+    const factory UnitConverter.log(double base) = LogConverter._;
+    const factory UnitConverter.rationalMultiply(RationalNumber factor) = RationalConverter._;
+
     /// The inverse of this converter.
     UnitConverter get inverse;
 
@@ -144,7 +149,7 @@ class LogConverter extends UnitConverter {
     /// The inverse of the natural logarithm of the base.
     double get invLogBase => 1.0 / logBase;
 
-    const LogConverter(this.base) : super._();
+    const LogConverter._(this.base) : super._();
 
     @override
     _InverseLogConverter get inverse => new _InverseLogConverter(this);

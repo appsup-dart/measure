@@ -5,6 +5,7 @@
 - move implementation of `intValue` to Measurable
 - rename constants to lower case versions
 - make unit constructors public
+- add unit converter const factories
 
 ## 0.0.1
 

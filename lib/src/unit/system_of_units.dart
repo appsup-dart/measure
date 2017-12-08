@@ -494,7 +494,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A logarithmic unit used to describe a ratio (standard name `dB`).
     static const Unit<Dimensionless> decibel = const TransformedUnit(Unit.one,
         const _CompoundConverter(const RationalConverter._(const RationalNumber(1, 10)),
-            const _InverseLogConverter(const LogConverter(10.0))));
+            const _InverseLogConverter(const LogConverter._(10.0))));
 
     /////////////////////////
     // Amount of substance //
