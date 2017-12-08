@@ -7,6 +7,7 @@
 - make unit constructors public
 - add unit converter const factories
 - computations with units
+- add units in quantity classes as static variables
 
 ## 0.0.1
 
