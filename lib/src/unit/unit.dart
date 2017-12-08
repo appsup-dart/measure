@@ -25,8 +25,8 @@ abstract class Unit<Q extends Quantity> {
     const Unit();
 
     factory Unit.productOf(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b)]);
-    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b, new RationalNumber(-1))]);
-    factory Unit.inverseOf(Unit a) => new ProductUnit([new _RationalPower(a, new RationalNumber(-1))]);
+    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b, const RationalNumber._(-1))]);
+    factory Unit.inverseOf(Unit a) => new ProductUnit([new _RationalPower(a, const RationalNumber._(-1))]);
 
     //////////////////////////////////////////////////////
     // Contract methods (for sub-classes to implement). //

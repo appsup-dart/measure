@@ -63,7 +63,7 @@ abstract class AngularAcceleration extends Quantity {
     static const Unit<AngularAcceleration> unit =
         const ProductUnit<AngularAcceleration>._(const [
             const _RationalPower<Unit>(SI.radian),
-            const _RationalPower<Unit>(SI.second, const RationalNumber(-2))
+            const _RationalPower<Unit>(SI.second, const RationalNumber._(-2))
         ]);
 
 }
@@ -77,7 +77,7 @@ abstract class AngularVelocity extends Quantity {
     static const Unit<AngularVelocity> unit =
     const ProductUnit<AngularVelocity>._(const [
         const _RationalPower<Unit>(SI.radian),
-        const _RationalPower<Unit>(SI.second, const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.second, const RationalNumber._(-1))
     ]);
 
 }
@@ -122,7 +122,7 @@ abstract class DataRate extends Quantity {
     static const Unit<DataRate> unit = const ProductUnit<DataRate>._(
         const [
             const _RationalPower<Unit>(SI.bit),
-            const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
+            const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
         ]);
 
 }
@@ -272,8 +272,8 @@ abstract class KinematicViscosity extends Quantity {
     /// The SI unit (Système International d'Unités) for this quantity.
     static const Unit<KinematicViscosity> unit
     = const ProductUnit<KinematicViscosity>._(const [
-        const _RationalPower<Unit>(SI.metre,const RationalNumber(2)),
-        const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.metre,const RationalNumber._(2)),
+        const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
 }
@@ -352,7 +352,7 @@ abstract class MassFlowRate extends Quantity {
     static const Unit<MassFlowRate> unit = const ProductUnit<MassFlowRate>._(
         const [
             const _RationalPower(SI.kilogram),
-            const _RationalPower(SI.second,const RationalNumber(-1))
+            const _RationalPower(SI.second,const RationalNumber._(-1))
         ]
     );
 }
@@ -480,7 +480,7 @@ abstract class VolumetricDensity extends Quantity {
     static const Unit<VolumetricDensity> unit =
     const ProductUnit<VolumetricDensity>._(const [
         const _RationalPower(SI.kilogram),
-        const _RationalPower(SI.metre,const RationalNumber(-3))
+        const _RationalPower(SI.metre,const RationalNumber._(-3))
     ]);
 }
 
@@ -492,8 +492,8 @@ abstract class VolumetricFlowRate extends Quantity {
     /// The SI unit (Système International d'Unités) for this quantity.
     static const Unit<VolumetricFlowRate> unit =
     const ProductUnit<VolumetricFlowRate>._(const [
-        const _RationalPower(SI.metre,const RationalNumber(3)),
-        const _RationalPower(SI.second,const RationalNumber(-1))
+        const _RationalPower(SI.metre,const RationalNumber._(3)),
+        const _RationalPower(SI.second,const RationalNumber._(-1))
     ]);
 }
 

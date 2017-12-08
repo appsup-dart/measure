@@ -113,7 +113,7 @@ abstract class SI extends SystemOfUnits {
     /// After Heinrich Rudolf Hertz (1857-1894), German physicist who was the
     /// first to produce radio waves artificially.
     static const AlternateUnit<Frequency> hertz = const AlternateUnit<Frequency>("Hz",
-        const ProductUnit._(const[const _RationalPower<Unit>(second, const RationalNumber(-1))]));
+        const ProductUnit._(const[const _RationalPower<Unit>(second, const RationalNumber._(-1))]));
 
     /// The derived unit for force (`N`).
     ///
@@ -124,7 +124,7 @@ abstract class SI extends SystemOfUnits {
         "N", const ProductUnit._(const[
         const _RationalPower(metre),
         const _RationalPower(kilogram),
-        const _RationalPower(second,const RationalNumber(-2))]));
+        const _RationalPower(second,const RationalNumber._(-2))]));
 
     /// The derived unit for pressure, stress (`Pa`).
     ///
@@ -133,7 +133,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<Pressure> pascal = const AlternateUnit<Pressure>(
             "Pa", const ProductUnit._(const[
         const _RationalPower<Unit>(newton),
-        const _RationalPower<Unit>(metre,const RationalNumber(-2))]));
+        const _RationalPower<Unit>(metre,const RationalNumber._(-2))]));
 
     /// The derived unit for energy, work, quantity of heat (`J`).
     ///
@@ -152,7 +152,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<Power> watt = const AlternateUnit<Power>(
             "W", const ProductUnit._(const[
         const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(second,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     /// The derived unit for electric charge, quantity of electricity
     /// (`C`).
@@ -175,7 +175,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<ElectricPotential> volt = const AlternateUnit<ElectricPotential>(
             "V", const ProductUnit._(const[
         const _RationalPower<Unit>(watt),
-        const _RationalPower<Unit>(ampere,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for capacitance (`F`).
     ///
@@ -186,7 +186,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<ElectricCapacitance> farad = const AlternateUnit<ElectricCapacitance>(
             "F", const ProductUnit._(const[
         const _RationalPower(coulomb),
-        const _RationalPower(volt,const RationalNumber(-1))]));
+        const _RationalPower(volt,const RationalNumber._(-1))]));
 
     /// The derived unit for electric resistance (`Ω` or `Ohm`).
     ///
@@ -196,7 +196,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<ElectricResistance> ohm = const AlternateUnit<ElectricResistance>(
             "Ω", const ProductUnit._(const[
         const _RationalPower<Unit>(volt),
-        const _RationalPower<Unit>(ampere,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for electric conductance (`S`).
     ///
@@ -205,7 +205,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<ElectricConductance> siemens = const AlternateUnit<ElectricConductance>(
             "S", const ProductUnit._(const[
         const _RationalPower<Unit>(ampere),
-        const _RationalPower<Unit>(volt,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(volt,const RationalNumber._(-1))]));
 
     /// The derived unit for magnetic flux (`Wb`).
     ///
@@ -226,7 +226,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<MagneticFluxDensity> tesla = const AlternateUnit<MagneticFluxDensity>(
             "T", const ProductUnit._(const[
         const _RationalPower<Unit>(weber),
-        const _RationalPower<Unit>(metre,const RationalNumber(-2))]));
+        const _RationalPower<Unit>(metre,const RationalNumber._(-2))]));
 
     /// The derived unit for inductance (`H`).
     ///
@@ -237,7 +237,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<ElectricInductance> henry = const AlternateUnit<ElectricInductance>(
             "H", const ProductUnit._(const[
         const _RationalPower<Unit>(weber),
-        const _RationalPower<Unit>(ampere,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for Celsius temperature (`℃`).
     ///
@@ -262,7 +262,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<Illuminance> lux = const AlternateUnit<Illuminance>(
             "lx", const ProductUnit._(const[
         const _RationalPower<Unit>(lumen),
-        const _RationalPower<Unit>(meter,const RationalNumber(-2))]));
+        const _RationalPower<Unit>(meter,const RationalNumber._(-2))]));
 
     /// The derived unit for activity of a radionuclide (`Bq`).
     ///
@@ -272,7 +272,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<RadioactiveActivity> becquerel = const AlternateUnit<RadioactiveActivity>(
             "Bq", const ProductUnit._(const[
         const _RationalPower<Unit>(Unit.one),
-        const _RationalPower<Unit>(second,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     /// The derived unit for absorbed dose, specific energy (imparted), kerma
     /// (`Gy`).
@@ -283,7 +283,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<RadiationDoseAbsorbed> gray = const AlternateUnit<RadiationDoseAbsorbed>(
             "Gy", const ProductUnit._(const[
         const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(kilogram,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
 
     /// The derived unit for dose equivalent (`Sv`).
     ///
@@ -294,13 +294,13 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit<RadiationDoseEffective> sievert = const AlternateUnit<RadiationDoseEffective>(
             "Sv", const ProductUnit._(const[
         const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(kilogram,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
 
     /// The derived unit for catalytic activity (`kat`).
     static const AlternateUnit<CatalyticActivity> katal = const AlternateUnit<CatalyticActivity>(
             "kat", const ProductUnit._(const[
         const _RationalPower<Unit>(mole),
-        const _RationalPower<Unit>(second,const RationalNumber(-1))]));
+        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     //////////////////////////////
     // SI DERIVED PRODUCT UNITS //
@@ -309,7 +309,7 @@ abstract class SI extends SystemOfUnits {
     /// The metric unit for velocity quantities (`m/s`).
     static const Unit<Velocity> metresPerSecond = const ProductUnit<Velocity>._(const[
         const _RationalPower<Unit>(metre),
-        const _RationalPower<Unit>(second,const RationalNumber(-1))]);
+        const _RationalPower<Unit>(second,const RationalNumber._(-1))]);
 
     /// Equivalent to [metresPerSecond] (American spelling).
     static const Unit<Velocity> metersPerSecond = metresPerSecond;
@@ -317,18 +317,18 @@ abstract class SI extends SystemOfUnits {
     /// The metric unit for acceleration quantities (`m/s²`).
     static const Unit<Acceleration> metresPerSquareSecond = const ProductUnit<Acceleration>._(const[
         const _RationalPower<Unit>(metre),
-        const _RationalPower<Unit>(second,const RationalNumber(-2))]);
+        const _RationalPower<Unit>(second,const RationalNumber._(-2))]);
 
     /// Equivalent to [metresPerSquareSecond] (American spelling).
     static const Unit<Acceleration> metersPerSquareSecond = metresPerSquareSecond;
 
     /// The metric unit for area quantities (`m²`).
     static const Unit<Area> squareMetre = const ProductUnit<Area>._(const[
-        const _RationalPower<Unit>(metre,const RationalNumber(2))]);
+        const _RationalPower<Unit>(metre,const RationalNumber._(2))]);
 
     /// The metric unit for volume quantities (`m³`).
     static const Unit<Volume> cubicMetre = const ProductUnit<Volume>._(const[
-        const _RationalPower<Unit>(metre,const RationalNumber(3))]);
+        const _RationalPower<Unit>(metre,const RationalNumber._(3))]);
 
     /// Equivalent to `KILO(METRE)`.
     static const Unit<Length> kilometre = const TransformedUnit(metre, E3);
@@ -422,39 +422,39 @@ abstract class SI extends SystemOfUnits {
 
     static const MultiplyConverter E21 = const MultiplyConverter._(1E21);
 
-    static const RationalConverter E18 = const RationalConverter._(const RationalNumber(
+    static const RationalConverter E18 = const RationalConverter._(const RationalNumber._(
             1000000000000000000));
 
-    static const RationalConverter E15 = const RationalConverter._(const RationalNumber(
+    static const RationalConverter E15 = const RationalConverter._(const RationalNumber._(
             1000000000000000));
 
-    static const RationalConverter E12 = const RationalConverter._(const RationalNumber(1000000000000));
+    static const RationalConverter E12 = const RationalConverter._(const RationalNumber._(1000000000000));
 
-    static const RationalConverter E9 = const RationalConverter._(const RationalNumber(1000000000));
+    static const RationalConverter E9 = const RationalConverter._(const RationalNumber._(1000000000));
 
-    static const RationalConverter E6 = const RationalConverter._(const RationalNumber(1000000));
+    static const RationalConverter E6 = const RationalConverter._(const RationalNumber._(1000000));
 
-    static const RationalConverter E3 = const RationalConverter._(const RationalNumber(1000));
+    static const RationalConverter E3 = const RationalConverter._(const RationalNumber._(1000));
 
-    static const RationalConverter E2 = const RationalConverter._(const RationalNumber(100));
+    static const RationalConverter E2 = const RationalConverter._(const RationalNumber._(100));
 
-    static const RationalConverter E1 = const RationalConverter._(const RationalNumber(10));
+    static const RationalConverter E1 = const RationalConverter._(const RationalNumber._(10));
 
-    static const RationalConverter Em1 = const RationalConverter._(const RationalNumber(1, 10));
+    static const RationalConverter Em1 = const RationalConverter._(const RationalNumber._(1, 10));
 
-    static const RationalConverter Em2 = const RationalConverter._(const RationalNumber(1, 100));
+    static const RationalConverter Em2 = const RationalConverter._(const RationalNumber._(1, 100));
 
-    static const RationalConverter Em3 = const RationalConverter._(const RationalNumber(1, 1000));
+    static const RationalConverter Em3 = const RationalConverter._(const RationalNumber._(1, 1000));
 
-    static const RationalConverter Em6 = const RationalConverter._(const RationalNumber(1, 1000000));
+    static const RationalConverter Em6 = const RationalConverter._(const RationalNumber._(1, 1000000));
 
-    static const RationalConverter Em9 = const RationalConverter._(const RationalNumber(1, 1000000000));
+    static const RationalConverter Em9 = const RationalConverter._(const RationalNumber._(1, 1000000000));
 
-    static const RationalConverter Em12 = const RationalConverter._(const RationalNumber(1, 1000000000000));
+    static const RationalConverter Em12 = const RationalConverter._(const RationalNumber._(1, 1000000000000));
 
-    static const RationalConverter Em15 = const RationalConverter._(const RationalNumber(1, 1000000000000000));
+    static const RationalConverter Em15 = const RationalConverter._(const RationalNumber._(1, 1000000000000000));
 
-    static const RationalConverter Em18 = const RationalConverter._(const RationalNumber(1, 1000000000000000000));
+    static const RationalConverter Em18 = const RationalConverter._(const RationalNumber._(1, 1000000000000000000));
 
     static const MultiplyConverter Em21 = const MultiplyConverter._(1E-21);
 
@@ -468,13 +468,13 @@ abstract class SI extends SystemOfUnits {
 abstract class NonSI extends SystemOfUnits {
 
     /// The standard gravity constant: 9.80665 m/s² exact.
-    static const standardGravity = const RationalNumber(980665, 100000);
+    static const standardGravity = const RationalNumber._(980665, 100000);
 
     /// The international foot: 0.3048 m exact.
-    static const internationalFoot = const RationalNumber(3048, 10000);
+    static const internationalFoot = const RationalNumber._(3048, 10000);
 
     /// The avoirdupois pound: 0.45359237 kg exact
-    static const avoirdupoisPound = const RationalNumber(45359237, 100000000);
+    static const avoirdupoisPound = const RationalNumber._(45359237, 100000000);
 
     /// The Avogadro constant.
     static const double avogadroConstant = 6.02214199e23; // (1/mol).
@@ -493,7 +493,7 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A logarithmic unit used to describe a ratio (standard name `dB`).
     static const Unit<Dimensionless> decibel = const TransformedUnit(Unit.one,
-        const _CompoundConverter(const RationalConverter._(const RationalNumber(1, 10)),
+        const _CompoundConverter(const RationalConverter._(const RationalNumber._(1, 10)),
             const _InverseLogConverter(const LogConverter._(10.0))));
 
     /////////////////////////
@@ -514,32 +514,32 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of length equal to `1200/3937 m` (standard name `foot_survey_us`).
     static const Unit<Length> footSurveyUS = const TransformedUnit(SI.metre,
-        const RationalConverter._(const RationalNumber(1200,3937)));
+        const RationalConverter._(const RationalNumber._(1200,3937)));
 
     /// A unit of length equal to `0.9144 m` (standard name `yd`).
     static const Unit<Length> yard = const TransformedUnit(foot,
-        const RationalConverter._(const RationalNumber(3)));
+        const RationalConverter._(const RationalNumber._(3)));
 
     /// A unit of length equal to `0.0254 m` (standard name `in`).
     static const Unit<Length> inch = const TransformedUnit(foot,
-        const RationalConverter._(const RationalNumber(1,12)));
+        const RationalConverter._(const RationalNumber._(1,12)));
 
     /// A unit of length equal to `1609.344 m` (standard name `mi`).
     static const Unit<Length> mile = const TransformedUnit(SI.metre,
-        const RationalConverter._(const RationalNumber(1609344,1000)));
+        const RationalConverter._(const RationalNumber._(1609344,1000)));
 
     /// A unit of length equal to `1852.0 m` (standard name `nmi`).
     static const Unit<Length> nauticalMile = const TransformedUnit(SI.metre,
-        const RationalConverter._(const RationalNumber(1852)));
+        const RationalConverter._(const RationalNumber._(1852)));
 
     /// A unit of length equal to `1E-10 m` (standard name `Å`).
     static const Unit<Length> angstrom = const TransformedUnit(SI.metre,
-        const RationalConverter._(const RationalNumber(1,10000000000)));
+        const RationalConverter._(const RationalNumber._(1,10000000000)));
 
     /// A unit of length equal to the average distance from the center of the
     /// Earth to the center of the Sun (standard name `ua`).
     static const Unit<Length> astronomicalUnit = const TransformedUnit(SI.metre,
-        const RationalConverter._(const RationalNumber(149597870691,1)));
+        const RationalConverter._(const RationalNumber._(149597870691,1)));
 
     /// A unit of length equal to the distance that light travels in one year
     /// through a vacuum (standard name `ly`).
@@ -556,13 +556,13 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of length equal to `0.013837 [INCH]` exactly (standard name `pt`).
     static const Unit<Length> point = const TransformedUnit(NonSI.inch,
-        const RationalConverter._(const RationalNumber(13837,1000000)));
+        const RationalConverter._(const RationalNumber._(13837,1000000)));
 
     /// A unit of length equal to `1/72 [INCH]` (standard name `pixel`).
     ///
     /// It is the American point rounded to an even 1/72 inch.
     static const Unit<Length> pixel = const TransformedUnit(NonSI.inch,
-        const RationalConverter._(const RationalNumber(1,72)));
+        const RationalConverter._(const RationalNumber._(1,72)));
 
     /// Equivalent [pixel]
     static const Unit<Length> computerPoint = pixel;
@@ -573,27 +573,27 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of duration equal to `60 s` (standard name `min`).
     static const Unit<Duration> minute = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(60)));
+        SI.second, const RationalConverter._(const RationalNumber._(60)));
 
     /// A unit of duration equal to `60 [MINUTE]` (standard name `h`).
     static const Unit<Duration> hour = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(60*60)));
+        SI.second, const RationalConverter._(const RationalNumber._(60*60)));
 
     /// A unit of duration equal to `24 [HOUR]` (standard name `d`).
     static const Unit<Duration> day = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(60*60*24)));
+        SI.second, const RationalConverter._(const RationalNumber._(60*60*24)));
     /// A unit of duration equal to `7 [DAY]` (standard name `week`).
     static const Unit<Duration> week = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(60*60*24*7)));
+        SI.second, const RationalConverter._(const RationalNumber._(60*60*24*7)));
 
     /// A unit of duration equal to 365 days, 5 hours, 49 minutes,
     /// and 12 seconds (standard name `year`).
     static const Unit<Duration> year = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(31556952)));
+        SI.second, const RationalConverter._(const RationalNumber._(31556952)));
 
     /// A unit of duration equal to one twelfth of a year (standard name `month`).
     static const Unit<Duration> month = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(31556952, 12)));
+        SI.second, const RationalConverter._(const RationalNumber._(31556952, 12)));
 
     /// A unit of duration equal to the time required for a complete rotation of
     /// the earth in reference to any star or to the vernal equinox at the
@@ -610,7 +610,7 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of duration equal to `365 [DAY]` (standard name `year_calendar`).
     static const Unit<Duration> yearCalendar = const TransformedUnit(
-        SI.second, const RationalConverter._(const RationalNumber(60*60*24*365)));
+        SI.second, const RationalConverter._(const RationalNumber._(60*60*24*365)));
 
     //////////
     // Mass //
@@ -632,15 +632,15 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of mass equal to `1 / 16 [POUND]` (standard name `oz`).
     static const Unit<Mass> ounce = const TransformedUnit(NonSI.pound,
-        const RationalConverter._(const RationalNumber(1,16)));
+        const RationalConverter._(const RationalNumber._(1,16)));
 
     /// A unit of mass equal to `2000 [POUND]` (short ton, standard name `ton_us`).
     static const Unit<Mass> tonUS = const TransformedUnit(NonSI.pound,
-        const RationalConverter._(const RationalNumber(2000)));
+        const RationalConverter._(const RationalNumber._(2000)));
 
     /// A unit of mass equal to `2240 [POUND]` (long ton, standard name `ton_uk`).
     static const Unit<Mass> tonUK = const TransformedUnit(NonSI.pound,
-        const RationalConverter._(const RationalNumber(2240)));
+        const RationalConverter._(const RationalNumber._(2240)));
 
     /// A unit of mass equal to `1000 kg` (metric ton, standard name `t`).
     static const Unit<Mass> metricTon = const TransformedUnit(SI.kilogram,SI.E3);
@@ -671,7 +671,7 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of temperature equal to `5/9 °K` (standard name `°R`).
     static const Unit<Temperature> rankine = const TransformedUnit(SI.kelvin,
-        const RationalConverter._(const RationalNumber(5,9)));
+        const RationalConverter._(const RationalNumber._(5,9)));
 
     /// A unit of temperature equal to degree Rankine minus `459.67 °R`
     /// (standard name `°F`).
@@ -706,7 +706,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of angle measure equal to `1/400 [REVOLUTION]`
     /// (standard name `grade`).
     static const Unit<Angle> grade = const TransformedUnit<Angle>(
-        NonSI.revolution, const RationalConverter._(const RationalNumber(1, 400)));
+        NonSI.revolution, const RationalConverter._(const RationalNumber._(1, 400)));
 
     //////////////
     // Velocity //
@@ -717,14 +717,14 @@ abstract class NonSI extends SystemOfUnits {
     static const Unit<Velocity> milesPerHour
          = const ProductUnit._(const [
              const _RationalPower<Unit>(NonSI.mile),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber(-1))
+             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// A unit of velocity expressing the number of [SI.kilometre] per [hour].
     static const Unit<Velocity> kilometresPerHour
          = const ProductUnit._(const [
              const _RationalPower<Unit>(SI.kilometer),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber(-1))
+             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// Equivalent to [kilometresPerHour].
@@ -735,7 +735,7 @@ abstract class NonSI extends SystemOfUnits {
     static const Unit<Velocity> knot
          = const ProductUnit._(const [
              const _RationalPower<Unit>(NonSI.nauticalMile),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber(-1))
+             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// A unit of velocity to express the speed of an aircraft relative to
@@ -746,7 +746,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of velocity relative to the speed of light
     /// (standard name `c`).
     static const Unit<Velocity> c = const TransformedUnit(SI.metersPerSecond,
-        const RationalConverter._(const RationalNumber(299792458,1)));
+        const RationalConverter._(const RationalNumber._(299792458,1)));
 
     //////////////////
     // Acceleration //
@@ -776,7 +776,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of data amount equal to `8 [SI.BIT]`
     /// (BinarY TErm, standard name `byte`).
     static const Unit<DataAmount> byte = const TransformedUnit(SI.bit,
-        const RationalConverter._(const RationalNumber(8)));
+        const RationalConverter._(const RationalNumber._(8)));
 
     /// Equivalent [byte]
     static const Unit<DataAmount> octet = byte;
@@ -799,7 +799,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of energy equal to `1E-7 J`
     /// (standard name `erg`).
     static const Unit<Energy> erg = const TransformedUnit(SI.joule,
-        const RationalConverter._(const RationalNumber(1,10000000)));
+        const RationalConverter._(const RationalNumber._(1,10000000)));
 
     /// A unit of energy equal to one electron-volt (standard name
     /// `eV`, also recognized `keV, MeV, GeV`).
@@ -813,7 +813,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of illuminance equal to `1E4 Lx`
     /// (standard name `La`).
     static const Unit<Illuminance> lambert = const TransformedUnit(SI.lux,
-        const RationalConverter._(const RationalNumber(10000)));
+        const RationalConverter._(const RationalNumber._(10000)));
 
     ///////////////////
     // Magnetic Flux //
@@ -822,7 +822,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of magnetic flux equal `1E-8 Wb`
     /// (standard name `Mx`).
     static const Unit<MagneticFlux> maxwell = const TransformedUnit(SI.weber,
-        const RationalConverter._(const RationalNumber(1,100000000)));
+        const RationalConverter._(const RationalNumber._(1,100000000)));
 
     ///////////////////////////
     // Magnetic Flux Density //
@@ -831,7 +831,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of magnetic flux density equal `1000 A/m`
     /// (standard name `G`).
     static const Unit<MagneticFluxDensity> gauss = const TransformedUnit(SI.tesla,
-        const RationalConverter._(const RationalNumber(1,10000)));
+        const RationalConverter._(const RationalNumber._(1,10000)));
 
     ///////////
     // Force //
@@ -840,7 +840,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of force equal to `1E-5 N`
     /// (standard name `dyn`).
     static const Unit<Force> dyne = const TransformedUnit(SI.newton,
-        const RationalConverter._(const RationalNumber(1,100000)));
+        const RationalConverter._(const RationalNumber._(1,100000)));
 
     /// A unit of force equal to `9.80665 N`
     /// (standard name `kgf`).
@@ -850,7 +850,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of force equal to `[POUND]·[G]`
     /// (standard name `lbf`).
     static const Unit<Force> poundForce = const TransformedUnit(SI.newton,
-        const RationalConverter._(const RationalNumber(
+        const RationalConverter._(const RationalNumber._(
             45359237 * 980665, 100000000 * 100000)));
 
     ///////////
@@ -870,12 +870,12 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of pressure equal to the average pressure of the Earth's
     /// atmosphere at sea level (standard name `atm`).
     static const Unit<Pressure> atmosphere = const TransformedUnit(SI.pascal,
-        const RationalConverter._(const RationalNumber(1,101325)));
+        const RationalConverter._(const RationalNumber._(1,101325)));
 
     /// A unit of pressure equal to `100 kPa`
     /// (standard name `bar`).
     static const Unit<Pressure> bar = const TransformedUnit(SI.pascal,
-        const RationalConverter._(const RationalNumber(1,100000)));
+        const RationalConverter._(const RationalNumber._(1,100000)));
 
     /// A unit of pressure equal to the pressure exerted at the Earth's
     /// surface by a column of mercury 1 millimeter high
@@ -908,7 +908,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of radioctive activity equal to the activity of a gram of radium
     /// (standard name `Ci`).
     static const Unit<RadioactiveActivity> curie = const TransformedUnit(SI.becquerel,
-    const RationalConverter._(const RationalNumber(37000000000)));
+    const RationalConverter._(const RationalNumber._(37000000000)));
 
     /// A unit of radioctive activity equal to 1 million radioactive
     /// disintegrations per second (standard name `Rd`).
@@ -936,33 +936,33 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of volume equal to one cubic inch (`in³`).
     static const Unit<Volume> cubicInch = const ProductUnit._(const [
-        const _RationalPower<Unit>(inch,const RationalNumber(3))]);
+        const _RationalPower<Unit>(inch,const RationalNumber._(3))]);
 
     /// A unit of volume equal to one US gallon, Liquid Unit. The U.S. liquid
     /// gallon is based on the Queen Anne or Wine gallon occupying 231 cubic
     /// inches (standard name `gal`).
     static const Unit<Volume> gallonLiquidUS = const TransformedUnit(cubicInch,
-    const RationalConverter._(const RationalNumber(231,1)));
+    const RationalConverter._(const RationalNumber._(231,1)));
 
     /// A unit of volume equal to `1 / 128 [GALLON_LIQUID_US]`
     /// (standard name `oz_fl`).
     static const Unit<Volume> ounceLiquidUS = const TransformedUnit(gallonLiquidUS,
-        const RationalConverter._(const RationalNumber(1,128)));
+        const RationalConverter._(const RationalNumber._(1,128)));
 
     /// A unit of volume equal to one US dry gallon.
     /// (standard name `gallon_dry_us`).
     static const Unit<Volume> gallonDryUS = const TransformedUnit(cubicInch,
-        const RationalConverter._(const RationalNumber(2688025,10000)));
+        const RationalConverter._(const RationalNumber._(2688025,10000)));
 
     /// A unit of volume equal to `4.546 09 [LITRE]`
     /// (standard name `gal_uk`).
     static const Unit<Volume> gallonUK = const TransformedUnit(litre,
-        const RationalConverter._(const RationalNumber(454609,100000)));
+        const RationalConverter._(const RationalNumber._(454609,100000)));
 
     /// A unit of volume equal to `1 / 160 [GALLON_UK]`
     /// (standard name `oz_fl_uk`).
     static const Unit<Volume> ounceLiquidUK = const TransformedUnit(gallonUK,
-        const RationalConverter._(const RationalNumber(1,160)));
+        const RationalConverter._(const RationalNumber._(1,160)));
 
     ///////////////
     // Viscosity //
@@ -971,14 +971,14 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of dynamic viscosity equal to `1 g/(cm·s)` (cgs unit).
     static const Unit<DynamicViscosity> poise = const ProductUnit._(const [
         const _RationalPower<Unit>(SI.gram),
-        const _RationalPower<Unit>(SI.centimeter,const RationalNumber(-1)),
-        const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.centimeter,const RationalNumber._(-1)),
+        const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
     /// A unit of kinematic viscosity equal to `1 cm²/s` (cgs unit).
     static const Unit<KinematicViscosity> stoke = const ProductUnit._(const [
-        const _RationalPower<Unit>(SI.centimeter,const RationalNumber(2)),
-        const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.centimeter,const RationalNumber._(2)),
+        const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
     ////////////
@@ -989,7 +989,7 @@ abstract class NonSI extends SystemOfUnits {
     /// (standard name `Roentgen`).
     static const Unit roentgen = const TransformedUnit(const ProductUnit._(const [
         const _RationalPower<Unit>(SI.coulomb),
-        const _RationalPower<Unit>(SI.kilogram,const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.kilogram,const RationalNumber._(-1))
     ]), const MultiplyConverter._(2.58e-4));
 
 
