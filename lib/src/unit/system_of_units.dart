@@ -80,7 +80,7 @@ abstract class SI extends SystemOfUnits {
     /// It is defined as the duration of 9,192,631,770 cycles of radiation
     /// corresponding to the transition between two hyperfine levels of
     /// the ground state of cesium (1967 Standard).
-    static const BaseUnit<Duration> second = const BaseUnit<Duration>("s");
+    static const BaseUnit<DurationQuantity> second = const BaseUnit<DurationQuantity>("s");
 
     ////////////////////////////////
     // SI DERIVED ALTERNATE UNITS //
@@ -572,44 +572,44 @@ abstract class NonSI extends SystemOfUnits {
     //////////////
 
     /// A unit of duration equal to `60 s` (standard name `min`).
-    static const Unit<Duration> minute = const TransformedUnit(
+    static const Unit<DurationQuantity> minute = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(60)));
 
     /// A unit of duration equal to `60 [MINUTE]` (standard name `h`).
-    static const Unit<Duration> hour = const TransformedUnit(
+    static const Unit<DurationQuantity> hour = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(60*60)));
 
     /// A unit of duration equal to `24 [HOUR]` (standard name `d`).
-    static const Unit<Duration> day = const TransformedUnit(
+    static const Unit<DurationQuantity> day = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(60*60*24)));
     /// A unit of duration equal to `7 [DAY]` (standard name `week`).
-    static const Unit<Duration> week = const TransformedUnit(
+    static const Unit<DurationQuantity> week = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(60*60*24*7)));
 
     /// A unit of duration equal to 365 days, 5 hours, 49 minutes,
     /// and 12 seconds (standard name `year`).
-    static const Unit<Duration> year = const TransformedUnit(
+    static const Unit<DurationQuantity> year = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(31556952)));
 
     /// A unit of duration equal to one twelfth of a year (standard name `month`).
-    static const Unit<Duration> month = const TransformedUnit(
+    static const Unit<DurationQuantity> month = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(31556952, 12)));
 
     /// A unit of duration equal to the time required for a complete rotation of
     /// the earth in reference to any star or to the vernal equinox at the
     /// meridian, equal to 23 hours, 56 minutes, 4.09 seconds
     /// (standard name `day_sidereal`).
-    static const Unit<Duration> daySidereal = const TransformedUnit(
+    static const Unit<DurationQuantity> daySidereal = const TransformedUnit(
         SI.second, const MultiplyConverter._(86164.09));
 
     /// A unit of duration equal to one complete revolution of the
     /// earth about the sun, relative to the fixed stars, or 365 days, 6 hours,
     /// 9 minutes, 9.54 seconds (standard name `year_sidereal`).
-    static const Unit<Duration> yearSidereal = const TransformedUnit(
+    static const Unit<DurationQuantity> yearSidereal = const TransformedUnit(
         SI.second, const MultiplyConverter._(31558149.54));
 
     /// A unit of duration equal to `365 [DAY]` (standard name `year_calendar`).
-    static const Unit<Duration> yearCalendar = const TransformedUnit(
+    static const Unit<DurationQuantity> yearCalendar = const TransformedUnit(
         SI.second, const RationalConverter._(const RationalNumber._(60*60*24*365)));
 
     //////////

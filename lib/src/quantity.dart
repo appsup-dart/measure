@@ -204,50 +204,50 @@ abstract class DataRate extends Quantity {
 /// A period of existence or persistence.
 ///
 /// The system unit for this quantity is "s" (second).
-abstract class Duration extends Quantity {
+abstract class DurationQuantity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Duration> siUnit = SI.second;
+    static const Unit<DurationQuantity> siUnit = SI.second;
 
     /// The base unit for duration quantities (`s`).
     ///
     /// It is defined as the duration of 9,192,631,770 cycles of radiation
     /// corresponding to the transition between two hyperfine levels of
     /// the ground state of cesium (1967 Standard).
-    static const BaseUnit<Duration> second = SI.second;
+    static const BaseUnit<DurationQuantity> second = SI.second;
 
     /// A unit of duration equal to `60 s` (standard name `min`).
-    static const Unit<Duration> minute = NonSI.minute;
+    static const Unit<DurationQuantity> minute = NonSI.minute;
 
     /// A unit of duration equal to `60 [MINUTE]` (standard name `h`).
-    static const Unit<Duration> hour = NonSI.hour;
+    static const Unit<DurationQuantity> hour = NonSI.hour;
 
     /// A unit of duration equal to `24 [HOUR]` (standard name `d`).
-    static const Unit<Duration> day = NonSI.day;
+    static const Unit<DurationQuantity> day = NonSI.day;
 
     /// A unit of duration equal to `7 [DAY]` (standard name `week`).
-    static const Unit<Duration> week = NonSI.week;
+    static const Unit<DurationQuantity> week = NonSI.week;
 
     /// A unit of duration equal to 365 days, 5 hours, 49 minutes,
     /// and 12 seconds (standard name `year`).
-    static const Unit<Duration> year = NonSI.year;
+    static const Unit<DurationQuantity> year = NonSI.year;
 
     /// A unit of duration equal to one twelfth of a year (standard name `month`).
-    static const Unit<Duration> month = NonSI.month;
+    static const Unit<DurationQuantity> month = NonSI.month;
 
     /// A unit of duration equal to the time required for a complete rotation of
     /// the earth in reference to any star or to the vernal equinox at the
     /// meridian, equal to 23 hours, 56 minutes, 4.09 seconds
     /// (standard name `day_sidereal`).
-    static const Unit<Duration> daySidereal = NonSI.daySidereal;
+    static const Unit<DurationQuantity> daySidereal = NonSI.daySidereal;
 
     /// A unit of duration equal to one complete revolution of the
     /// earth about the sun, relative to the fixed stars, or 365 days, 6 hours,
     /// 9 minutes, 9.54 seconds (standard name `year_sidereal`).
-    static const Unit<Duration> yearSidereal = NonSI.yearSidereal;
+    static const Unit<DurationQuantity> yearSidereal = NonSI.yearSidereal;
 
     /// A unit of duration equal to `365 [DAY]` (standard name `year_calendar`).
-    static const Unit<Duration> yearCalendar = NonSI.yearCalendar;
+    static const Unit<DurationQuantity> yearCalendar = NonSI.yearCalendar;
 
 }
 
