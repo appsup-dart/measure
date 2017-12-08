@@ -59,7 +59,7 @@ abstract class Unit<Q extends Quantity> {
     /// Returns a converter of numeric values from this unit to another unit.
     UnitConverter getConverterTo(Unit that) {
         if (this==that)
-            return UnitConverter.IDENTITY;
+            return UnitConverter.identity;
         Unit thisSystemUnit = this.standardUnit;
         Unit thatSystemUnit = that.standardUnit;
         if (thisSystemUnit==thatSystemUnit)
@@ -76,11 +76,11 @@ abstract class Unit<Q extends Quantity> {
             TransformedUnit<Q> tf = this;
             Unit<Q> parent = tf.parentUnit;
             UnitConverter toParent = tf.toParentUnit.concatenate(operation);
-            if (toParent == UnitConverter.IDENTITY)
+            if (toParent == UnitConverter.identity)
                 return parent;
             return new TransformedUnit<Q>._(parent, toParent);
         }
-        if (operation == UnitConverter.IDENTITY) 
+        if (operation == UnitConverter.identity)
             return this;
         return new TransformedUnit<Q>._(this, operation);
     }

@@ -17,6 +17,6 @@ class AlternateUnit<Q extends Quantity> extends DerivedUnit<Q> {
     AlternateUnit<Q> get standardUnit => this;
 
     @override
-    UnitConverter toStandardUnit() => UnitConverter.IDENTITY;
+    UnitConverter toStandardUnit() => UnitConverter.identity;
     
 }

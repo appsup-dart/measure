@@ -8,7 +8,7 @@ part of measure;
 abstract class UnitConverter {
 
     /// The identity converter (unique).
-    static const UnitConverter IDENTITY = const _IdentityConverter();
+    static const UnitConverter identity = const _IdentityConverter();
 
     const UnitConverter._();
     
@@ -124,7 +124,7 @@ class AddConverter extends UnitConverter {
     }
 
     static UnitConverter _valueOf(double offset) {
-        return offset == 0.0 ? UnitConverter.IDENTITY : new AddConverter(offset);
+        return offset == 0.0 ? UnitConverter.identity : new AddConverter(offset);
     }
     
     @override
@@ -216,7 +216,7 @@ class MultiplyConverter extends UnitConverter {
     }
 
     static UnitConverter _valueOf(double factor) {
-        return factor == 1.0 ? UnitConverter.IDENTITY
+        return factor == 1.0 ? UnitConverter.identity
                 : new MultiplyConverter._(factor);
     }
     
@@ -265,7 +265,7 @@ class RationalConverter extends UnitConverter {
     }
 
     static UnitConverter _valueOf(int dividend, int divisor) {
-        return (dividend == 1) && (divisor == 1) ? UnitConverter.IDENTITY
+        return (dividend == 1) && (divisor == 1) ? UnitConverter.identity
                 : new RationalConverter._(new RationalNumber(dividend, divisor));
     }
 

@@ -15,6 +15,6 @@ class BaseUnit<Q extends Quantity> extends Unit<Q> {
     BaseUnit<Q> get standardUnit => this;
 
     @override
-    UnitConverter toStandardUnit() => UnitConverter.IDENTITY;
+    UnitConverter toStandardUnit() => UnitConverter.identity;
     
 }

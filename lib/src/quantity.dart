@@ -19,7 +19,7 @@ abstract class Quantity {
 abstract class Dimensionless extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Dimensionless> UNIT = Unit.one;
+    static const Unit<Dimensionless> unit = Unit.one;
 
 }
 
@@ -29,7 +29,7 @@ abstract class Dimensionless extends Quantity {
 abstract class Acceleration extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Acceleration> UNIT = SI.METRES_PER_SQUARE_SECOND;
+    static const Unit<Acceleration> unit = SI.metresPerSquareSecond;
 }
 
 
@@ -39,7 +39,7 @@ abstract class Acceleration extends Quantity {
 abstract class AmountOfSubstance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<AmountOfSubstance> UNIT = SI.MOLE;
+    static const Unit<AmountOfSubstance> unit = SI.mole;
 
 }
 
@@ -50,7 +50,7 @@ abstract class AmountOfSubstance extends Quantity {
 abstract class Angle extends Dimensionless {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Angle> UNIT = SI.RADIAN;
+    static const Unit<Angle> unit = SI.radian;
 
 }
 
@@ -60,10 +60,10 @@ abstract class Angle extends Dimensionless {
 abstract class AngularAcceleration extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<AngularAcceleration> UNIT =
+    static const Unit<AngularAcceleration> unit =
         const ProductUnit<AngularAcceleration>._(const [
-            const _RationalPower<Unit>(SI.RADIAN),
-            const _RationalPower<Unit>(SI.SECOND, const RationalNumber(-2))
+            const _RationalPower<Unit>(SI.radian),
+            const _RationalPower<Unit>(SI.second, const RationalNumber(-2))
         ]);
 
 }
@@ -74,10 +74,10 @@ abstract class AngularAcceleration extends Quantity {
 abstract class AngularVelocity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<AngularVelocity> UNIT =
+    static const Unit<AngularVelocity> unit =
     const ProductUnit<AngularVelocity>._(const [
-        const _RationalPower<Unit>(SI.RADIAN),
-        const _RationalPower<Unit>(SI.SECOND, const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.radian),
+        const _RationalPower<Unit>(SI.second, const RationalNumber(-1))
     ]);
 
 }
@@ -89,7 +89,7 @@ abstract class AngularVelocity extends Quantity {
 abstract class Area extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Area> UNIT = SI.SQUARE_METRE;
+    static const Unit<Area> unit = SI.squareMetre;
 
 }
 
@@ -99,7 +99,7 @@ abstract class Area extends Quantity {
 abstract class CatalyticActivity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<CatalyticActivity> UNIT = SI.KATAL;
+    static const Unit<CatalyticActivity> unit = SI.katal;
 
 }
 
@@ -109,7 +109,7 @@ abstract class CatalyticActivity extends Quantity {
 abstract class DataAmount extends Dimensionless {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<DataAmount> UNIT = SI.BIT;
+    static const Unit<DataAmount> unit = SI.bit;
 
 }
 
@@ -119,10 +119,10 @@ abstract class DataAmount extends Dimensionless {
 abstract class DataRate extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<DataRate> UNIT = const ProductUnit<DataRate>._(
+    static const Unit<DataRate> unit = const ProductUnit<DataRate>._(
         const [
-            const _RationalPower<Unit>(SI.BIT),
-            const _RationalPower<Unit>(SI.SECOND,const RationalNumber(-1))
+            const _RationalPower<Unit>(SI.bit),
+            const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
         ]);
 
 }
@@ -133,7 +133,7 @@ abstract class DataRate extends Quantity {
 abstract class Duration extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Duration> UNIT = SI.SECOND;
+    static const Unit<Duration> unit = SI.second;
 
 }
 
@@ -143,10 +143,10 @@ abstract class Duration extends Quantity {
 abstract class DynamicViscosity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<DynamicViscosity> UNIT
+    static const Unit<DynamicViscosity> unit
        = const ProductUnit<DynamicViscosity>._(const [
-           const _RationalPower<Unit>(SI.PASCAL),
-           const _RationalPower<Unit>(SI.SECOND)
+           const _RationalPower<Unit>(SI.pascal),
+           const _RationalPower<Unit>(SI.second)
        ]);
 }
 
@@ -156,7 +156,7 @@ abstract class DynamicViscosity extends Quantity {
 abstract class ElectricCapacitance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricCapacitance> UNIT = SI.FARAD;
+    static const Unit<ElectricCapacitance> unit = SI.farad;
 
 }
 
@@ -166,7 +166,7 @@ abstract class ElectricCapacitance extends Quantity {
 abstract class ElectricCharge extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricCharge> UNIT = SI.COULOMB;
+    static const Unit<ElectricCharge> unit = SI.coulomb;
 
 }
 
@@ -177,7 +177,7 @@ abstract class ElectricCharge extends Quantity {
 abstract class ElectricConductance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricConductance> UNIT = SI.SIEMENS;
+    static const Unit<ElectricConductance> unit = SI.siemens;
 
 }
 
@@ -188,7 +188,7 @@ abstract class ElectricConductance extends Quantity {
 abstract class ElectricCurrent extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricCurrent> UNIT = SI.AMPERE;
+    static const Unit<ElectricCurrent> unit = SI.ampere;
 
 }
 
@@ -198,7 +198,7 @@ abstract class ElectricCurrent extends Quantity {
 abstract class ElectricInductance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricInductance> UNIT = SI.HENRY;
+    static const Unit<ElectricInductance> unit = SI.henry;
 
 }
 
@@ -208,7 +208,7 @@ abstract class ElectricInductance extends Quantity {
 abstract class ElectricPotential extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricPotential> UNIT = SI.VOLT;
+    static const Unit<ElectricPotential> unit = SI.volt;
 
 }
 
@@ -218,7 +218,7 @@ abstract class ElectricPotential extends Quantity {
 abstract class ElectricResistance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<ElectricResistance> UNIT = SI.OHM;
+    static const Unit<ElectricResistance> unit = SI.ohm;
 
 }
 
@@ -228,7 +228,7 @@ abstract class ElectricResistance extends Quantity {
 abstract class Energy extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Energy> UNIT = SI.JOULE;
+    static const Unit<Energy> unit = SI.joule;
 
 }
 
@@ -239,7 +239,7 @@ abstract class Energy extends Quantity {
 abstract class Force extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Force> UNIT = SI.NEWTON;
+    static const Unit<Force> unit = SI.newton;
 
 }
 
@@ -250,7 +250,7 @@ abstract class Force extends Quantity {
 abstract class Frequency extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Frequency> UNIT = SI.HERTZ;
+    static const Unit<Frequency> unit = SI.hertz;
 
 }
 
@@ -260,7 +260,7 @@ abstract class Frequency extends Quantity {
 abstract class Illuminance extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Illuminance> UNIT = SI.LUX;
+    static const Unit<Illuminance> unit = SI.lux;
 
 }
 
@@ -270,10 +270,10 @@ abstract class Illuminance extends Quantity {
 abstract class KinematicViscosity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<KinematicViscosity> UNIT
+    static const Unit<KinematicViscosity> unit
     = const ProductUnit<KinematicViscosity>._(const [
-        const _RationalPower<Unit>(SI.METRE,const RationalNumber(2)),
-        const _RationalPower<Unit>(SI.SECOND,const RationalNumber(-1))
+        const _RationalPower<Unit>(SI.metre,const RationalNumber(2)),
+        const _RationalPower<Unit>(SI.second,const RationalNumber(-1))
     ]);
 
 }
@@ -285,7 +285,7 @@ abstract class KinematicViscosity extends Quantity {
 abstract class Length extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Length> UNIT = SI.METRE;
+    static const Unit<Length> unit = SI.metre;
 
 }
 
@@ -295,7 +295,7 @@ abstract class Length extends Quantity {
 abstract class LuminousFlux extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<LuminousFlux> UNIT = SI.LUMEN;
+    static const Unit<LuminousFlux> unit = SI.lumen;
 
 }
 
@@ -306,7 +306,7 @@ abstract class LuminousFlux extends Quantity {
 abstract class LuminousIntensity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<LuminousIntensity> UNIT = SI.CANDELA;
+    static const Unit<LuminousIntensity> unit = SI.candela;
 
 }
 
@@ -316,7 +316,7 @@ abstract class LuminousIntensity extends Quantity {
 abstract class MagneticFlux extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<MagneticFlux> UNIT = SI.WEBER;
+    static const Unit<MagneticFlux> unit = SI.weber;
 
 }
 
@@ -326,7 +326,7 @@ abstract class MagneticFlux extends Quantity {
 abstract class MagneticFluxDensity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<MagneticFluxDensity> UNIT = SI.TESLA;
+    static const Unit<MagneticFluxDensity> unit = SI.tesla;
 
 }
 
@@ -339,7 +339,7 @@ abstract class MagneticFluxDensity extends Quantity {
 abstract class Mass extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Mass> UNIT = SI.KILOGRAM;
+    static const Unit<Mass> unit = SI.kilogram;
 
 }
 
@@ -349,10 +349,10 @@ abstract class Mass extends Quantity {
 abstract class MassFlowRate extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<MassFlowRate> UNIT = const ProductUnit<MassFlowRate>._(
+    static const Unit<MassFlowRate> unit = const ProductUnit<MassFlowRate>._(
         const [
-            const _RationalPower(SI.KILOGRAM),
-            const _RationalPower(SI.SECOND,const RationalNumber(-1))
+            const _RationalPower(SI.kilogram),
+            const _RationalPower(SI.second,const RationalNumber(-1))
         ]
     );
 }
@@ -363,7 +363,7 @@ abstract class MassFlowRate extends Quantity {
 abstract class Power extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Power> UNIT = SI.WATT;
+    static const Unit<Power> unit = SI.watt;
 
 }
 
@@ -373,7 +373,7 @@ abstract class Power extends Quantity {
 abstract class Pressure extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Pressure> UNIT = SI.PASCAL;
+    static const Unit<Pressure> unit = SI.pascal;
 
 }
 
@@ -383,7 +383,7 @@ abstract class Pressure extends Quantity {
 abstract class RadiationDoseAbsorbed extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<RadiationDoseAbsorbed> UNIT = SI.GRAY;
+    static const Unit<RadiationDoseAbsorbed> unit = SI.gray;
 
 }
 
@@ -394,7 +394,7 @@ abstract class RadiationDoseAbsorbed extends Quantity {
 abstract class RadiationDoseEffective extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<RadiationDoseEffective> UNIT = SI.SIEVERT;
+    static const Unit<RadiationDoseEffective> unit = SI.sievert;
 
 }
 
@@ -404,7 +404,7 @@ abstract class RadiationDoseEffective extends Quantity {
 abstract class RadioactiveActivity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<RadioactiveActivity> UNIT = SI.BECQUEREL;
+    static const Unit<RadioactiveActivity> unit = SI.becquerel;
 
 }
 
@@ -415,7 +415,7 @@ abstract class RadioactiveActivity extends Quantity {
 abstract class SolidAngle extends Dimensionless {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<SolidAngle> UNIT = SI.STERADIAN;
+    static const Unit<SolidAngle> unit = SI.steradian;
 
 }
 
@@ -425,7 +425,7 @@ abstract class SolidAngle extends Dimensionless {
 abstract class Temperature extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Temperature> UNIT = SI.KELVIN;
+    static const Unit<Temperature> unit = SI.kelvin;
 
 }
 
@@ -440,10 +440,10 @@ abstract class Temperature extends Quantity {
 abstract class Torque extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Torque> UNIT = 
+    static const Unit<Torque> unit =
         const ProductUnit<Torque>._(const [
-            const _RationalPower<Unit>(SI.NEWTON),
-            const _RationalPower<Unit>(SI.METRE)
+            const _RationalPower<Unit>(SI.newton),
+            const _RationalPower<Unit>(SI.metre)
         ]);
 
 }
@@ -455,7 +455,7 @@ abstract class Torque extends Quantity {
 abstract class Velocity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Velocity> UNIT = SI.METRES_PER_SECOND;
+    static const Unit<Velocity> unit = SI.metresPerSecond;
 
 }
 
@@ -466,7 +466,7 @@ abstract class Velocity extends Quantity {
 abstract class Volume extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<Volume> UNIT = SI.CUBIC_METRE;
+    static const Unit<Volume> unit = SI.cubicMetre;
 
 }
 
@@ -477,10 +477,10 @@ abstract class Volume extends Quantity {
 abstract class VolumetricDensity extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<VolumetricDensity> UNIT =
+    static const Unit<VolumetricDensity> unit =
     const ProductUnit<VolumetricDensity>._(const [
-        const _RationalPower(SI.KILOGRAM),
-        const _RationalPower(SI.METRE,const RationalNumber(-3))
+        const _RationalPower(SI.kilogram),
+        const _RationalPower(SI.metre,const RationalNumber(-3))
     ]);
 }
 
@@ -490,10 +490,10 @@ abstract class VolumetricDensity extends Quantity {
 abstract class VolumetricFlowRate extends Quantity {
 
     /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit<VolumetricFlowRate> UNIT =
+    static const Unit<VolumetricFlowRate> unit =
     const ProductUnit<VolumetricFlowRate>._(const [
-        const _RationalPower(SI.METRE,const RationalNumber(3)),
-        const _RationalPower(SI.SECOND,const RationalNumber(-1))
+        const _RationalPower(SI.metre,const RationalNumber(3)),
+        const _RationalPower(SI.second,const RationalNumber(-1))
     ]);
 }
 

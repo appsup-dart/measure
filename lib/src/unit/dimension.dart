@@ -3,28 +3,28 @@ part of measure;
 /// The dimension of a unit.
 abstract class Dimension {
 
-    static DimensionalModel model = DimensionalModel.STANDARD;
+    static DimensionalModel model = DimensionalModel.standard;
 
     /// Dimensionless
-    static final Dimension NONE = const _BaseDimension("1");
+    static final Dimension none = const _BaseDimension("1");
 
     /// Length dimension (L)
-    static final Dimension LENGTH = const _BaseDimension("L");
+    static final Dimension length = const _BaseDimension("L");
 
     /// Mass dimension (M)
-    static final Dimension MASS = new _BaseDimension('M');
+    static final Dimension mass = new _BaseDimension('M');
 
     /// Time dimension (T)
-    static final Dimension TIME = new _BaseDimension('T');
+    static final Dimension time = new _BaseDimension('T');
 
     /// Electric current dimension (I)
-    static final Dimension ELECTRIC_CURRENT = new _BaseDimension('I');
+    static final Dimension electricCurrent = new _BaseDimension('I');
 
     /// Holds temperature dimension (θ)
-    static final Dimension TEMPERATURE = new _BaseDimension('θ');
+    static final Dimension temperature = new _BaseDimension('θ');
 
     /// Amount of substance dimension (N).
-    static final Dimension AMOUNT_OF_SUBSTANCE = new _BaseDimension('N');
+    static final Dimension amountOfSubstance = new _BaseDimension('N');
 
 }
 
@@ -52,32 +52,32 @@ class _BaseDimension implements Dimension {
 abstract class DimensionalModel {
 
     /// The standard model (default).
-    static DimensionalModel STANDARD = new _StandardModel();
+    static DimensionalModel standard = new _StandardModel();
 
     /// Returns the dimension of the specified base unit (a dimension
     /// particular to the base unit if the base unit is not recognized).
     Dimension getDimension(BaseUnit unit);
 
     /// Returns the normalization transform of the specified base unit
-    /// ([UnitConverter.IDENTITY] if the base unit is not recognized).
+    /// ([UnitConverter.identity] if the base unit is not recognized).
     UnitConverter getTransform(BaseUnit unit);
 }
 
 class _StandardModel extends DimensionalModel {
   Dimension getDimension(BaseUnit unit) {
-      if (unit==(SI.METRE)) return Dimension.LENGTH;
-      if (unit==(SI.KILOGRAM)) return Dimension.MASS;
-      if (unit==(SI.KELVIN)) return Dimension.TEMPERATURE;
-      if (unit==(SI.SECOND)) return Dimension.TIME;
-      if (unit==(SI.AMPERE)) return Dimension.ELECTRIC_CURRENT;
-      if (unit==(SI.MOLE)) return Dimension.AMOUNT_OF_SUBSTANCE;
-      if (unit==(SI.CANDELA)) return SI.WATT.dimension;
+      if (unit==(SI.metre)) return Dimension.length;
+      if (unit==(SI.kilogram)) return Dimension.mass;
+      if (unit==(SI.kelvin)) return Dimension.temperature;
+      if (unit==(SI.second)) return Dimension.time;
+      if (unit==(SI.ampere)) return Dimension.electricCurrent;
+      if (unit==(SI.mole)) return Dimension.amountOfSubstance;
+      if (unit==(SI.candela)) return SI.watt.dimension;
       return new _BaseDimension(unit.symbol);
   }
   
   UnitConverter getTransform(BaseUnit unit) {
-      if (unit==(SI.CANDELA)) return new RationalConverter._(new RationalNumber(1, 683));
-      return UnitConverter.IDENTITY;
+      if (unit==(SI.candela)) return new RationalConverter._(new RationalNumber(1, 683));
+      return UnitConverter.identity;
   }
 
 }
