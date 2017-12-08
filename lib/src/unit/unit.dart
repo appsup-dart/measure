@@ -24,6 +24,10 @@ abstract class Unit<Q extends Quantity> {
 
     const Unit();
 
+    factory Unit.productOf(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b)]);
+    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b, new RationalNumber(-1))]);
+    factory Unit.inverseOf(Unit a) => new ProductUnit([new _RationalPower(a, new RationalNumber(-1))]);
+
     //////////////////////////////////////////////////////
     // Contract methods (for sub-classes to implement). //
     //////////////////////////////////////////////////////
@@ -85,5 +89,25 @@ abstract class Unit<Q extends Quantity> {
         return new TransformedUnit<Q>(this, operation);
     }
 
+    /// The result of dividing this unit by an exact divisor.
+    Unit<Q> divideExact(int divisor) =>
+        transform(new UnitConverter.rationalMultiply(1, divisor));
+
+    /// The result of dividing this unit by an approximate divisor.
+    Unit<Q> divideApproximate(double divisor) =>
+        transform(new UnitConverter.multiply(1.0 / divisor));
+
+    /// The quotient of this unit with the one specified.
+    Unit<R> divide<R extends Quantity>(Unit that) => times(that.inverse());
+
+    /// The inverse of this unit.
+    Unit<R> inverse<R extends Quantity>() => new Unit.inverseOf(this);
+
+    /// The result of multiplying this unit by a factor.
+    Unit<Q> scaled(num factor) =>
+        transform(num is int ? new UnitConverter.rationalMultiply(factor) : new UnitConverter.multiply(factor));
+
+    /// The product of this unit with the one specified.
+    Unit<R> times<R extends Quantity>(Unit that) => new Unit.productOf(this,that);
 
 }

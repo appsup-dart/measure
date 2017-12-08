@@ -8,6 +8,9 @@ class RationalNumber {
 
   const RationalNumber(this.dividend, [this.divisor = 1]);
 
+  RationalNumber times(RationalNumber that) =>
+      new RationalNumber(dividend*that.dividend, divisor*that.divisor); // TODO simplify
+
 }
 
 /// A rational power of a base
