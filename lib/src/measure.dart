@@ -1,22 +1,24 @@
 part of measure;
 
 /// The measurable, countable, or comparable property or aspect of a thing.
-abstract class Measurable<Q extends Quantity> extends Comparable<Measurable<Q>> {
-    
+abstract class Measurable<Q extends Quantity> implements Comparable<Measurable<Q>> {
+
+    const Measurable();
+
     /// Returns the value of this measurable stated in the specified unit as a
     /// `double`.
     double doubleValue(Unit<Q> unit);
 
     /// Returns the estimated integral value of this measurable stated in the
     /// specified unit as an `integer`.
-    int intValue(Unit<Q> unit);
-    
+    int intValue(Unit<Q> unit) => doubleValue(unit).round();
+
 }
 
 /// The result of a measurement stated in a known unit.
-abstract class Measure<V, Q extends Quantity> implements Measurable<Q> {
+abstract class Measure<V, Q extends Quantity> extends Measurable<Q> {
 
-    const Measure._();
+    const Measure();
 
     /// The measurement value of this measure.
     V get value;
@@ -27,9 +29,6 @@ abstract class Measure<V, Q extends Quantity> implements Measurable<Q> {
     /// Returns the measure equivalent to this measure but stated in the
     /// specified unit.
     Measure<V, Q> to(Unit<Q> unit);
-
-    @override
-    int intValue(Unit<Q> unit) => doubleValue(unit).round();
 
     @override
     int compareTo(Measurable<Q> that) =>
@@ -45,7 +44,7 @@ class NumericMeasure<Q extends Quantity> extends Measure<num, Q> {
 
     final Unit<Q> unit;
 
-    const NumericMeasure(this.value, this.unit) : super._();
+    const NumericMeasure(this.value, this.unit) : super();
 
     @override
     Measure<num, Q> to(Unit<Q> unit) {
@@ -67,7 +66,7 @@ class NumericMeasure<Q extends Quantity> extends Measure<num, Q> {
 /// A measurement vector of two or more dimensions.
 abstract class VectorMeasure<Q extends Quantity> extends Measure<List<double>, Q> {
     
-    VectorMeasure._() : super._();
+    VectorMeasure._() : super();
     
     /// Creates a 2-dimensional measurement vector.
     factory VectorMeasure.twoDimensional(double x, double y, Unit<Q> unit) = _TwoDimensional<Q>;
