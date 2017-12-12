@@ -89,14 +89,6 @@ abstract class Unit<Q extends Quantity> {
         return new TransformedUnit<Q>(this, operation);
     }
 
-    /// The result of dividing this unit by an exact divisor.
-    Unit<Q> divideExact(int divisor) =>
-        transform(new UnitConverter.rationalMultiply(1, divisor));
-
-    /// The result of dividing this unit by an approximate divisor.
-    Unit<Q> divideApproximate(double divisor) =>
-        transform(new UnitConverter.multiply(1.0 / divisor));
-
     /// The quotient of this unit with the one specified.
     Unit<R> divide<R extends Quantity>(Unit that) => times(that.inverse());
 
@@ -104,8 +96,8 @@ abstract class Unit<Q extends Quantity> {
     Unit<R> inverse<R extends Quantity>() => new Unit.inverseOf(this);
 
     /// The result of multiplying this unit by a factor.
-    Unit<Q> scaled(num factor) =>
-        transform(num is int ? new UnitConverter.rationalMultiply(factor) : new UnitConverter.multiply(factor));
+    Unit<Q> scaled(num factor, [num divisor = 1]) =>
+        transform(factor is int&&divisor is int ? new UnitConverter.rationalMultiply(factor, divisor) : new UnitConverter.multiply(factor/divisor));
 
     /// The product of this unit with the one specified.
     Unit<R> times<R extends Quantity>(Unit that) => new Unit.productOf(this,that);
