@@ -13,6 +13,13 @@ abstract class Measurable<Q extends Quantity> implements Comparable<Measurable<Q
     /// specified unit as an `integer`.
     int intValue(Unit<Q> unit) => doubleValue(unit).round();
 
+    /// The standard unit identifies the "type" of [Quantity] quantity for which
+    /// this measurable is employed.
+    Unit<Q> get standardUnit;
+
+    @override
+    int compareTo(Measurable<Q> other) =>
+        Comparable.compare(doubleValue(standardUnit), other.doubleValue(standardUnit));
 }
 
 /// The result of a measurement stated in a known unit.
@@ -31,9 +38,7 @@ abstract class Measure<V, Q extends Quantity> extends Measurable<Q> {
     Measure<V, Q> to(Unit<Q> unit);
 
     @override
-    int compareTo(Measurable<Q> that) =>
-        doubleValue(unit).compareTo(that.doubleValue(unit));
-    
+    Unit<Q> get standardUnit => unit;
 }
 
 
