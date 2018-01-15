@@ -6,11 +6,14 @@ class RationalNumber {
   final int dividend;
   final int divisor;
 
+  static const one = const RationalNumber._(1);
+  static const zero = const RationalNumber._(0);
+
   const RationalNumber._(this.dividend, [this.divisor = 1]);
 
   factory RationalNumber(int dividend, int divisor) {
     var gcd = dividend.gcd(divisor);
-    return new RationalNumber(dividend~/gcd, divisor~/gcd);
+    return new RationalNumber._(dividend~/gcd, divisor~/gcd);
   }
 
   RationalNumber times(RationalNumber that) =>
@@ -28,7 +31,7 @@ class RationalNumber {
 }
 
 /// A rational power of a base
-class _RationalPower<T> {
+class RationalPower<T> {
 
   /// The base
   final T base;
@@ -36,12 +39,14 @@ class _RationalPower<T> {
   /// The power exponent
   final RationalNumber pow;
 
-  const _RationalPower(this.base, [this.pow = const RationalNumber._(1)]);
+  const RationalPower(this.base, [this.pow = const RationalNumber._(1)]);
 
   @override
   int get hashCode => quiver.hash2(base,pow);
 
   @override
-  bool operator==(other) => other is _RationalPower&&other.base==base&&
+  bool operator==(other) => other is RationalPower&&other.base==base&&
       other.pow==pow;
+
+  RationalPower<T> get inverse => new RationalPower(base, new RationalNumber(-pow.dividend, pow.divisor)); // TODO inverse() instead?
 }

@@ -24,9 +24,9 @@ abstract class Unit<Q extends Quantity> {
 
     const Unit();
 
-    factory Unit.productOf(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b)]);
-    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new _RationalPower(a), new _RationalPower(b, const RationalNumber._(-1))]);
-    factory Unit.inverseOf(Unit a) => new ProductUnit([new _RationalPower(a, const RationalNumber._(-1))]);
+    factory Unit.productOf(Unit a, Unit b) => new ProductUnit([new RationalPower(a), new RationalPower(b)]);
+    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new RationalPower(a), new RationalPower(b, const RationalNumber._(-1))]);
+    factory Unit.inverseOf(Unit a) => new ProductUnit([new RationalPower(a, const RationalNumber._(-1))]);
 
     //////////////////////////////////////////////////////
     // Contract methods (for sub-classes to implement). //
@@ -89,6 +89,9 @@ abstract class Unit<Q extends Quantity> {
         return new TransformedUnit<Q>(this, operation);
     }
 
+    /// The result of adding an offset to this unit.
+    Unit<Q> plus(num offset) => transform(new AddConverter(offset));
+
     /// The quotient of this unit with the one specified.
     Unit<R> divide<R extends Quantity>(Unit that) => times(that.inverse());
 
@@ -102,4 +105,5 @@ abstract class Unit<Q extends Quantity> {
     /// The product of this unit with the one specified.
     Unit<R> times<R extends Quantity>(Unit that) => new Unit.productOf(this,that);
 
+    Unit<R> pow<R extends Quantity>(RationalNumber pow) => new ProductUnit([new RationalPower(this, pow)]);
 }

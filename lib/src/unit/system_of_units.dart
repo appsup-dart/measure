@@ -24,6 +24,40 @@ abstract class SI extends SystemOfUnits {
 
     const SI._();
 
+    static const Map<String,Unit> unitsBySymbol = const {
+      "A": ampere,
+      "cd": candela,
+      "K": kelvin,
+      "kg": kilogram,
+      "m": metre,
+      "mol": mole,
+      "s": second,
+      "g": gram,
+      "rad": radian,
+      "sr": steradian,
+      "bit": bit,
+      "Hz": hertz,
+      "N": newton,
+      "Pa": pascal,
+      "J": joule,
+      "W": watt,
+      "C": coulomb,
+      "V": volt,
+      "F": farad,
+      "Ω": ohm,
+      "S": siemens,
+      "Wb": weber,
+      "T": tesla,
+      "H": henry,
+      "℃": celsius,
+      "lm": lumen,
+      "lx": lux,
+      "Bq": becquerel,
+      "Gy": gray,
+      "Sv": sievert,
+      "kat": katal,
+    };
+
     ////////////////
     // BASE UNITS //
     ////////////////
@@ -113,7 +147,7 @@ abstract class SI extends SystemOfUnits {
     /// After Heinrich Rudolf Hertz (1857-1894), German physicist who was the
     /// first to produce radio waves artificially.
     static const AlternateUnit<Frequency> hertz = const AlternateUnit<Frequency>("Hz",
-        const ProductUnit._(const[const _RationalPower<Unit>(second, const RationalNumber._(-1))]));
+        const ProductUnit._(const[const RationalPower<Unit>(second, const RationalNumber._(-1))]));
 
     /// The derived unit for force (`N`).
     ///
@@ -122,9 +156,9 @@ abstract class SI extends SystemOfUnits {
     /// mathematician and physicist Sir Isaac Newton (1642-1727).
     static const AlternateUnit<Force> newton = const AlternateUnit<Force>(
         "N", const ProductUnit._(const[
-        const _RationalPower(metre),
-        const _RationalPower(kilogram),
-        const _RationalPower(second,const RationalNumber._(-2))]));
+        const RationalPower(metre),
+        const RationalPower(kilogram),
+        const RationalPower(second,const RationalNumber._(-2))]));
 
     /// The derived unit for pressure, stress (`Pa`).
     ///
@@ -132,8 +166,8 @@ abstract class SI extends SystemOfUnits {
     /// the French philosopher and mathematician Blaise Pascal (1623-1662).
     static const AlternateUnit<Pressure> pascal = const AlternateUnit<Pressure>(
             "Pa", const ProductUnit._(const[
-        const _RationalPower<Unit>(newton),
-        const _RationalPower<Unit>(metre,const RationalNumber._(-2))]));
+        const RationalPower<Unit>(newton),
+        const RationalPower<Unit>(metre,const RationalNumber._(-2))]));
 
     /// The derived unit for energy, work, quantity of heat (`J`).
     ///
@@ -142,8 +176,8 @@ abstract class SI extends SystemOfUnits {
     /// It is named after the English physicist James Prescott Joule (1818-1889).
     static const AlternateUnit<Energy> joule = const AlternateUnit<Energy>(
             "J", const ProductUnit._(const[
-        const _RationalPower<Unit>(newton),
-        const _RationalPower<Unit>(metre)]));
+        const RationalPower<Unit>(newton),
+        const RationalPower<Unit>(metre)]));
 
     /// The derived unit for power, radiant, flux (`W`).
     ///
@@ -151,8 +185,8 @@ abstract class SI extends SystemOfUnits {
     /// scientist James Watt (1736-1819).
     static const AlternateUnit<Power> watt = const AlternateUnit<Power>(
             "W", const ProductUnit._(const[
-        const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(joule),
+        const RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     /// The derived unit for electric charge, quantity of electricity
     /// (`C`).
@@ -162,8 +196,8 @@ abstract class SI extends SystemOfUnits {
     /// Charles Augustin de Coulomb (1736-1806).
     static const AlternateUnit<ElectricCharge> coulomb = const AlternateUnit<ElectricCharge>(
             "C", const ProductUnit._(const[
-        const _RationalPower(second),
-        const _RationalPower(ampere)]));
+        const RationalPower(second),
+        const RationalPower(ampere)]));
 
     /// The derived unit for electric potential difference, electromotive force
     /// (`V`).
@@ -174,8 +208,8 @@ abstract class SI extends SystemOfUnits {
     /// after the Italian physicist Count Alessandro Volta (1745-1827).
     static const AlternateUnit<ElectricPotential> volt = const AlternateUnit<ElectricPotential>(
             "V", const ProductUnit._(const[
-        const _RationalPower<Unit>(watt),
-        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(watt),
+        const RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for capacitance (`F`).
     ///
@@ -185,8 +219,8 @@ abstract class SI extends SystemOfUnits {
     /// and chemist Michael Faraday (1791-1867).
     static const AlternateUnit<ElectricCapacitance> farad = const AlternateUnit<ElectricCapacitance>(
             "F", const ProductUnit._(const[
-        const _RationalPower(coulomb),
-        const _RationalPower(volt,const RationalNumber._(-1))]));
+        const RationalPower(coulomb),
+        const RationalPower(volt,const RationalNumber._(-1))]));
 
     /// The derived unit for electric resistance (`Ω` or `Ohm`).
     ///
@@ -195,8 +229,8 @@ abstract class SI extends SystemOfUnits {
     /// It is named after the German physicist Georg Simon Ohm (1789-1854).
     static const AlternateUnit<ElectricResistance> ohm = const AlternateUnit<ElectricResistance>(
             "Ω", const ProductUnit._(const[
-        const _RationalPower<Unit>(volt),
-        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(volt),
+        const RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for electric conductance (`S`).
     ///
@@ -204,8 +238,8 @@ abstract class SI extends SystemOfUnits {
     /// the German engineer Ernst Werner von Siemens (1816-1892).
     static const AlternateUnit<ElectricConductance> siemens = const AlternateUnit<ElectricConductance>(
             "S", const ProductUnit._(const[
-        const _RationalPower<Unit>(ampere),
-        const _RationalPower<Unit>(volt,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(ampere),
+        const RationalPower<Unit>(volt,const RationalNumber._(-1))]));
 
     /// The derived unit for magnetic flux (`Wb`).
     ///
@@ -215,8 +249,8 @@ abstract class SI extends SystemOfUnits {
     /// Wilhelm Eduard Weber (1804-1891).
     static const AlternateUnit<MagneticFlux> weber = const AlternateUnit<MagneticFlux>(
             "Wb", const ProductUnit._(const[
-        const _RationalPower<Unit>(volt),
-        const _RationalPower<Unit>(second)]));
+        const RationalPower<Unit>(volt),
+        const RationalPower<Unit>(second)]));
 
     /// The derived unit for magnetic flux density (`T`).
     ///
@@ -225,8 +259,8 @@ abstract class SI extends SystemOfUnits {
     /// Nikola Tesla (1856-1943).
     static const AlternateUnit<MagneticFluxDensity> tesla = const AlternateUnit<MagneticFluxDensity>(
             "T", const ProductUnit._(const[
-        const _RationalPower<Unit>(weber),
-        const _RationalPower<Unit>(metre,const RationalNumber._(-2))]));
+        const RationalPower<Unit>(weber),
+        const RationalPower<Unit>(metre,const RationalNumber._(-2))]));
 
     /// The derived unit for inductance (`H`).
     ///
@@ -236,8 +270,8 @@ abstract class SI extends SystemOfUnits {
     /// Joseph Henry (1791-1878).
     static const AlternateUnit<ElectricInductance> henry = const AlternateUnit<ElectricInductance>(
             "H", const ProductUnit._(const[
-        const _RationalPower<Unit>(weber),
-        const _RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(weber),
+        const RationalPower<Unit>(ampere,const RationalNumber._(-1))]));
 
     /// The derived unit for Celsius temperature (`℃`).
     ///
@@ -253,16 +287,16 @@ abstract class SI extends SystemOfUnits {
     /// by a source of one candela intensity radiating equally in all directions.
     static const AlternateUnit<LuminousFlux> lumen = const AlternateUnit<LuminousFlux>(
             "lm", const ProductUnit._(const[
-        const _RationalPower<Unit>(candela),
-        const _RationalPower<Unit>(steradian)]));
+        const RationalPower<Unit>(candela),
+        const RationalPower<Unit>(steradian)]));
 
     /// The derived unit for illuminance (`lx`).
     ///
     /// One Lux is equal to one lumen per square meter.
     static const AlternateUnit<Illuminance> lux = const AlternateUnit<Illuminance>(
             "lx", const ProductUnit._(const[
-        const _RationalPower<Unit>(lumen),
-        const _RationalPower<Unit>(meter,const RationalNumber._(-2))]));
+        const RationalPower<Unit>(lumen),
+        const RationalPower<Unit>(meter,const RationalNumber._(-2))]));
 
     /// The derived unit for activity of a radionuclide (`Bq`).
     ///
@@ -271,8 +305,8 @@ abstract class SI extends SystemOfUnits {
     /// (1852-1908).
     static const AlternateUnit<RadioactiveActivity> becquerel = const AlternateUnit<RadioactiveActivity>(
             "Bq", const ProductUnit._(const[
-        const _RationalPower<Unit>(Unit.one),
-        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(Unit.one),
+        const RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     /// The derived unit for absorbed dose, specific energy (imparted), kerma
     /// (`Gy`).
@@ -282,8 +316,8 @@ abstract class SI extends SystemOfUnits {
     /// L. H. Gray (1905-1965).
     static const AlternateUnit<RadiationDoseAbsorbed> gray = const AlternateUnit<RadiationDoseAbsorbed>(
             "Gy", const ProductUnit._(const[
-        const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(joule),
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
 
     /// The derived unit for dose equivalent (`Sv`).
     ///
@@ -293,14 +327,14 @@ abstract class SI extends SystemOfUnits {
     /// (1898-1966).
     static const AlternateUnit<RadiationDoseEffective> sievert = const AlternateUnit<RadiationDoseEffective>(
             "Sv", const ProductUnit._(const[
-        const _RationalPower<Unit>(joule),
-        const _RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(joule),
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
 
     /// The derived unit for catalytic activity (`kat`).
     static const AlternateUnit<CatalyticActivity> katal = const AlternateUnit<CatalyticActivity>(
             "kat", const ProductUnit._(const[
-        const _RationalPower<Unit>(mole),
-        const _RationalPower<Unit>(second,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(mole),
+        const RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
     //////////////////////////////
     // SI DERIVED PRODUCT UNITS //
@@ -308,27 +342,27 @@ abstract class SI extends SystemOfUnits {
 
     /// The metric unit for velocity quantities (`m/s`).
     static const Unit<Velocity> metresPerSecond = const ProductUnit<Velocity>._(const[
-        const _RationalPower<Unit>(metre),
-        const _RationalPower<Unit>(second,const RationalNumber._(-1))]);
+        const RationalPower<Unit>(metre),
+        const RationalPower<Unit>(second,const RationalNumber._(-1))]);
 
     /// Equivalent to [metresPerSecond] (American spelling).
     static const Unit<Velocity> metersPerSecond = metresPerSecond;
 
     /// The metric unit for acceleration quantities (`m/s²`).
     static const Unit<Acceleration> metresPerSquareSecond = const ProductUnit<Acceleration>._(const[
-        const _RationalPower<Unit>(metre),
-        const _RationalPower<Unit>(second,const RationalNumber._(-2))]);
+        const RationalPower<Unit>(metre),
+        const RationalPower<Unit>(second,const RationalNumber._(-2))]);
 
     /// Equivalent to [metresPerSquareSecond] (American spelling).
     static const Unit<Acceleration> metersPerSquareSecond = metresPerSquareSecond;
 
     /// The metric unit for area quantities (`m²`).
     static const Unit<Area> squareMetre = const ProductUnit<Area>._(const[
-        const _RationalPower<Unit>(metre,const RationalNumber._(2))]);
+        const RationalPower<Unit>(metre,const RationalNumber._(2))]);
 
     /// The metric unit for volume quantities (`m³`).
     static const Unit<Volume> cubicMetre = const ProductUnit<Volume>._(const[
-        const _RationalPower<Unit>(metre,const RationalNumber._(3))]);
+        const RationalPower<Unit>(metre,const RationalNumber._(3))]);
 
     /// Equivalent to `KILO(METRE)`.
     static const Unit<Length> kilometre = const TransformedUnit(metre, E3);
@@ -466,6 +500,9 @@ abstract class SI extends SystemOfUnits {
 /// Contains units that are not part of the International System of Units, that
 /// is, they are outside the SI, but are important and widely used.
 abstract class NonSI extends SystemOfUnits {
+
+    static const Map<String,Unit> unitsBySymbol = const {
+    };
 
     /// The standard gravity constant: 9.80665 m/s² exact.
     static const standardGravity = const RationalNumber._(980665, 100000);
@@ -716,15 +753,15 @@ abstract class NonSI extends SystemOfUnits {
     /// [mile] per [hour] (abbreviation `mph`).
     static const Unit<Velocity> milesPerHour
          = const ProductUnit._(const [
-             const _RationalPower<Unit>(NonSI.mile),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
+             const RationalPower<Unit>(NonSI.mile),
+             const RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// A unit of velocity expressing the number of [SI.kilometre] per [hour].
     static const Unit<Velocity> kilometresPerHour
          = const ProductUnit._(const [
-             const _RationalPower<Unit>(SI.kilometer),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
+             const RationalPower<Unit>(SI.kilometer),
+             const RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// Equivalent to [kilometresPerHour].
@@ -734,8 +771,8 @@ abstract class NonSI extends SystemOfUnits {
     /// (abbreviation `kn`).
     static const Unit<Velocity> knot
          = const ProductUnit._(const [
-             const _RationalPower<Unit>(NonSI.nauticalMile),
-             const _RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
+             const RationalPower<Unit>(NonSI.nauticalMile),
+             const RationalPower<Unit>(NonSI.hour,const RationalNumber._(-1))
          ]);
 
     /// A unit of velocity to express the speed of an aircraft relative to
@@ -936,7 +973,7 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of volume equal to one cubic inch (`in³`).
     static const Unit<Volume> cubicInch = const ProductUnit._(const [
-        const _RationalPower<Unit>(inch,const RationalNumber._(3))]);
+        const RationalPower<Unit>(inch,const RationalNumber._(3))]);
 
     /// A unit of volume equal to one US gallon, Liquid Unit. The U.S. liquid
     /// gallon is based on the Queen Anne or Wine gallon occupying 231 cubic
@@ -970,15 +1007,15 @@ abstract class NonSI extends SystemOfUnits {
 
     /// A unit of dynamic viscosity equal to `1 g/(cm·s)` (cgs unit).
     static const Unit<DynamicViscosity> poise = const ProductUnit._(const [
-        const _RationalPower<Unit>(SI.gram),
-        const _RationalPower<Unit>(SI.centimeter,const RationalNumber._(-1)),
-        const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
+        const RationalPower<Unit>(SI.gram),
+        const RationalPower<Unit>(SI.centimeter,const RationalNumber._(-1)),
+        const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
     /// A unit of kinematic viscosity equal to `1 cm²/s` (cgs unit).
     static const Unit<KinematicViscosity> stoke = const ProductUnit._(const [
-        const _RationalPower<Unit>(SI.centimeter,const RationalNumber._(2)),
-        const _RationalPower<Unit>(SI.second,const RationalNumber._(-1))
+        const RationalPower<Unit>(SI.centimeter,const RationalNumber._(2)),
+        const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
     ////////////
@@ -988,8 +1025,8 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit used to measure the ionizing ability of radiation
     /// (standard name `Roentgen`).
     static const Unit roentgen = const TransformedUnit(const ProductUnit._(const [
-        const _RationalPower<Unit>(SI.coulomb),
-        const _RationalPower<Unit>(SI.kilogram,const RationalNumber._(-1))
+        const RationalPower<Unit>(SI.coulomb),
+        const RationalPower<Unit>(SI.kilogram,const RationalNumber._(-1))
     ]), const MultiplyConverter._(2.58e-4));
 
 

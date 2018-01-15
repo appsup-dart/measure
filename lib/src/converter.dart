@@ -99,7 +99,7 @@ class _CompoundConverter extends UnitConverter {
 class AddConverter extends UnitConverter {
 
     /// The offset value for this add converter.
-    final double offset;
+    final num offset;
 
     const AddConverter._(this.offset) : super._();
 

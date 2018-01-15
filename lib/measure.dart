@@ -5,6 +5,8 @@ import 'dart:math' as Math;
 import 'dart:collection';
 import 'package:quiver/core.dart' as quiver;
 
+export 'src/unit/unit_format.dart';
+
 part 'src/quantity.dart';
 part 'src/converter.dart';
 part 'src/measure.dart';
