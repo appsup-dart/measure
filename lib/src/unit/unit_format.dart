@@ -1,6 +1,7 @@
 import '../../measure.dart';
-import 'package:typedparser/typedparser.dart';
+import 'package:petitparser/petitparser.dart';
 import 'package:intl/intl.dart';
+
 
 
 abstract class UnitFormat {
@@ -151,10 +152,10 @@ abstract class UnitFormat {
 
 
   /// Returns a typed parser that produces a single unit.
-  Parser<Unit> get singleUnitParser => _unitIdentifier.mapParser((name) {
+  Parser<Unit> get singleUnitParser => _mapParser(_unitIdentifier, (name) {
     Unit unit = unitFor(name);
     if (unit==null) return failure("$name not recognized");
-    return epsilon(unit);
+    return new EpsilonParser(unit);
   });
 
   /// Returns a typed parser that produces a unit or a rational product of unit.
@@ -162,26 +163,26 @@ abstract class UnitFormat {
 
     var term = undefined<Unit>();
 
-    var paren = term.surroundedBy(char("(").trim(), char(")").trim());
+    var paren = (char("(").trim()&term&char(")").trim()).pick<Unit>(1);
 
-    var e = _exponent.precededBy(anyOf("^¹²³").and());
+    var e = (anyOf("^¹²³").and()&_exponent).pick<RationalNumber>(1);
 
-    var base = paren|singleUnitParser|integer().map((v)=>Unit.one.scaled(v));
+    var base = paren|singleUnitParser|_integer().map((v)=>Unit.one.scaled(v));
 
-    var element = base.seq(e.optional(RationalNumber.one), (a,b)=>new RationalPower(a,b));
+    var element = (base&e.optional(RationalNumber.one)).map((l)=>new RationalPower(l[0],l[1]));
 
-    var divisor = element.precededBy(char("/")).map((v)=>v.inverse);
-    var factor = element.seq(divisor.star(), (a,b)=>new ProductUnit([a]..addAll(b)));
+    var divisor = (char("/")&element).pick(1).map((v)=>v.inverse);
+    var factor = (element&divisor.star()).pick(0).map((l)=>new ProductUnit([l[0]]..addAll(l[1])));
     term.set(factor.separatedBy(char("*")).map((l)=>l.length==1 ? l.first : new ProductUnit(l.map((v)=>new RationalPower(v)))));
 
-    var number = anyOf("012356789+-.E").plus().flatten().mapParser((v) {
+    var number = _mapParser(anyOf("012356789+-.E").plus().flatten(),(v) {
       try {
         return epsilon(num.parse(v));
       } catch (e) {
-        failure("$e");
+        return failure("$e");
       }
     });
-    return term.seq(number.precededBy(char("+")).optional(), (a,b)=>b==null ? a : a.plus(b));
+    return (term&(char("+")&number).pick(1).optional()).map((l)=>l[1]==null ? l[0] : l[0].plus(l[1]));
   }
 
 
@@ -194,13 +195,13 @@ abstract class UnitFormat {
 
   Parser<RationalNumber> get _exponent {
     var def = char('^')|string('**');
-    var extendedDigit = digit()|enumIndex(["¹","²","³"]).map((v)=>"${v+1}");
+    var extendedDigit = digit()|anyOf("¹²³").map((v)=>"${const {"¹": 1, "²": 2, "³": 3}[v]}");
     var positiveInteger = extendedDigit.plus().flatten().map(int.parse);
     var sign = char("-").map((_)=>-1).optional(1);
-    var integer = sign.seq(positiveInteger, (a,b)=>a*b);
-    return integer
-        .seq(integer.precededBy(char(":")).optional(1), (a,b)=>new RationalNumber(a, b))
-        .precededBy(def.optional());
+    var integer = (sign&positiveInteger).map((l)=>l[0]*l[1]);
+    return (def.optional()& (integer&(char(":")&integer).pick(1).optional(1))
+        .map((l)=>new RationalNumber(l[0], l[1]))).pick(1);
+
   }
 
   String _formatPow(String symbol, int pow, int root) { // TODO move to rational pow
@@ -426,3 +427,22 @@ class _ASCIIUnitFormat extends UnitFormat {
 
 }
 
+
+Parser<S> _mapParser<S,T>(Parser<T> parser, Parser<S> Function(T) mapper) {
+  var followedBy = undefined<S>();
+  return parser.map<T>((v) {
+    var p = mapper(v);
+    followedBy.set(p);
+    return v;
+  })
+      .seq(followedBy)
+      .map((l)=>l[1]);
+}
+
+Parser<int> _positiveInteger() => digit().plus().flatten().map(int.parse);
+
+Parser<int> _sign() => anyOf("-+").map((v)=>v=="+" ? 1 : -1);
+
+
+Parser<int> _integer() =>
+    ((_sign()&whitespace().star()).pick<int>(1).optional(1)&_positiveInteger()).map((l)=>l[0]*l[1]);

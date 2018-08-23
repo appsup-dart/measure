@@ -96,7 +96,7 @@ class _TwoDimensional<Q extends Quantity> extends VectorMeasure<Q> {
     
     @override
     double doubleValue(Unit<Q> unit) {
-        double norm = Math.sqrt(x * x + y * y); 
+        double norm = math.sqrt(x * x + y * y);
         if (unit==this.unit) return norm;
         return this.unit.getConverterTo(unit).convert(norm);            
     }
@@ -127,7 +127,7 @@ class _ThreeDimensional<Q extends Quantity> extends VectorMeasure<Q> {
     
     @override
     double doubleValue(Unit<Q> unit) {
-        double norm = Math.sqrt(x * x + y * y + z * z); 
+        double norm = math.sqrt(x * x + y * y + z * z);
         if (unit == this.unit) return norm;
         return this.unit.getConverterTo(unit).convert(norm);            
     }
@@ -162,8 +162,8 @@ class _MultiDimensional<Q extends Quantity> extends VectorMeasure<Q> {
             normSquare += d * d;
         }
         if (unit == this.unit)
-            return Math.sqrt(normSquare);
-        return this.unit.getConverterTo(unit).convert(Math.sqrt(normSquare));            
+            return math.sqrt(normSquare);
+        return this.unit.getConverterTo(unit).convert(math.sqrt(normSquare));
     }
 
     @override

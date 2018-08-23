@@ -2,6 +2,8 @@
 
 ## 0.1.0
 
+- Support for dart 2
+- Remove dependency on package `typedparser`
 - move implementation of `intValue` to Measurable
 - rename constants to lower case versions
 - make unit constructors public

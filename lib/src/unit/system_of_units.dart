@@ -722,19 +722,19 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of angle equal to a full circle or `2<i>&pi;</i> [SI.RADIAN]`
     /// (standard name `rev`).
     static const Unit<Angle> revolution = const TransformedUnit<Angle>(
-        SI.radian, const MultiplyConverter._(2.0 * Math.PI));
+        SI.radian, const MultiplyConverter._(2.0 * math.pi));
 
     /// A unit of angle equal to `1/360 [REVOLUTION]` (standard name `°`).
     static const Unit<Angle> degreeAngle = const TransformedUnit<Angle>(
-        SI.radian, const MultiplyConverter._(Math.PI/180));
+        SI.radian, const MultiplyConverter._(math.pi/180));
 
     /// A unit of angle equal to `1/60 [DEGREE_ANGLE]` (standard name `′`).
     static const Unit<Angle> minuteAngle = const TransformedUnit<Angle>(
-        SI.radian, const MultiplyConverter._(Math.PI/180/60));
+        SI.radian, const MultiplyConverter._(math.pi/180/60));
 
     /// A unit of angle equal to `1/60 [MINUTE_ANGLE]` (standard name `"`).
     static const Unit<Angle> secondAngle = const TransformedUnit<Angle>(
-        SI.radian, const MultiplyConverter._(Math.PI/180/60/60));
+        SI.radian, const MultiplyConverter._(math.pi/180/60/60));
 
     /// A unit of angle equal to `0.01 [SI.RADIAN]` (standard name `centiradian`).
     static const Unit<Angle> centiradian = const TransformedUnit<Angle>(
@@ -827,7 +827,7 @@ abstract class NonSI extends SystemOfUnits {
     /// electromagnetic unit of magnetomotive force, equal to `10/4
     /// &pi;ampere-turn` (standard name `Gi`).
     static const Unit<ElectricCurrent> gilbert = const TransformedUnit(SI.ampere,
-        const MultiplyConverter._(10.0 / (4.0 * Math.PI)));
+        const MultiplyConverter._(10.0 / (4.0 * math.pi)));
 
     ////////////
     // Energy //
@@ -958,7 +958,7 @@ abstract class NonSI extends SystemOfUnits {
     /// A unit of solid angle equal to `4 <i>&pi;</i> steradians`
     /// (standard name `sphere`).
     static const Unit<SolidAngle> sphere = const TransformedUnit(SI.steradian,
-        const MultiplyConverter._(4.0 * Math.PI));
+        const MultiplyConverter._(4.0 * math.pi));
 
     ////////////
     // Volume //

@@ -145,7 +145,7 @@ class LogConverter extends UnitConverter {
     final double base;
 
     /// The natural logarithm of the base.
-    double get logBase => Math.log(base);
+    double get logBase => math.log(base);
 
     /// The inverse of the natural logarithm of the base.
     double get invLogBase => 1.0 / logBase;
@@ -156,7 +156,7 @@ class LogConverter extends UnitConverter {
     _InverseLogConverter get inverse => new _InverseLogConverter(this);
 
     @override
-    double convert(double amount) => invLogBase * Math.log(amount);
+    double convert(double amount) => invLogBase * math.log(amount);
 
     @override
     bool get isLinear => false;
@@ -173,7 +173,7 @@ class _InverseLogConverter extends UnitConverter {
   const _InverseLogConverter(this.inverse) : super._();
 
   @override
-  double convert(double amount) => Math.exp(inverse.logBase * amount);
+  double convert(double amount) => math.exp(inverse.logBase * amount);
 
 
   @override
