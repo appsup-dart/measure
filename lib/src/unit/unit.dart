@@ -18,9 +18,9 @@ part of measure;
 ///
 /// Units raised at rational powers are also supported. For example
 /// the cubic root of "liter" is a unit compatible with meter.
-abstract class Unit<Q extends Quantity> {
+abstract class Unit {
 
-    static const Unit<Dimensionless> one = const ProductUnit<Dimensionless>._(const []);
+    static const Unit one = const ProductUnit._(const []);
 
     const Unit();
 
@@ -75,37 +75,37 @@ abstract class Unit<Q extends Quantity> {
 
 
     /// Returns the unit derived from this unit using the specified converter.
-    Unit<Q> transform(UnitConverter operation) {
+    Unit transform(UnitConverter operation) {
         if (this is TransformedUnit) {
-            TransformedUnit<Q> tf = this;
-            Unit<Q> parent = tf.parentUnit;
+            TransformedUnit tf = this;
+            Unit parent = tf.parentUnit;
             UnitConverter toParent = tf.toParentUnit.concatenate(operation);
             if (toParent == UnitConverter.identity)
                 return parent;
-            return new TransformedUnit<Q>(parent, toParent);
+            return new TransformedUnit(parent, toParent);
         }
         if (operation == UnitConverter.identity)
             return this;
-        return new TransformedUnit<Q>(this, operation);
+        return new TransformedUnit(this, operation);
     }
 
     /// The result of adding an offset to this unit.
-    Unit<Q> plus(num offset) => transform(new AddConverter(offset));
+    Unit plus(num offset) => transform(new AddConverter(offset));
 
     /// The quotient of this unit with the one specified.
-    Unit<R> divide<R extends Quantity>(Unit that) => times(that.inverse());
+    Unit divide(Unit that) => times(that.inverse());
 
     /// The inverse of this unit.
-    Unit<R> inverse<R extends Quantity>() => new Unit.inverseOf(this);
+    Unit inverse() => new Unit.inverseOf(this);
 
     /// The result of multiplying this unit by a factor.
-    Unit<Q> scaled(num factor, [num divisor = 1]) =>
+    Unit scaled(num factor, [num divisor = 1]) =>
         transform(factor is int&&divisor is int ? new UnitConverter.rationalMultiply(factor, divisor) : new UnitConverter.multiply(factor/divisor));
 
     /// The product of this unit with the one specified.
-    Unit<R> times<R extends Quantity>(Unit that) => new Unit.productOf(this,that);
+    Unit times(Unit that) => new Unit.productOf(this,that);
 
-    Unit<R> pow<R extends Quantity>(RationalNumber pow) => new ProductUnit([new RationalPower(this, pow)]);
+    Unit pow(RationalNumber pow) => new ProductUnit([new RationalPower(this, pow)]);
 
-    Unit<R> cast<R extends Quantity>();
+    Quantity get quantity;
 }

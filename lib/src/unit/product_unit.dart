@@ -1,7 +1,7 @@
 part of measure;
 
 /// Units formed by the product of rational powers of existing units.
-class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
+class ProductUnit extends DerivedUnit {
 
     final List<RationalPower<Unit>> _elements;
 
@@ -22,7 +22,7 @@ class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
         return new ProductUnit._(all);
     }
 
-    Unit<Q> simplify() {
+    Unit simplify() {
       if (_elements.length==1) {
         if (_elements.first.pow==new RationalNumber(1, 1)) {
           return _elements.first.base;
@@ -65,14 +65,14 @@ class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
     List<RationalPower<Unit>> get elements => new List.unmodifiable(_elements);
 
     @override
-    Unit<R> cast<R extends Quantity>() => new ProductUnit._(_elements);
-
-    @override
     int get hashCode => quiver.hashObjects(_elements);
 
     @override
-    bool operator==(other) => other is ProductUnit<Q>&&
+    bool operator==(other) => other is ProductUnit&&
         const ListEquality().equals(other._elements, _elements);
+
+    @override
+    Quantity get quantity => standardUnit.quantity;
 }
 
 

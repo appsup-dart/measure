@@ -4,26 +4,25 @@ part of measure;
 ///
 /// Base units are typically dimensionally independent.
 /// The actual unit dimension is determinated by the current [DimensionalModel].
-class BaseUnit<Q extends Quantity> extends Unit<Q> {
+class BaseUnit extends Unit {
 
     /// The unique symbol for this base unit
     final String symbol;
 
-    const BaseUnit(this.symbol) : super();
+    final Quantity quantity;
+
+    const BaseUnit(this.symbol, this.quantity) : super();
 
     @override
-    BaseUnit<Q> get standardUnit => this;
+    BaseUnit get standardUnit => this;
 
     @override
     UnitConverter toStandardUnit() => UnitConverter.identity;
 
     @override
-    Unit<R> cast<R extends Quantity>() => new BaseUnit(symbol);
-
-    @override
     int get hashCode => symbol.hashCode;
 
     @override
-    bool operator==(other) => other is BaseUnit<Q>&&other.symbol==symbol;
+    bool operator==(other) => other is BaseUnit&&other.symbol==symbol;
 
 }

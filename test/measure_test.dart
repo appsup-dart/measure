@@ -26,7 +26,7 @@ void main() {
       derivedUnits.forEach((text, unit) {
         expect(format.format(unit),text);
         expect(format.format(format.parseProductUnit(text)), text);
-        expect(format.parseProductUnit(text).cast<Quantity>(), unit.cast<Quantity>());
+        expect(format.parseProductUnit(text), unit);
       });
 
     });
