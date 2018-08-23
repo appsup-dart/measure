@@ -4,6 +4,7 @@ library measure;
 import 'dart:math' as math;
 import 'dart:collection';
 import 'package:quiver/core.dart' as quiver;
+import 'package:collection/collection.dart';
 import 'package:dart2_constant/math.dart' as math;
 export 'src/unit/unit_format.dart';
 

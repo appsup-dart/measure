@@ -106,4 +106,6 @@ abstract class Unit<Q extends Quantity> {
     Unit<R> times<R extends Quantity>(Unit that) => new Unit.productOf(this,that);
 
     Unit<R> pow<R extends Quantity>(RationalNumber pow) => new ProductUnit([new RationalPower(this, pow)]);
+
+    Unit<R> cast<R extends Quantity>();
 }

@@ -42,14 +42,12 @@ abstract class UnitFormat {
       return name;
 
     if (unit is ProductUnit) {
-      print(unit.elements);
 
       var posExponents = unit.elements
           .where((e)=>e.pow.dividend>=0)
           .map((e)=>_formatPow(nameFor(e.base),e.pow.dividend,e.pow.divisor))
           .join("·");
 
-      print(posExponents);
 
       var negExponents = unit.elements
           .where((e)=>e.pow.dividend<0)
@@ -114,7 +112,7 @@ abstract class UnitFormat {
       Unit baseUnits = unit.standardUnit;
       UnitConverter cvtr = unit.toStandardUnit();
       var result = new StringBuffer();
-      var baseUnitName = baseUnits.toString();
+      var baseUnitName = nameFor(baseUnits);
 
       if (baseUnitName.contains('·') || baseUnitName.contains('*') ||
           baseUnitName.contains('/') ) {
@@ -169,10 +167,10 @@ abstract class UnitFormat {
 
     var base = paren|singleUnitParser|_integer().map((v)=>Unit.one.scaled(v));
 
-    var element = (base&e.optional(RationalNumber.one)).map((l)=>new RationalPower(l[0],l[1]));
+    var element = (base&e.optional(RationalNumber.one)).map((l)=>new RationalPower<Unit>(l[0],l[1]));
 
     var divisor = (char("/")&element).pick(1).map((v)=>v.inverse);
-    var factor = (element&divisor.star()).pick(0).map((l)=>new ProductUnit([l[0]]..addAll(l[1])));
+    var factor = (element&divisor.star()).map((l)=>new ProductUnit([l[0]]..addAll((l[1] as Iterable).cast())).simplify());
     term.set(factor.separatedBy(char("*")).map((l)=>l.length==1 ? l.first : new ProductUnit(l.map((v)=>new RationalPower(v)))));
 
     var number = _mapParser(anyOf("012356789+-.E").plus().flatten(),(v) {
@@ -195,8 +193,8 @@ abstract class UnitFormat {
 
   Parser<RationalNumber> get _exponent {
     var def = char('^')|string('**');
-    var extendedDigit = digit()|anyOf("¹²³").map((v)=>"${const {"¹": 1, "²": 2, "³": 3}[v]}");
-    var positiveInteger = extendedDigit.plus().flatten().map(int.parse);
+    var extendedDigit = digit()|anyOf("¹²³").map((v)=>const {"¹": "1", "²": "2", "³": "3"}[v]);
+    var positiveInteger = extendedDigit.plus().map((l)=>l.join()).map(int.parse);
     var sign = char("-").map((_)=>-1).optional(1);
     var integer = (sign&positiveInteger).map((l)=>l[0]*l[1]);
     return (def.optional()& (integer&(char(":")&integer).pick(1).optional(1))

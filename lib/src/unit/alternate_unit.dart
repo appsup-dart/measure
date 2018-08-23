@@ -18,5 +18,13 @@ class AlternateUnit<Q extends Quantity> extends DerivedUnit<Q> {
 
     @override
     UnitConverter toStandardUnit() => UnitConverter.identity;
-    
+
+    @override
+    Unit<R> cast<R extends Quantity>() => new AlternateUnit(symbol, parent);
+
+    @override
+    int get hashCode => quiver.hash2(symbol, parent);
+
+    @override
+    bool operator==(other) => other is AlternateUnit<Q>&&other.symbol==symbol&&other.parent==parent;
 }

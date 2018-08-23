@@ -22,6 +22,15 @@ class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
         return new ProductUnit._(all);
     }
 
+    Unit<Q> simplify() {
+      if (_elements.length==1) {
+        if (_elements.first.pow==new RationalNumber(1, 1)) {
+          return _elements.first.base;
+        }
+      }
+      return this;
+    }
+
     @override
     Unit get standardUnit {
       if (_hasOnlyStandardUnit())
@@ -54,6 +63,16 @@ class ProductUnit<Q extends Quantity> extends DerivedUnit<Q> {
 
     /// The units composing this product unit.
     List<RationalPower<Unit>> get elements => new List.unmodifiable(_elements);
+
+    @override
+    Unit<R> cast<R extends Quantity>() => new ProductUnit._(_elements);
+
+    @override
+    int get hashCode => quiver.hashObjects(_elements);
+
+    @override
+    bool operator==(other) => other is ProductUnit<Q>&&
+        const ListEquality().equals(other._elements, _elements);
 }
 
 

@@ -21,4 +21,13 @@ class TransformedUnit<Q extends Quantity> extends DerivedUnit<Q> {
     @override
     UnitConverter toStandardUnit() => parentUnit.toStandardUnit().concatenate(toParentUnit);
 
+    @override
+    int get hashCode => quiver.hash2(parentUnit,toParentUnit);
+
+    @override
+    bool operator==(other) => other is TransformedUnit<Q> && other.parentUnit==parentUnit && other.toParentUnit==toParentUnit;
+
+    @override
+    Unit<R> cast<R extends Quantity>() => new TransformedUnit(parentUnit.cast(), toParentUnit);
+
 }

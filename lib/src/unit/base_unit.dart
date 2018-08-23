@@ -16,5 +16,14 @@ class BaseUnit<Q extends Quantity> extends Unit<Q> {
 
     @override
     UnitConverter toStandardUnit() => UnitConverter.identity;
-    
+
+    @override
+    Unit<R> cast<R extends Quantity>() => new BaseUnit(symbol);
+
+    @override
+    int get hashCode => symbol.hashCode;
+
+    @override
+    bool operator==(other) => other is BaseUnit<Q>&&other.symbol==symbol;
+
 }

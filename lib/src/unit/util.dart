@@ -26,7 +26,11 @@ class RationalNumber {
 
   RationalNumber opposite() => new RationalNumber(-divisor, dividend);
 
+  @override
   int get hashCode => quiver.hash3(#RationalNumber, dividend, divisor);
+
+  @override
+  bool operator==(other) => other is RationalNumber&&other.dividend==dividend&&other.divisor==divisor;
 
 }
 
