@@ -129,17 +129,17 @@ abstract class SI extends SystemOfUnits {
     ///
     /// One radian is the angle between two radii of a circle such that the
     /// length of the arc between them is equal to the radius.
-    static const AlternateUnit radian = const AlternateUnit("rad", Unit.one);
+    static const AlternateUnit radian = const AlternateUnit("rad", Unit.one, Quantity.angle);
 
     /// The unit for solid angle quantities (`sr`).
     ///
     /// One steradian is the solid angle subtended at the center of a sphere by
     /// an area on the surface of the sphere that is equal to the radius squared.
     /// The total solid angle of a sphere is 4*Pi steradians.
-    static const AlternateUnit steradian = const AlternateUnit("sr", Unit.one);
+    static const AlternateUnit steradian = const AlternateUnit("sr", Unit.one, Quantity.solidAngle);
 
     /// The unit for binary information (`bit`).
-    static const AlternateUnit bit = const AlternateUnit("bit", Unit.one);
+    static const AlternateUnit bit = const AlternateUnit("bit", Unit.one, Quantity.dataAmount);
 
     /// The derived unit for frequency (`Hz`).
     ///
@@ -317,7 +317,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit gray = const AlternateUnit(
             "Gy", const ProductUnit._(const[
         const RationalPower<Unit>(joule),
-        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantity.radiationDoseAbsorbed);
 
     /// The derived unit for dose equivalent (`Sv`).
     ///
@@ -328,7 +328,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit sievert = const AlternateUnit(
             "Sv", const ProductUnit._(const[
         const RationalPower<Unit>(joule),
-        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]));
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantity.radiationDoseEffective);
 
     /// The derived unit for catalytic activity (`kat`).
     static const AlternateUnit katal = const AlternateUnit(

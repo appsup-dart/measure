@@ -18,8 +18,17 @@ class ProductUnit extends DerivedUnit {
             return [v];
         })
         .where((v)=>v!=Unit.one)
-        .toList(); // TODO group elements with same base
-        return new ProductUnit._(all);
+        .toList();
+
+        var map = <Unit,RationalPower<Unit>>{};
+        for (var e in all) {
+          if (map.containsKey(e.base)) {
+            map[e.base] = new RationalPower(e.base, map[e.base].pow.add(e.pow));
+          } else {
+            map[e.base] = e;
+          }
+        }
+        return new ProductUnit._(map.values.toList());
     }
 
     Unit simplify() {
@@ -72,7 +81,22 @@ class ProductUnit extends DerivedUnit {
         const ListEquality().equals(other._elements, _elements);
 
     @override
-    Quantity get quantity => standardUnit.quantity;
+    Quantity get quantity {
+      var unit = standardUnit;
+      if (unit==this) {
+        if (_elements.isEmpty) return Quantity.dimensionless;
+        return Quantity.values
+            .firstWhere((q)=>(q.siUnit is AlternateUnit ? (q.siUnit as AlternateUnit).parent : q.siUnit)==unit, orElse: () {
+              print(unit);
+              print(Quantity.area.siUnit);
+              return null;
+        });
+      }
+      return unit.quantity;
+    }
+
+    @override
+    String toString() => "ProductUnit[$_elements]";
 }
 
 

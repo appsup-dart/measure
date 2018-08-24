@@ -32,4 +32,25 @@ void main() {
     });
 
   });
+
+
+  group('Resolving quantity of a unit', () {
+
+
+    test('Resolving quantity of si units', () {
+
+      for (var q in Quantity.values) {
+        expect(q.siUnit.quantity,q);
+      }
+
+    });
+
+    test('Resolving quantity of computed units', () {
+      expect((Quantity.length.meter.times(Quantity.length.meter)).quantity, Quantity.area);
+      expect((Quantity.area.squareMetre.times(Quantity.length.meter)).quantity, Quantity.volume);
+      expect((Quantity.length.meter.divide(Quantity.duration.hour)).quantity, Quantity.velocity);
+      expect((Quantity.length.mile.divide(Quantity.duration.hour.times(Quantity.duration.week))).quantity, Quantity.acceleration);
+      expect(Quantity.angle.grade.divide(Quantity.duration.hour).quantity, Quantity.angularVelocity);
+    });
+  });
 }

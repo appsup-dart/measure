@@ -25,4 +25,6 @@ class BaseUnit extends Unit {
     @override
     bool operator==(other) => other is BaseUnit&&other.symbol==symbol;
 
+    @override
+    String toString() => "BaseUnit[$symbol, $quantity]";
 }

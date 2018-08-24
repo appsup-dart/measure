@@ -32,6 +32,8 @@ class RationalNumber {
   @override
   bool operator==(other) => other is RationalNumber&&other.dividend==dividend&&other.divisor==divisor;
 
+  @override
+  String toString() => "RationalNumber[$dividend/$divisor]";
 }
 
 /// A rational power of a base
@@ -53,4 +55,7 @@ class RationalPower<T> {
       other.pow==pow;
 
   RationalPower<T> get inverse => new RationalPower(base, new RationalNumber(-pow.dividend, pow.divisor)); // TODO inverse() instead?
+
+  @override
+  String toString() => "RationalPower[$base, $pow]";
 }

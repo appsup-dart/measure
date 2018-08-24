@@ -13,6 +13,52 @@ part of measure;
 /// energy).
 abstract class Quantity {
 
+    static const values = const [
+        dimensionless ,
+        acceleration ,
+        amountOfSubstance ,
+        angle ,
+        angularAcceleration ,
+        angularVelocity ,
+        area ,
+        catalyticActivity ,
+        dataAmount ,
+        dataRate ,
+        duration ,
+        dynamicViscosity ,
+        electricCapacitance ,
+        electricCharge ,
+        electricConductance ,
+        electricCurrent ,
+        electricInductance ,
+        electricPotential ,
+        electricResistance ,
+        energy ,
+        force ,
+        frequency ,
+        illuminance ,
+        kinematicViscosity ,
+        length ,
+        luminousFlux ,
+        luminousIntensity ,
+        magneticFlux ,
+        magneticFluxDensity ,
+        mass ,
+        massFlowRate ,
+        power ,
+        pressure ,
+        radiationDoseAbsorbed ,
+        radiationDoseEffective ,
+        radioactiveActivity ,
+        solidAngle ,
+        temperature ,
+        torque ,
+        velocity ,
+        volume ,
+        volumetricDensity ,
+    ];
+
+
     static const dimensionless = const Dimensionless._();
 
     static const acceleration = const Acceleration._();
@@ -99,21 +145,24 @@ abstract class Quantity {
 
     const Quantity();
 
+    /// The SI unit (Système International d'Unités) for this quantity
+    Unit get siUnit;
+
 }
 
-/// A dimensionless quantity.
+/// A dimensionless 
 class Dimensionless extends Quantity {
 
     const Dimensionless._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = Unit.one;
+    @override
+    Unit get siUnit => Unit.one;
 
     /// A dimensionless unit equals to `0.01` (standard name `%`).
-    static const Unit percent = NonSI.percent;
+    Unit get percent => NonSI.percent;
 
     /// A logarithmic unit used to describe a ratio (standard name `dB`).
-    static const Unit decibel = NonSI.decibel;
+    Unit get decibel => NonSI.decibel;
 
 }
 
@@ -124,18 +173,18 @@ class Acceleration extends Quantity {
 
     const Acceleration._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.metresPerSquareSecond;
+    @override 
+    Unit get siUnit => SI.metresPerSquareSecond;
 
     /// The metric unit for acceleration quantities (`m/s²`).
-    static const Unit metresPerSquareSecond = SI.metresPerSquareSecond;
+    Unit get metresPerSquareSecond => SI.metresPerSquareSecond;
 
     /// Equivalent to [metresPerSquareSecond] (American spelling).
-    static const Unit metersPerSquareSecond = metresPerSquareSecond;
+    Unit get metersPerSquareSecond => metresPerSquareSecond;
 
     /// A unit of acceleration equal to the gravity at the earth's surface
     /// (standard name `grav`).
-    static const Unit g = NonSI.g;
+    Unit get g => NonSI.g;
 }
 
 
@@ -146,8 +195,8 @@ class AmountOfSubstance extends Quantity {
 
     const AmountOfSubstance._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.mole;
+    @override 
+    Unit get siUnit => SI.mole;
 
     /// The base unit for amount of substance quantities (`mol`).
     ///
@@ -156,7 +205,7 @@ class AmountOfSubstance extends Quantity {
     static const BaseUnit mole = SI.mole;
 
     /// A unit of amount of substance equals to one atom (standard name `atom`).
-    static const Unit atom =  NonSI.atom;
+    Unit get atom =>  NonSI.atom;
 
 }
 
@@ -164,38 +213,38 @@ class AmountOfSubstance extends Quantity {
 ///
 /// The system unit for this quantity is "rad" (radian). This quantity is
 /// dimensionless.
-class Angle extends Dimensionless {
+class Angle extends Quantity {
 
-    const Angle._(): super._();
+    const Angle._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.radian;
+    @override 
+    Unit get siUnit => SI.radian;
 
     /// The unit for plane angle quantities (`rad`).
     ///
     /// One radian is the angle between two radii of a circle such that the
     /// length of the arc between them is equal to the radius.
-    static const AlternateUnit radian = SI.radian;
+    Unit get radian => SI.radian;
 
     /// A unit of angle equal to a full circle or `2<i>&pi;</i> [SI.RADIAN]`
     /// (standard name `rev`).
-    static const Unit revolution = NonSI.revolution;
+    Unit get revolution => NonSI.revolution;
 
     /// A unit of angle equal to `1/360 [REVOLUTION]` (standard name `°`).
-    static const Unit degreeAngle = NonSI.degreeAngle;
+    Unit get degreeAngle => NonSI.degreeAngle;
 
     /// A unit of angle equal to `1/60 [DEGREE_ANGLE]` (standard name `′`).
-    static const Unit minuteAngle = NonSI.minuteAngle;
+    Unit get minuteAngle => NonSI.minuteAngle;
 
     /// A unit of angle equal to `1/60 [MINUTE_ANGLE]` (standard name `"`).
-    static const Unit secondAngle = NonSI.secondAngle;
+    Unit get secondAngle => NonSI.secondAngle;
 
     /// A unit of angle equal to `0.01 [SI.RADIAN]` (standard name `centiradian`).
-    static const Unit centiradian = NonSI.centiradian;
+    Unit get centiradian => NonSI.centiradian;
 
     /// A unit of angle measure equal to `1/400 [REVOLUTION]`
     /// (standard name `grade`).
-    static const Unit grade = NonSI.grade;
+    Unit get grade => NonSI.grade;
 
 }
 
@@ -206,8 +255,8 @@ class AngularAcceleration extends Quantity {
 
     const AngularAcceleration._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit =
+    @override 
+    Unit get siUnit =>
         const ProductUnit._(const [
             const RationalPower<Unit>(SI.radian),
             const RationalPower<Unit>(SI.second, const RationalNumber._(-2))
@@ -222,8 +271,8 @@ class AngularVelocity extends Quantity {
 
     const AngularVelocity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit =
+    @override 
+    Unit get siUnit =>
     const ProductUnit._(const [
         const RationalPower<Unit>(SI.radian),
         const RationalPower<Unit>(SI.second, const RationalNumber._(-1))
@@ -239,19 +288,19 @@ class Area extends Quantity {
 
     const Area._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.squareMetre;
+    @override 
+    Unit get siUnit => SI.squareMetre;
 
     /// The metric unit for area quantities (`m²`).
-    static const Unit squareMetre = SI.squareMetre;
+    Unit get squareMetre => SI.squareMetre;
 
     /// A unit of area equal to `100 m²`
     /// (standard name `a`).
-    static const Unit are = NonSI.are;
+    Unit get are => NonSI.are;
 
     /// A unit of area equal to `100 [ARE]`
     /// (standard name `ha`).
-    static const Unit hectare = NonSI.hectare;
+    Unit get hectare => NonSI.hectare;
 
 }
 
@@ -262,8 +311,8 @@ class CatalyticActivity extends Quantity {
 
     const CatalyticActivity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.katal;
+    @override 
+    Unit get siUnit => SI.katal;
 
     /// The derived unit for catalytic activity (`kat`).
     static const AlternateUnit katal = SI.katal;
@@ -272,22 +321,22 @@ class CatalyticActivity extends Quantity {
 /// A measure of data amount.
 ///
 /// The system unit for this quantity is "bit". This quantity is dimensionless.
-class DataAmount extends Dimensionless {
+class DataAmount extends Quantity {
 
-    const DataAmount._() : super._();
+    const DataAmount._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.bit;
+    @override 
+    Unit get siUnit => SI.bit;
 
     /// The unit for binary information (`bit`).
-    static const AlternateUnit bit = SI.bit;
+    Unit get bit => SI.bit;
 
     /// A unit of data amount equal to `8 [SI.BIT]`
     /// (BinarY TErm, standard name `byte`).
-    static const Unit byte = NonSI.byte;
+    Unit get byte => NonSI.byte;
 
     /// Equivalent [byte]
-    static const Unit octet = byte;
+    Unit get octet => byte;
 
 }
 
@@ -298,8 +347,8 @@ class DataRate extends Quantity {
 
     const DataRate._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = const ProductUnit._(
+    @override 
+    Unit get siUnit => const ProductUnit._(
         const [
             const RationalPower<Unit>(SI.bit),
             const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
@@ -314,8 +363,8 @@ class DurationQuantity extends Quantity {
 
     const DurationQuantity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.second;
+    @override 
+    Unit get siUnit => SI.second;
 
     /// The base unit for duration quantities (`s`).
     ///
@@ -325,37 +374,37 @@ class DurationQuantity extends Quantity {
     static const BaseUnit second = SI.second;
 
     /// A unit of duration equal to `60 s` (standard name `min`).
-    static const Unit minute = NonSI.minute;
+    Unit get minute => NonSI.minute;
 
     /// A unit of duration equal to `60 [MINUTE]` (standard name `h`).
-    static const Unit hour = NonSI.hour;
+    Unit get hour => NonSI.hour;
 
     /// A unit of duration equal to `24 [HOUR]` (standard name `d`).
-    static const Unit day = NonSI.day;
+    Unit get day => NonSI.day;
 
     /// A unit of duration equal to `7 [DAY]` (standard name `week`).
-    static const Unit week = NonSI.week;
+    Unit get week => NonSI.week;
 
     /// A unit of duration equal to 365 days, 5 hours, 49 minutes,
     /// and 12 seconds (standard name `year`).
-    static const Unit year = NonSI.year;
+    Unit get year => NonSI.year;
 
     /// A unit of duration equal to one twelfth of a year (standard name `month`).
-    static const Unit month = NonSI.month;
+    Unit get month => NonSI.month;
 
     /// A unit of duration equal to the time required for a complete rotation of
     /// the earth in reference to any star or to the vernal equinox at the
     /// meridian, equal to 23 hours, 56 minutes, 4.09 seconds
     /// (standard name `day_sidereal`).
-    static const Unit daySidereal = NonSI.daySidereal;
+    Unit get daySidereal => NonSI.daySidereal;
 
     /// A unit of duration equal to one complete revolution of the
     /// earth about the sun, relative to the fixed stars, or 365 days, 6 hours,
     /// 9 minutes, 9.54 seconds (standard name `year_sidereal`).
-    static const Unit yearSidereal = NonSI.yearSidereal;
+    Unit get yearSidereal => NonSI.yearSidereal;
 
     /// A unit of duration equal to `365 [DAY]` (standard name `year_calendar`).
-    static const Unit yearCalendar = NonSI.yearCalendar;
+    Unit get yearCalendar => NonSI.yearCalendar;
 
 }
 
@@ -366,15 +415,14 @@ class DynamicViscosity extends Quantity {
 
     const DynamicViscosity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit unit
-       = const ProductUnit._(const [
+    @override 
+    Unit get siUnit => const ProductUnit._(const [
            const RationalPower<Unit>(SI.pascal),
            const RationalPower<Unit>(SI.second)
        ]);
 
     /// A unit of dynamic viscosity equal to `1 g/(cm·s)` (cgs unit).
-    static const Unit poise = NonSI.poise;
+    Unit get poise => NonSI.poise;
 
 }
 
@@ -386,8 +434,8 @@ class ElectricCapacitance extends Quantity {
     const ElectricCapacitance._();
 
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.farad;
+    @override 
+    Unit get siUnit => SI.farad;
 
     /// The derived unit for capacitance (`F`).
     ///
@@ -405,8 +453,8 @@ class ElectricCharge extends Quantity {
 
     const ElectricCharge._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.coulomb;
+    @override 
+    Unit get siUnit => SI.coulomb;
 
     /// The derived unit for electric charge, quantity of electricity
     /// (`C`).
@@ -418,16 +466,16 @@ class ElectricCharge extends Quantity {
 
     /// A unit of electric charge equal to the charge on one electron
     /// (standard name `e`).
-    static const Unit e = NonSI.e;
+    Unit get e => NonSI.e;
 
     /// A unit of electric charge equal to equal to the product of Avogadro's
     /// number (see [mole]) and the charge (1 e) on a single electron
     /// (standard name `Fd`).
-    static const Unit faraday = NonSI.faraday;
+    Unit get faraday => NonSI.faraday;
 
     /// A unit of electric charge which exerts a force of one dyne on an equal
     /// charge at a distance of one centimeter (standard name `Fr`).
-    static const Unit franklin = NonSI.franklin;
+    Unit get franklin => NonSI.franklin;
 
 
 }
@@ -440,8 +488,8 @@ class ElectricConductance extends Quantity {
 
     const ElectricConductance._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.siemens;
+    @override 
+    Unit get siUnit => SI.siemens;
 
     /// The derived unit for electric conductance (`S`).
     ///
@@ -459,8 +507,8 @@ class ElectricCurrent extends Quantity {
 
     const ElectricCurrent._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.ampere;
+    @override 
+    Unit get siUnit => SI.ampere;
 
     /// The base unit for electric current quantities (`A`).
     ///
@@ -475,7 +523,7 @@ class ElectricCurrent extends Quantity {
     /// A unit of electric charge equal to the centimeter-gram-second
     /// electromagnetic unit of magnetomotive force, equal to `10/4
     /// &pi;ampere-turn` (standard name `Gi`).
-    static const Unit gilbert = NonSI.gilbert;
+    Unit get gilbert => NonSI.gilbert;
 
 }
 
@@ -486,8 +534,8 @@ class ElectricInductance extends Quantity {
 
     const ElectricInductance._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.henry;
+    @override 
+    Unit get siUnit => SI.henry;
 
     /// The derived unit for inductance (`H`).
     ///
@@ -505,8 +553,8 @@ class ElectricPotential extends Quantity {
 
     const ElectricPotential._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.volt;
+    @override 
+    Unit get siUnit => SI.volt;
 
     /// The derived unit for electric potential difference, electromotive force
     /// (`V`).
@@ -526,8 +574,8 @@ class ElectricResistance extends Quantity {
 
     const ElectricResistance._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.ohm;
+    @override 
+    Unit get siUnit => SI.ohm;
 
     /// The derived unit for electric resistance (`Ω` or `Ohm`).
     ///
@@ -545,8 +593,8 @@ class Energy extends Quantity {
 
     const Energy._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.joule;
+    @override 
+    Unit get siUnit => SI.joule;
 
     /// The derived unit for energy, work, quantity of heat (`J`).
     ///
@@ -557,11 +605,11 @@ class Energy extends Quantity {
 
     /// A unit of energy equal to `1E-7 J`
     /// (standard name `erg`).
-    static const Unit erg = NonSI.erg;
+    Unit get erg => NonSI.erg;
 
     /// A unit of energy equal to one electron-volt (standard name
     /// `eV`, also recognized `keV, MeV, GeV`).
-    static const Unit electronVolt = NonSI.electronVolt;
+    Unit get electronVolt => NonSI.electronVolt;
 
 }
 
@@ -574,8 +622,8 @@ class Force extends Quantity {
     const Force._();
 
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.newton;
+    @override 
+    Unit get siUnit => SI.newton;
 
     /// The derived unit for force (`N`).
     ///
@@ -586,15 +634,15 @@ class Force extends Quantity {
 
     /// A unit of force equal to `1E-5 N`
     /// (standard name `dyn`).
-    static const Unit dyne = NonSI.dyne;
+    Unit get dyne => NonSI.dyne;
 
     /// A unit of force equal to `9.80665 N`
     /// (standard name `kgf`).
-    static const Unit kilogramForce = NonSI.kilogramForce;
+    Unit get kilogramForce => NonSI.kilogramForce;
 
     /// A unit of force equal to `[POUND]·[G]`
     /// (standard name `lbf`).
-    static const Unit poundForce = NonSI.poundForce;
+    Unit get poundForce => NonSI.poundForce;
 
 }
 
@@ -606,8 +654,8 @@ class Frequency extends Quantity {
 
     const Frequency._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.hertz;
+    @override 
+    Unit get siUnit => SI.hertz;
 
     /// The derived unit for frequency (`Hz`).
     ///
@@ -625,8 +673,8 @@ class Illuminance extends Quantity {
 
     const Illuminance._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.lux;
+    @override 
+    Unit get siUnit => SI.lux;
 
     /// The derived unit for illuminance (`lx`).
     ///
@@ -635,7 +683,7 @@ class Illuminance extends Quantity {
 
     /// A unit of illuminance equal to `1E4 Lx`
     /// (standard name `La`).
-    static const Unit lambert = NonSI.lambert;
+    Unit get lambert => NonSI.lambert;
 
 }
 
@@ -646,15 +694,14 @@ class KinematicViscosity extends Quantity {
 
     const KinematicViscosity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit unit
-    = const ProductUnit._(const [
+    @override 
+    Unit get siUnit => const ProductUnit._(const [
         const RationalPower<Unit>(SI.metre,const RationalNumber._(2)),
         const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
     ]);
 
     /// A unit of kinematic viscosity equal to `1 cm²/s` (cgs unit).
-    static const Unit stoke = NonSI.stoke;
+    Unit get stoke => NonSI.stoke;
 
 }
 
@@ -666,26 +713,26 @@ class Length extends Quantity {
 
     const Length._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.metre;
+    @override 
+    Unit get siUnit => SI.metre;
 
     /// Equivalent to `KILO(METRE)`.
-    static const Unit kilometre = SI.kilometre;
+    Unit get kilometre => SI.kilometre;
 
     /// Equivalent to [kilometre] (American spelling).
-    static const Unit kilometer = kilometre;
+    Unit get kilometer => kilometre;
 
     /// Equivalent to `CENTI(METRE)`.
-    static const Unit centimetre = SI.centimetre;
+    Unit get centimetre => SI.centimetre;
 
     /// Equivalent to [centimetre] (American spelling).
-    static const Unit centimeter = centimetre;
+    Unit get centimeter => centimetre;
 
     /// Equivalent to `MILLI(METRE)`.
-    static const Unit millimetre = SI.millimetre;
+    Unit get millimetre => SI.millimetre;
 
     /// Equivalent to [millimetre] (American spelling).
-    static const Unit millimeter = millimetre;
+    Unit get millimeter => millimetre;
 
     /// The base unit for length quantities (`m`).
     ///
@@ -694,54 +741,54 @@ class Length extends Quantity {
     static const BaseUnit metre = SI.metre;
 
     /// Equivalent to [metre] (American spelling).
-    static const Unit meter = metre;
+    Unit get meter => metre;
 
     /// A unit of length equal to `0.3048 m` (standard name `ft`).
-    static const Unit foot = NonSI.foot;
+    Unit get foot => NonSI.foot;
 
     /// A unit of length equal to `1200/3937 m` (standard name `foot_survey_us`).
-    static const Unit footSurveyUS = NonSI.footSurveyUS;
+    Unit get footSurveyUS => NonSI.footSurveyUS;
 
     /// A unit of length equal to `0.9144 m` (standard name `yd`).
-    static const Unit yard = NonSI.yard;
+    Unit get yard => NonSI.yard;
 
     /// A unit of length equal to `0.0254 m` (standard name `in`).
-    static const Unit inch = NonSI.inch;
+    Unit get inch => NonSI.inch;
 
     /// A unit of length equal to `1609.344 m` (standard name `mi`).
-    static const Unit mile = NonSI.mile;
+    Unit get mile => NonSI.mile;
 
     /// A unit of length equal to `1852.0 m` (standard name `nmi`).
-    static const Unit nauticalMile = NonSI.nauticalMile;
+    Unit get nauticalMile => NonSI.nauticalMile;
 
     /// A unit of length equal to `1E-10 m` (standard name `Å`).
-    static const Unit angstrom = NonSI.angstrom;
+    Unit get angstrom => NonSI.angstrom;
 
     /// A unit of length equal to the average distance from the center of the
     /// Earth to the center of the Sun (standard name `ua`).
-    static const Unit astronomicalUnit = NonSI.astronomicalUnit;
+    Unit get astronomicalUnit => NonSI.astronomicalUnit;
 
     /// A unit of length equal to the distance that light travels in one year
     /// through a vacuum (standard name `ly`).
-    static const Unit lightYear = NonSI.lightYear;
+    Unit get lightYear => NonSI.lightYear;
 
     /// A unit of length equal to the distance at which a star would appear to
     /// shift its position by one arcsecond over the course the time
     /// (about 3 months) in which the Earth moves a distance of
     /// [astronomicalUnit] in the direction perpendicular to the
     /// direction to the star (standard name `pc`).
-    static const Unit parsec = NonSI.parsec;
+    Unit get parsec => NonSI.parsec;
 
     /// A unit of length equal to `0.013837 [INCH]` exactly (standard name `pt`).
-    static const Unit point = NonSI.point;
+    Unit get point => NonSI.point;
 
     /// A unit of length equal to `1/72 [INCH]` (standard name `pixel`).
     ///
     /// It is the American point rounded to an even 1/72 inch.
-    static const Unit pixel = NonSI.pixel;
+    Unit get pixel => NonSI.pixel;
 
     /// Equivalent [pixel]
-    static const Unit computerPoint = pixel;
+    Unit get computerPoint => pixel;
 
 }
 
@@ -752,8 +799,8 @@ class LuminousFlux extends Quantity {
 
     const LuminousFlux._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.lumen;
+    @override 
+    Unit get siUnit => SI.lumen;
 
     /// The derived unit for luminous flux (`lm`).
     ///
@@ -770,8 +817,8 @@ class LuminousIntensity extends Quantity {
 
     const LuminousIntensity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.candela;
+    @override 
+    Unit get siUnit => SI.candela;
 
     /// The base unit for luminous intensity quantities (`cd`).
     ///
@@ -790,8 +837,8 @@ class MagneticFlux extends Quantity {
 
     const MagneticFlux._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.weber;
+    @override 
+    Unit get siUnit => SI.weber;
 
     /// The derived unit for magnetic flux (`Wb`).
     ///
@@ -803,7 +850,7 @@ class MagneticFlux extends Quantity {
 
     /// A unit of magnetic flux equal `1E-8 Wb`
     /// (standard name `Mx`).
-    static const Unit maxwell = NonSI.maxwell;
+    Unit get maxwell => NonSI.maxwell;
 
 }
 
@@ -814,8 +861,8 @@ class MagneticFluxDensity extends Quantity {
 
     const MagneticFluxDensity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.tesla;
+    @override 
+    Unit get siUnit => SI.tesla;
 
     /// The derived unit for magnetic flux density (`T`).
     ///
@@ -826,7 +873,7 @@ class MagneticFluxDensity extends Quantity {
 
     /// A unit of magnetic flux density equal `1000 A/m`
     /// (standard name `G`).
-    static const Unit gauss = NonSI.gauss;
+    Unit get gauss => NonSI.gauss;
 
 }
 
@@ -840,8 +887,8 @@ class Mass extends Quantity {
 
     const Mass._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.kilogram;
+    @override 
+    Unit get siUnit => SI.kilogram;
 
     /// The base unit for mass quantities (`kg`).
     ///
@@ -853,30 +900,30 @@ class Mass extends Quantity {
     /// The derived unit for mass quantities (`g`).
     ///
     /// The base unit for mass quantity is [kilogram].
-    static const Unit gram = SI.gram;
+    Unit get gram => SI.gram;
 
     /// A unit of mass equal to 1/12 the mass of the carbon-12 atom
     /// (standard name `u`).
-    static const Unit atomicMass = NonSI.atomicMass;
+    Unit get atomicMass => NonSI.atomicMass;
 
     /// A unit of mass equal to the mass of the electron (standard name `me`).
-    static const Unit electronMass = NonSI.electronMass;
+    Unit get electronMass => NonSI.electronMass;
 
     /// A unit of mass equal to `453.59237 grams` (avoirdupois pound,
     /// standard name `lb`).
-    static const Unit pound = NonSI.pound;
+    Unit get pound => NonSI.pound;
 
     /// A unit of mass equal to `1 / 16 [POUND]` (standard name `oz`).
-    static const Unit ounce = NonSI.ounce;
+    Unit get ounce => NonSI.ounce;
 
     /// A unit of mass equal to `2000 [POUND]` (short ton, standard name `ton_us`).
-    static const Unit tonUS = NonSI.tonUS;
+    Unit get tonUS => NonSI.tonUS;
 
     /// A unit of mass equal to `2240 [POUND]` (long ton, standard name `ton_uk`).
-    static const Unit tonUK = NonSI.tonUK;
+    Unit get tonUK => NonSI.tonUK;
 
     /// A unit of mass equal to `1000 kg` (metric ton, standard name `t`).
-    static const Unit metricTon = NonSI.metricTon;
+    Unit get metricTon => NonSI.metricTon;
 
 }
 
@@ -887,8 +934,8 @@ class MassFlowRate extends Quantity {
 
     const MassFlowRate._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = const ProductUnit._(
+    @override 
+    Unit get siUnit => const ProductUnit._(
         const [
             const RationalPower(SI.kilogram),
             const RationalPower(SI.second,const RationalNumber._(-1))
@@ -903,8 +950,8 @@ class Power extends Quantity {
 
     const Power._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.watt;
+    @override 
+    Unit get siUnit => SI.watt;
 
     /// The derived unit for power, radiant, flux (`W`).
     ///
@@ -915,7 +962,7 @@ class Power extends Quantity {
     /// A unit of power equal to the power required to raise a mass of 75
     /// kilograms at a velocity of 1 meter per second (metric,
     /// standard name `hp`).
-    static const Unit horsepower = NonSI.horsepower;
+    Unit get horsepower => NonSI.horsepower;
 
 }
 
@@ -926,8 +973,8 @@ class Pressure extends Quantity {
 
     const Pressure._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.pascal;
+    @override 
+    Unit get siUnit => SI.pascal;
 
     /// The derived unit for pressure, stress (`Pa`).
     ///
@@ -937,21 +984,21 @@ class Pressure extends Quantity {
 
     /// A unit of pressure equal to the average pressure of the Earth's
     /// atmosphere at sea level (standard name `atm`).
-    static const Unit atmosphere = NonSI.atmosphere;
+    Unit get atmosphere => NonSI.atmosphere;
 
     /// A unit of pressure equal to `100 kPa`
     /// (standard name `bar`).
-    static const Unit bar = NonSI.bar;
+    Unit get bar => NonSI.bar;
 
     /// A unit of pressure equal to the pressure exerted at the Earth's
     /// surface by a column of mercury 1 millimeter high
     /// (standard name `mmHg`).
-    static const Unit millimeterOfMercury = NonSI.millimeterOfMercury;
+    Unit get millimeterOfMercury => NonSI.millimeterOfMercury;
 
     /// A unit of pressure equal to the pressure exerted at the Earth's
     /// surface by a column of mercury 1 inch high
     /// (standard name `inHg`).
-    static const Unit inchOfMercury = NonSI.inchOfMercury;
+    Unit get inchOfMercury => NonSI.inchOfMercury;
 
 }
 
@@ -962,8 +1009,8 @@ class RadiationDoseAbsorbed extends Quantity {
 
     const RadiationDoseAbsorbed._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.gray;
+    @override 
+    Unit get siUnit => SI.gray;
 
     /// The derived unit for absorbed dose, specific energy (imparted), kerma
     /// (`Gy`).
@@ -975,11 +1022,11 @@ class RadiationDoseAbsorbed extends Quantity {
 
     /// A unit of radiation dose absorbed equal to a dose of 0.01 joule of
     /// energy per kilogram of mass (J/kg) (standard name `rd`).
-    static const Unit rad = NonSI.rad;
+    Unit get rad => NonSI.rad;
 
     /// A unit of radiation dose effective equal to `0.01 Sv`
     /// (standard name `rem`).
-    static const Unit rem = NonSI.rem;
+    Unit get rem => NonSI.rem;
 
 }
 
@@ -991,8 +1038,8 @@ class RadiationDoseEffective extends Quantity {
 
     const RadiationDoseEffective._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.sievert;
+    @override 
+    Unit get siUnit => SI.sievert;
 
     /// The derived unit for dose equivalent (`Sv`).
     ///
@@ -1010,8 +1057,8 @@ class RadioactiveActivity extends Quantity {
 
     const RadioactiveActivity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.becquerel;
+    @override 
+    Unit get siUnit => SI.becquerel;
 
     /// The derived unit for activity of a radionuclide (`Bq`).
     ///
@@ -1022,11 +1069,11 @@ class RadioactiveActivity extends Quantity {
 
     /// A unit of radioctive activity equal to the activity of a gram of radium
     /// (standard name `Ci`).
-    static const Unit curie = NonSI.curie;
+    Unit get curie => NonSI.curie;
 
     /// A unit of radioctive activity equal to 1 million radioactive
     /// disintegrations per second (standard name `Rd`).
-    static const Unit rutherford = NonSI.rutherford;
+    Unit get rutherford => NonSI.rutherford;
 
 
 }
@@ -1035,12 +1082,12 @@ class RadioactiveActivity extends Quantity {
 /// The angle formed by three or more planes intersecting at a common point.
 ///
 /// The system unit for this quantity is "sr" (steradian).
-class SolidAngle extends Dimensionless {
+class SolidAngle extends Quantity {
 
-    const SolidAngle._() : super._();
+    const SolidAngle._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.steradian;
+    @override 
+    Unit get siUnit => SI.steradian;
 
     /// The unit for solid angle quantities (`sr`).
     ///
@@ -1051,7 +1098,7 @@ class SolidAngle extends Dimensionless {
 
     /// A unit of solid angle equal to `4 <i>&pi;</i> steradians`
     /// (standard name `sphere`).
-    static const Unit sphere = NonSI.sphere;
+    Unit get sphere => NonSI.sphere;
 
 }
 
@@ -1062,15 +1109,15 @@ class Temperature extends Quantity {
 
     const Temperature._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.kelvin;
+    @override 
+    Unit get siUnit => SI.kelvin;
 
     /// The derived unit for Celsius temperature (`℃`).
     ///
     /// This is a unit of temperature such as the freezing point of water
     /// (at one atmosphere of pressure) is 0 ℃, while the boiling point is
     /// 100 ℃.
-    static const Unit celsius = SI.celsius;
+    Unit get celsius => SI.celsius;
 
     /// The base unit for thermodynamic temperature quantities (`K`).
     ///
@@ -1080,11 +1127,11 @@ class Temperature extends Quantity {
     static const BaseUnit kelvin = SI.kelvin;
 
     /// A unit of temperature equal to `5/9 °K` (standard name `°R`).
-    static const Unit rankine = NonSI.rankine;
+    Unit get rankine => NonSI.rankine;
 
     /// A unit of temperature equal to degree Rankine minus `459.67 °R`
     /// (standard name `°F`).
-    static const Unit fahrenheit = NonSI.fahrenheit;
+    Unit get fahrenheit => NonSI.fahrenheit;
 
 }
 
@@ -1100,12 +1147,12 @@ class Torque extends Quantity {
 
     const Torque._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit =
-        const ProductUnit._(const [
+    @override 
+    Unit get siUnit =>
+        const AlternateUnit(null, const ProductUnit._(const [
             const RationalPower<Unit>(SI.newton),
             const RationalPower<Unit>(SI.metre)
-        ]);
+        ]), Quantity.torque);
 
 }
 
@@ -1117,36 +1164,36 @@ class Velocity extends Quantity {
 
     const Velocity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.metresPerSecond;
+    @override 
+    Unit get siUnit => SI.metresPerSecond;
 
     /// The metric unit for velocity quantities (`m/s`).
-    static const Unit metresPerSecond = SI.metresPerSecond;
+    Unit get metresPerSecond => SI.metresPerSecond;
 
     /// Equivalent to [metresPerSecond] (American spelling).
-    static const Unit metersPerSecond = metresPerSecond;
+    Unit get metersPerSecond => metresPerSecond;
 
     /// A unit of velocity expressing the number of international
     /// [mile] per [hour] (abbreviation `mph`).
-    static const Unit milesPerHour = NonSI.milesPerHour;
+    Unit get milesPerHour => NonSI.milesPerHour;
 
     /// A unit of velocity expressing the number of [SI.kilometre] per [hour].
-    static const Unit kilometresPerHour = NonSI.kilometresPerHour;
+    Unit get kilometresPerHour => NonSI.kilometresPerHour;
 
     /// Equivalent to [kilometresPerHour].
-    static const Unit kilometersPerHour = kilometresPerHour;
+    Unit get kilometersPerHour => kilometresPerHour;
 
     /// A unit of velocity expressing the number of [nauticalMile] per [hour]
     /// (abbreviation `kn`).
-    static const Unit knot = NonSI.knot;
+    Unit get knot => NonSI.knot;
 
     /// A unit of velocity to express the speed of an aircraft relative to
     /// the speed of sound (standard name `Mach`).
-    static const Unit mach = NonSI.mach;
+    Unit get mach => NonSI.mach;
 
     /// A unit of velocity relative to the speed of light
     /// (standard name `c`).
-    static const Unit c = NonSI.c;
+    Unit get c => NonSI.c;
 
 }
 
@@ -1158,42 +1205,42 @@ class Volume extends Quantity {
 
     const Volume._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit = SI.cubicMetre;
+    @override 
+    Unit get siUnit => SI.cubicMetre;
 
     /// The metric unit for volume quantities (`m³`).
-    static const Unit cubicMetre = SI.cubicMetre;
+    Unit get cubicMetre => SI.cubicMetre;
 
     /// A unit of volume equal to one cubic decimeter (default label
     /// `L`, also recognized `µL, mL, cL, dL`).
-    static const Unit litre = const TransformedUnit(SI.cubicMetre,SI.Em3);
+    Unit get litre => const TransformedUnit(SI.cubicMetre,SI.Em3);
 
     /// Equivalent to [litre] (American spelling).
-    static const Unit liter = litre;
+    Unit get liter => litre;
 
     /// A unit of volume equal to one cubic inch (`in³`).
-    static const Unit cubicInch = NonSI.cubicInch;
+    Unit get cubicInch => NonSI.cubicInch;
 
     /// A unit of volume equal to one US gallon, Liquid Unit. The U.S. liquid
     /// gallon is based on the Queen Anne or Wine gallon occupying 231 cubic
     /// inches (standard name `gal`).
-    static const Unit gallonLiquidUS = NonSI.gallonLiquidUS;
+    Unit get gallonLiquidUS => NonSI.gallonLiquidUS;
 
     /// A unit of volume equal to `1 / 128 [GALLON_LIQUID_US]`
     /// (standard name `oz_fl`).
-    static const Unit ounceLiquidUS = NonSI.ounceLiquidUS;
+    Unit get ounceLiquidUS => NonSI.ounceLiquidUS;
 
     /// A unit of volume equal to one US dry gallon.
     /// (standard name `gallon_dry_us`).
-    static const Unit gallonDryUS = NonSI.gallonDryUS;
+    Unit get gallonDryUS => NonSI.gallonDryUS;
 
     /// A unit of volume equal to `4.546 09 [LITRE]`
     /// (standard name `gal_uk`).
-    static const Unit gallonUK = NonSI.gallonUK;
+    Unit get gallonUK => NonSI.gallonUK;
 
     /// A unit of volume equal to `1 / 160 [GALLON_UK]`
     /// (standard name `oz_fl_uk`).
-    static const Unit ounceLiquidUK = NonSI.ounceLiquidUK;
+    Unit get ounceLiquidUK => NonSI.ounceLiquidUK;
 
 
 }
@@ -1206,8 +1253,8 @@ class VolumetricDensity extends Quantity {
 
     const VolumetricDensity._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit =
+    @override 
+    Unit get siUnit =>
     const ProductUnit._(const [
         const RationalPower(SI.kilogram),
         const RationalPower(SI.metre,const RationalNumber._(-3))
@@ -1221,8 +1268,8 @@ class VolumetricFlowRate extends Quantity {
 
     const VolumetricFlowRate._();
 
-    /// The SI unit (Système International d'Unités) for this quantity.
-    static const Unit siUnit =
+    @override 
+    Unit get siUnit =>
     const ProductUnit._(const [
         const RationalPower(SI.metre,const RationalNumber._(3)),
         const RationalPower(SI.second,const RationalNumber._(-1))
