@@ -1,4 +1,3 @@
-
 library measure;
 
 export 'src/unit_format.dart';

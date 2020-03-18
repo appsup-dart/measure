@@ -1,4 +1,3 @@
-
 library measure.unit;
 
 import 'package:quiver/core.dart' as quiver;
@@ -7,7 +6,6 @@ import 'package:collection/collection.dart';
 import 'package:dart2_constant/math.dart' as math;
 
 import 'quantities.dart';
-
 
 part 'unit/dimension.dart';
 part 'unit/unit.dart';

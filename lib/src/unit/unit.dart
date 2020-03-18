@@ -19,93 +19,91 @@ part of measure.unit;
 /// Units raised at rational powers are also supported. For example
 /// the cubic root of "liter" is a unit compatible with meter.
 abstract class Unit {
+  static const Unit one = ProductUnit._([]);
 
-    static const Unit one = const ProductUnit._(const []);
+  const Unit();
 
-    const Unit();
+  factory Unit.productOf(Unit a, Unit b) =>
+      ProductUnit([RationalPower(a), RationalPower(b)]);
+  factory Unit.quotient(Unit a, Unit b) => ProductUnit(
+      [RationalPower(a), RationalPower(b, const RationalNumber._(-1))]);
+  factory Unit.inverseOf(Unit a) =>
+      ProductUnit([RationalPower(a, const RationalNumber._(-1))]);
 
-    factory Unit.productOf(Unit a, Unit b) => new ProductUnit([new RationalPower(a), new RationalPower(b)]);
-    factory Unit.quotient(Unit a, Unit b) => new ProductUnit([new RationalPower(a), new RationalPower(b, const RationalNumber._(-1))]);
-    factory Unit.inverseOf(Unit a) => new ProductUnit([new RationalPower(a, const RationalNumber._(-1))]);
+  //////////////////////////////////////////////////////
+  // Contract methods (for sub-classes to implement). //
+  //////////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////////
-    // Contract methods (for sub-classes to implement). //
-    //////////////////////////////////////////////////////
+  /// The [BaseUnit] base unit, [AlternateUnit] alternate unit or product of
+  /// base units and alternate units this unit is derived from.
+  ///
+  /// The standard unit identifies the "type" of [Quantity] quantity for which
+  /// this unit is employed.
+  Unit get standardUnit;
 
-    /// The [BaseUnit] base unit, [AlternateUnit] alternate unit or product of
-    /// base units and alternate units this unit is derived from.
-    ///
-    /// The standard unit identifies the "type" of [Quantity] quantity for which
-    /// this unit is employed.
-    Unit get standardUnit;
+  /// Returns the converter from this unit to its standard unit.
+  UnitConverter toStandardUnit();
 
-    
-    /// Returns the converter from this unit to its standard unit.
-    UnitConverter toStandardUnit();
+  /// Indicates if this unit is a standard unit.
+  bool get isStandardUnit => standardUnit == this;
 
-    /// Indicates if this unit is a standard unit.
-    bool get isStandardUnit => standardUnit==this;
-    
+  /// Indicates if this unit is compatible with the unit specified.
+  ///
+  /// Units don't need to be equals to be compatible.
+  bool isCompatible(Unit that) =>
+      (this == that) ||
+      standardUnit == that.standardUnit ||
+      dimension == that.dimension;
 
-    /// Indicates if this unit is compatible with the unit specified.
-    ///
-    /// Units don't need to be equals to be compatible.
-    bool isCompatible(Unit that) => (this == that)
-                || this.standardUnit==that.standardUnit
-                || this.dimension==that.dimension;
+  /// The dimension of this unit.
+  ///
+  /// Depends upon the current [DimensionalModel].
+  Dimension get dimension => throw UnimplementedError();
 
-  
-    /// The dimension of this unit.
-    ///
-    /// Depends upon the current [DimensionalModel].
-    Dimension get dimension => throw new UnimplementedError();
-
-    /// Returns a converter of numeric values from this unit to another unit.
-    UnitConverter getConverterTo(Unit that) {
-        if (this==that)
-            return UnitConverter.identity;
-        Unit thisSystemUnit = this.standardUnit;
-        Unit thatSystemUnit = that.standardUnit;
-        if (thisSystemUnit==thatSystemUnit)
-            return that.toStandardUnit().inverse.concatenate(
-                    this.toStandardUnit());
-        // Use dimensional transforms.
-        throw new UnimplementedError();
+  /// Returns a converter of numeric values from this unit to another unit.
+  UnitConverter getConverterTo(Unit that) {
+    if (this == that) return UnitConverter.identity;
+    var thisSystemUnit = standardUnit;
+    var thatSystemUnit = that.standardUnit;
+    if (thisSystemUnit == thatSystemUnit) {
+      return that.toStandardUnit().inverse.concatenate(toStandardUnit());
     }
+    // Use dimensional transforms.
+    throw UnimplementedError();
+  }
 
-
-    /// Returns the unit derived from this unit using the specified converter.
-    Unit transform(UnitConverter operation) {
-        if (this is TransformedUnit) {
-            TransformedUnit tf = this;
-            Unit parent = tf.parentUnit;
-            UnitConverter toParent = tf.toParentUnit.concatenate(operation);
-            if (toParent == UnitConverter.identity)
-                return parent;
-            return new TransformedUnit(parent, toParent);
-        }
-        if (operation == UnitConverter.identity)
-            return this;
-        return new TransformedUnit(this, operation);
+  /// Returns the unit derived from this unit using the specified converter.
+  Unit transform(UnitConverter operation) {
+    if (this is TransformedUnit) {
+      TransformedUnit tf = this;
+      var parent = tf.parentUnit;
+      var toParent = tf.toParentUnit.concatenate(operation);
+      if (toParent == UnitConverter.identity) return parent;
+      return TransformedUnit(parent, toParent);
     }
+    if (operation == UnitConverter.identity) return this;
+    return TransformedUnit(this, operation);
+  }
 
-    /// The result of adding an offset to this unit.
-    Unit plus(num offset) => transform(new AddConverter(offset));
+  /// The result of adding an offset to this unit.
+  Unit plus(num offset) => transform(AddConverter(offset));
 
-    /// The quotient of this unit with the one specified.
-    Unit divide(Unit that) => times(that.inverse());
+  /// The quotient of this unit with the one specified.
+  Unit divide(Unit that) => times(that.inverse());
 
-    /// The inverse of this unit.
-    Unit inverse() => new Unit.inverseOf(this);
+  /// The inverse of this unit.
+  Unit inverse() => Unit.inverseOf(this);
 
-    /// The result of multiplying this unit by a factor.
-    Unit scaled(num factor, [num divisor = 1]) =>
-        transform(factor is int&&divisor is int ? new UnitConverter.rationalMultiply(factor, divisor) : new UnitConverter.multiply(factor/divisor));
+  /// The result of multiplying this unit by a factor.
+  Unit scaled(num factor, [num divisor = 1]) =>
+      transform(factor is int && divisor is int
+          ? UnitConverter.rationalMultiply(factor, divisor)
+          : UnitConverter.multiply(factor / divisor));
 
-    /// The product of this unit with the one specified.
-    Unit times(Unit that) => new Unit.productOf(this,that);
+  /// The product of this unit with the one specified.
+  Unit times(Unit that) => Unit.productOf(this, that);
 
-    Unit pow(RationalNumber pow) => new ProductUnit([new RationalPower(this, pow)]);
+  Unit pow(RationalNumber pow) => ProductUnit([RationalPower(this, pow)]);
 
-    Quantity get quantity;
+  Quantity get quantity;
 }

@@ -1,8 +1,0 @@
-analyzer:
-  strong-mode: true
-  language:
-    enableAssertInitializer: true
-# linter:
-#   rules:
-#     # see catalogue here: http://dart-lang.github.io/linter/lints/
-#     - hash_and_equals
