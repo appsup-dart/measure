@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// The building blocks on top of which all others units are created.
 ///

@@ -1,4 +1,8 @@
-part of measure;
+library measure.measure;
+
+import 'unit.dart';
+import 'dart:math' as math;
+import 'package:collection/collection.dart';
 
 /// The measurable, countable, or comparable property or aspect of a thing.
 abstract class Measurable<Q extends Quantity> implements Comparable<Measurable<Q>> {

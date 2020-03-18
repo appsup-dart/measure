@@ -1,6 +1,7 @@
 
-part of measure;
+library measure.quantities;
 
+import 'unit.dart';
 
 /// A type of quantitative properties or attributes of thing.
 ///
@@ -11,7 +12,7 @@ part of measure;
 /// is not required nor necessary, for example [Torque] and [Energy] have same
 /// dimension but are of different nature (vector for torque, scalar for
 /// energy).
-abstract class Quantity {
+abstract class Quantities {
 
     static const values = const [
         dimensionless ,
@@ -143,10 +144,7 @@ abstract class Quantity {
 
     static const volumetricDensity = const VolumetricDensity._();
 
-    const Quantity();
-
-    /// The SI unit (Système International d'Unités) for this quantity
-    Unit get siUnit;
+    const Quantities();
 
 }
 
@@ -257,9 +255,9 @@ class AngularAcceleration extends Quantity {
 
     @override 
     Unit get siUnit =>
-        const ProductUnit._(const [
-            const RationalPower<Unit>(SI.radian),
-            const RationalPower<Unit>(SI.second, const RationalNumber._(-2))
+        new ProductUnit([
+            new RationalPower<Unit>(SI.radian),
+            new RationalPower<Unit>(SI.second, new RationalNumber(-2, 1))
         ]);
 
 }
@@ -273,9 +271,9 @@ class AngularVelocity extends Quantity {
 
     @override 
     Unit get siUnit =>
-    const ProductUnit._(const [
-        const RationalPower<Unit>(SI.radian),
-        const RationalPower<Unit>(SI.second, const RationalNumber._(-1))
+    new ProductUnit([
+        new RationalPower<Unit>(SI.radian),
+        new RationalPower<Unit>(SI.second, new RationalNumber(-1, 1))
     ]);
 
 }
@@ -348,10 +346,10 @@ class DataRate extends Quantity {
     const DataRate._();
 
     @override 
-    Unit get siUnit => const ProductUnit._(
-        const [
-            const RationalPower<Unit>(SI.bit),
-            const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
+    Unit get siUnit => new ProductUnit(
+        [
+            new RationalPower<Unit>(SI.bit),
+            new RationalPower<Unit>(SI.second,new RationalNumber(-1, 1))
         ]);
 
 }
@@ -416,9 +414,9 @@ class DynamicViscosity extends Quantity {
     const DynamicViscosity._();
 
     @override 
-    Unit get siUnit => const ProductUnit._(const [
-           const RationalPower<Unit>(SI.pascal),
-           const RationalPower<Unit>(SI.second)
+    Unit get siUnit => new ProductUnit([
+           new RationalPower<Unit>(SI.pascal),
+           new RationalPower<Unit>(SI.second)
        ]);
 
     /// A unit of dynamic viscosity equal to `1 g/(cm·s)` (cgs unit).
@@ -695,9 +693,9 @@ class KinematicViscosity extends Quantity {
     const KinematicViscosity._();
 
     @override 
-    Unit get siUnit => const ProductUnit._(const [
-        const RationalPower<Unit>(SI.metre,const RationalNumber._(2)),
-        const RationalPower<Unit>(SI.second,const RationalNumber._(-1))
+    Unit get siUnit => new ProductUnit([
+        new RationalPower<Unit>(SI.metre,new RationalNumber(2, 1)),
+        new RationalPower<Unit>(SI.second,new RationalNumber(-1, 1))
     ]);
 
     /// A unit of kinematic viscosity equal to `1 cm²/s` (cgs unit).
@@ -935,10 +933,10 @@ class MassFlowRate extends Quantity {
     const MassFlowRate._();
 
     @override 
-    Unit get siUnit => const ProductUnit._(
-        const [
-            const RationalPower(SI.kilogram),
-            const RationalPower(SI.second,const RationalNumber._(-1))
+    Unit get siUnit => new ProductUnit(
+        [
+            new RationalPower(SI.kilogram),
+            new RationalPower(SI.second,new RationalNumber(-1, 1))
         ]
     );
 }
@@ -1149,10 +1147,10 @@ class Torque extends Quantity {
 
     @override 
     Unit get siUnit =>
-        const AlternateUnit(null, const ProductUnit._(const [
-            const RationalPower<Unit>(SI.newton),
-            const RationalPower<Unit>(SI.metre)
-        ]), Quantity.torque);
+        new AlternateUnit(null, new ProductUnit([
+            new RationalPower<Unit>(SI.newton),
+            new RationalPower<Unit>(SI.metre)
+        ]), Quantities.torque);
 
 }
 
@@ -1255,9 +1253,9 @@ class VolumetricDensity extends Quantity {
 
     @override 
     Unit get siUnit =>
-    const ProductUnit._(const [
-        const RationalPower(SI.kilogram),
-        const RationalPower(SI.metre,const RationalNumber._(-3))
+    new ProductUnit([
+        new RationalPower(SI.kilogram),
+        new RationalPower(SI.metre,new RationalNumber(-3, 1))
     ]);
 }
 
@@ -1270,9 +1268,9 @@ class VolumetricFlowRate extends Quantity {
 
     @override 
     Unit get siUnit =>
-    const ProductUnit._(const [
-        const RationalPower(SI.metre,const RationalNumber._(3)),
-        const RationalPower(SI.second,const RationalNumber._(-1))
+    new ProductUnit([
+        new RationalPower(SI.metre,new RationalNumber(3, 1)),
+        new RationalPower(SI.second,new RationalNumber(-1, 1))
     ]);
 }
 

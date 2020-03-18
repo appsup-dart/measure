@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// The dimension of a unit.
 abstract class Dimension {

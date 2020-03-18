@@ -39,18 +39,18 @@ void main() {
 
     test('Resolving quantity of si units', () {
 
-      for (var q in Quantity.values) {
+      for (var q in Quantities.values) {
         expect(q.siUnit.quantity,q);
       }
 
     });
 
     test('Resolving quantity of computed units', () {
-      expect((Quantity.length.meter.times(Quantity.length.meter)).quantity, Quantity.area);
-      expect((Quantity.area.squareMetre.times(Quantity.length.meter)).quantity, Quantity.volume);
-      expect((Quantity.length.meter.divide(Quantity.duration.hour)).quantity, Quantity.velocity);
-      expect((Quantity.length.mile.divide(Quantity.duration.hour.times(Quantity.duration.week))).quantity, Quantity.acceleration);
-      expect(Quantity.angle.grade.divide(Quantity.duration.hour).quantity, Quantity.angularVelocity);
+      expect((Quantities.length.meter.times(Quantities.length.meter)).quantity, Quantities.area);
+      expect((Quantities.area.squareMetre.times(Quantities.length.meter)).quantity, Quantities.volume);
+      expect((Quantities.length.meter.divide(Quantities.duration.hour)).quantity, Quantities.velocity);
+      expect((Quantities.length.mile.divide(Quantities.duration.hour.times(Quantities.duration.week))).quantity, Quantities.acceleration);
+      expect(Quantities.angle.grade.divide(Quantities.duration.hour).quantity, Quantities.angularVelocity);
     });
   });
 }

@@ -1,5 +1,5 @@
 
-part of measure;
+part of measure.unit;
 
 /// A system of units.
 ///
@@ -70,7 +70,7 @@ abstract class SI extends SystemOfUnits {
     /// these conductors a force equal to 2 × 10-7 newton per metre of length.
     ///
     /// It is named after the French physicist Andre Ampere (1775-1836).
-    static const BaseUnit ampere = const BaseUnit("A", Quantity.electricCurrent);
+    static const BaseUnit ampere = const BaseUnit("A", Quantities.electricCurrent);
 
     /// The base unit for luminous intensity quantities (`cd`).
     ///
@@ -78,27 +78,27 @@ abstract class SI extends SystemOfUnits {
     /// of a source that emits monochromatic radiation of frequency
     /// 540 × 1012 hertz and that has a radiant intensity in that
     /// direction of 1/683 watt per steradian.
-    static const BaseUnit candela = const BaseUnit("cd", Quantity.luminousIntensity);
+    static const BaseUnit candela = const BaseUnit("cd", Quantities.luminousIntensity);
 
     /// The base unit for thermodynamic temperature quantities (`K`).
     ///
     /// The kelvin is the 1/273.16th of the thermodynamic temperature of the
     /// triple point of water. It is named after the Scottish mathematician and
     /// physicist William Thomson 1st Lord Kelvin (1824-1907)
-    static const BaseUnit kelvin = const BaseUnit("K", Quantity.temperature);
+    static const BaseUnit kelvin = const BaseUnit("K", Quantities.temperature);
 
     /// The base unit for mass quantities (`kg`).
     ///
     /// It is the only SI unit with a prefix as part of its name and symbol.
     /// The kilogram is equal to the mass of an international prototype in the
     /// form of a platinum-iridium cylinder kept at Sevres in France.
-    static const BaseUnit kilogram = const BaseUnit("kg", Quantity.mass);
+    static const BaseUnit kilogram = const BaseUnit("kg", Quantities.mass);
 
     /// The base unit for length quantities (`m`).
     ///
     /// One meter was redefined in 1983 as the distance traveled by light in
     /// a vacuum in 1/299,792,458 of a second.
-    static const BaseUnit metre = const BaseUnit("m", Quantity.length);
+    static const BaseUnit metre = const BaseUnit("m", Quantities.length);
 
     /// Equivalent to [metre] (American spelling).
     static const Unit meter = metre;
@@ -107,14 +107,14 @@ abstract class SI extends SystemOfUnits {
     ///
     /// The mole is the amount of substance of a system which contains as many
     /// elementary entities as there are atoms in 0.012 kilogram of carbon 12.
-    static const BaseUnit mole = const BaseUnit("mol", Quantity.amountOfSubstance);
+    static const BaseUnit mole = const BaseUnit("mol", Quantities.amountOfSubstance);
 
     /// The base unit for duration quantities (`s`).
     ///
     /// It is defined as the duration of 9,192,631,770 cycles of radiation
     /// corresponding to the transition between two hyperfine levels of
     /// the ground state of cesium (1967 Standard).
-    static const BaseUnit second = const BaseUnit("s", Quantity.duration);
+    static const BaseUnit second = const BaseUnit("s", Quantities.duration);
 
     ////////////////////////////////
     // SI DERIVED ALTERNATE UNITS //
@@ -122,24 +122,24 @@ abstract class SI extends SystemOfUnits {
 
     /// The derived unit for mass quantities (`g`).
     ///
-    /// The base unit for mass quantity is [kilogram].
+    /// The base unit for mass Quantities.is [kilogram].
     static const Unit gram = const TransformedUnit(kilogram, Em3);
 
     /// The unit for plane angle quantities (`rad`).
     ///
     /// One radian is the angle between two radii of a circle such that the
     /// length of the arc between them is equal to the radius.
-    static const AlternateUnit radian = const AlternateUnit("rad", Unit.one, Quantity.angle);
+    static const AlternateUnit radian = const AlternateUnit("rad", Unit.one, Quantities.angle);
 
     /// The unit for solid angle quantities (`sr`).
     ///
     /// One steradian is the solid angle subtended at the center of a sphere by
     /// an area on the surface of the sphere that is equal to the radius squared.
     /// The total solid angle of a sphere is 4*Pi steradians.
-    static const AlternateUnit steradian = const AlternateUnit("sr", Unit.one, Quantity.solidAngle);
+    static const AlternateUnit steradian = const AlternateUnit("sr", Unit.one, Quantities.solidAngle);
 
     /// The unit for binary information (`bit`).
-    static const AlternateUnit bit = const AlternateUnit("bit", Unit.one, Quantity.dataAmount);
+    static const AlternateUnit bit = const AlternateUnit("bit", Unit.one, Quantities.dataAmount);
 
     /// The derived unit for frequency (`Hz`).
     ///
@@ -169,7 +169,7 @@ abstract class SI extends SystemOfUnits {
         const RationalPower<Unit>(newton),
         const RationalPower<Unit>(metre,const RationalNumber._(-2))]));
 
-    /// The derived unit for energy, work, quantity of heat (`J`).
+    /// The derived unit for energy, work, Quantities.of heat (`J`).
     ///
     /// One joule is the amount of work done when an applied force of 1 newton
     /// moves through a distance of 1 metre in the direction of the force.
@@ -188,10 +188,10 @@ abstract class SI extends SystemOfUnits {
         const RationalPower<Unit>(joule),
         const RationalPower<Unit>(second,const RationalNumber._(-1))]));
 
-    /// The derived unit for electric charge, quantity of electricity
+    /// The derived unit for electric charge, Quantities.of electricity
     /// (`C`).
     ///
-    /// One Coulomb is equal to the quantity of charge transferred in one second
+    /// One Coulomb is equal to the Quantities.of charge transferred in one second
     /// by a steady current of one ampere. It is named after the French physicist
     /// Charles Augustin de Coulomb (1736-1806).
     static const AlternateUnit coulomb = const AlternateUnit(
@@ -317,7 +317,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit gray = const AlternateUnit(
             "Gy", const ProductUnit._(const[
         const RationalPower<Unit>(joule),
-        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantity.radiationDoseAbsorbed);
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantities.radiationDoseAbsorbed);
 
     /// The derived unit for dose equivalent (`Sv`).
     ///
@@ -328,7 +328,7 @@ abstract class SI extends SystemOfUnits {
     static const AlternateUnit sievert = const AlternateUnit(
             "Sv", const ProductUnit._(const[
         const RationalPower<Unit>(joule),
-        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantity.radiationDoseEffective);
+        const RationalPower<Unit>(kilogram,const RationalNumber._(-1))]), Quantities.radiationDoseEffective);
 
     /// The derived unit for catalytic activity (`kat`).
     static const AlternateUnit katal = const AlternateUnit(

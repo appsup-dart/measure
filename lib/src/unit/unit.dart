@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// A determinate [Quantity] (as of length, time, heat, or value) adopted as a
 /// standard of measurement.

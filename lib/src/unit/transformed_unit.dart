@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// Units derived from other units using a [UnitConverter].
 class TransformedUnit extends DerivedUnit {

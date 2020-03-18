@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 
 class RationalNumber {

@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// The units created by combining or transforming other units.
 abstract class DerivedUnit extends Unit {

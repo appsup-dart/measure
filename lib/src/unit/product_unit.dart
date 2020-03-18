@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// Units formed by the product of rational powers of existing units.
 class ProductUnit extends DerivedUnit {
@@ -84,11 +84,11 @@ class ProductUnit extends DerivedUnit {
     Quantity get quantity {
       var unit = standardUnit;
       if (unit==this) {
-        if (_elements.isEmpty) return Quantity.dimensionless;
-        return Quantity.values
+        if (_elements.isEmpty) return Quantities.dimensionless;
+        return Quantities.values
             .firstWhere((q)=>(q.siUnit is AlternateUnit ? (q.siUnit as AlternateUnit).parent : q.siUnit)==unit, orElse: () {
               print(unit);
-              print(Quantity.area.siUnit);
+              print(Quantities.area.siUnit);
               return null;
         });
       }

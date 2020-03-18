@@ -1,4 +1,4 @@
-part of measure;
+part of measure.unit;
 
 /// The units used in expressions to distinguish between quantities of a
 /// different nature but of the same dimensions.

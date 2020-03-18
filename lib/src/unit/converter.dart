@@ -1,5 +1,5 @@
 
-part of measure;
+part of measure.unit;
 
 /// A converter of numeric values.
 ///
