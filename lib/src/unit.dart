@@ -3,7 +3,6 @@ library measure.unit;
 import 'package:quiver/core.dart' as quiver;
 import 'dart:math' as math;
 import 'package:collection/collection.dart';
-import 'package:dart2_constant/math.dart' as math;
 
 import 'quantities.dart';
 
