@@ -188,7 +188,7 @@ abstract class UnitFormat {
       _unitIdentifierChar.plus().flatten();
 
   static Parser<String> get _unitIdentifierChar =>
-      (whitespace() | digit() | anyOf('·*/()[]¹²³^+-')).neg();
+      (whitespace() | digit() | anyOf('·*/()[]¹²³^+-;<>{}|&!?=:,')).neg();
 
   Parser<RationalNumber> get _exponent {
     var def = char('^') | string('**');

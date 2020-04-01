@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0
+## 0.1.0-dev.2
 
 - Support for dart 2
 - Remove dependency on package `typedparser`
