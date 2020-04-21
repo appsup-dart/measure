@@ -30,7 +30,4 @@ class AlternateUnit extends DerivedUnit {
 
   @override
   Quantity get quantity => _quantity ?? parent.quantity;
-
-  @override
-  String toString() => 'AlternateUnit[$symbol, $parent]';
 }

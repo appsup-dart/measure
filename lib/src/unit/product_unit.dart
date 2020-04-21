@@ -98,7 +98,4 @@ class ProductUnit extends DerivedUnit {
     }
     return unit.quantity;
   }
-
-  @override
-  String toString() => 'ProductUnit[$_elements]';
 }

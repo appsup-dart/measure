@@ -106,4 +106,7 @@ abstract class Unit {
   Unit pow(RationalNumber pow) => ProductUnit([RationalPower(this, pow)]);
 
   Quantity get quantity;
+
+  @override
+  String toString() => UnitFormat.asciiUnitFormat.format(this);
 }

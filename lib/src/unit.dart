@@ -1,5 +1,6 @@
 library measure.unit;
 
+import 'package:measure/src/unit_format.dart';
 import 'package:quiver/core.dart' as quiver;
 import 'dart:math' as math;
 import 'package:collection/collection.dart';
