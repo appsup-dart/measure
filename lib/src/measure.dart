@@ -42,6 +42,9 @@ abstract class Measure<V, Q extends Quantity> extends Measurable<Q> {
 
   @override
   Unit get standardUnit => unit;
+
+  @override
+  String toString() => '$value $unit';
 }
 
 /// Scalar measure.
