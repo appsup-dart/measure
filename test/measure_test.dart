@@ -54,4 +54,15 @@ void main() {
           Quantities.angularVelocity);
     });
   });
+
+  group('Math with units', () {
+    test('Product of units', () {
+      var a = SI.meter;
+      var b = NonSI.percent;
+
+      var c = a.times(b);
+
+      expect(c.standardUnit, a);
+    });
+  });
 }

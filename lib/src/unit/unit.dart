@@ -24,11 +24,12 @@ abstract class Unit {
   const Unit();
 
   factory Unit.productOf(Unit a, Unit b) =>
-      ProductUnit([RationalPower(a), RationalPower(b)]);
+      ProductUnit([RationalPower(a), RationalPower(b)]).simplify();
   factory Unit.quotient(Unit a, Unit b) => ProductUnit(
-      [RationalPower(a), RationalPower(b, const RationalNumber._(-1))]);
+          [RationalPower(a), RationalPower(b, const RationalNumber._(-1))])
+      .simplify();
   factory Unit.inverseOf(Unit a) =>
-      ProductUnit([RationalPower(a, const RationalNumber._(-1))]);
+      ProductUnit([RationalPower(a, const RationalNumber._(-1))]).simplify();
 
   //////////////////////////////////////////////////////
   // Contract methods (for sub-classes to implement). //
