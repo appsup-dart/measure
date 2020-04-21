@@ -32,12 +32,15 @@ class ProductUnit extends DerivedUnit {
   }
 
   Unit simplify() {
-    if (_elements.length == 1) {
-      if (_elements.first.pow == RationalNumber(1, 1)) {
-        return _elements.first.base;
+    var elements =
+        _elements.where((e) => e.pow.dividend != 0 || e.pow.divisor == 0);
+
+    if (elements.length == 1) {
+      if (elements.first.pow == RationalNumber(1, 1)) {
+        return elements.first.base;
       }
     }
-    return this;
+    return ProductUnit._(elements.toList());
   }
 
   @override

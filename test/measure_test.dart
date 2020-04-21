@@ -63,6 +63,10 @@ void main() {
       var c = a.times(b);
 
       expect(c.standardUnit, a);
+
+      a = SI.metersPerSecond;
+      b = SI.second;
+      expect(a.times(b), SI.meter);
     });
   });
 }
