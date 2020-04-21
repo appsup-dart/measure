@@ -3,6 +3,7 @@ library measure.measure;
 import 'unit.dart';
 import 'dart:math' as math;
 import 'package:collection/collection.dart';
+import 'package:quiver/core.dart';
 
 /// The measurable, countable, or comparable property or aspect of a thing.
 abstract class Measurable<Q extends Quantity>
@@ -68,6 +69,13 @@ class NumericMeasure<Q extends Quantity> extends Measure<num, Q> {
     if (unit == this.unit) return value.toDouble();
     return this.unit.getConverterTo(unit).convert(value.toDouble());
   }
+
+  @override
+  int get hashCode => hash2(value.hashCode, unit.hashCode);
+
+  @override
+  bool operator ==(other) =>
+      other is NumericMeasure && other.value == value && other.unit == unit;
 }
 
 /// A measurement vector of two or more dimensions.
