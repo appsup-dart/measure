@@ -23,7 +23,7 @@ class ProductUnit extends DerivedUnit {
     var map = <Unit, RationalPower<Unit>>{};
     for (var e in all) {
       if (map.containsKey(e.base)) {
-        map[e.base] = RationalPower(e.base, map[e.base].pow.add(e.pow));
+        map[e.base] = RationalPower(e.base, map[e.base]!.pow.add(e.pow));
       } else {
         map[e.base] = e;
       }
@@ -88,16 +88,14 @@ class ProductUnit extends DerivedUnit {
     var unit = standardUnit;
     if (unit == this) {
       if (_elements.isEmpty) return Quantities.dimensionless;
-      return Quantities.values.firstWhere(
-          (q) =>
-              (q.siUnit is AlternateUnit
-                  ? (q.siUnit as AlternateUnit).parent
-                  : q.siUnit) ==
-              unit, orElse: () {
-        print(unit);
-        print(Quantities.area.siUnit);
-        return null;
-      });
+      var q = Quantities.values.firstWhereOrNull(
+        (q) =>
+            (q.siUnit is AlternateUnit
+                ? (q.siUnit as AlternateUnit).parent
+                : q.siUnit) ==
+            unit,
+      );
+      if (q != null) return q;
     }
     return unit.quantity;
   }

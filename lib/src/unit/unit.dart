@@ -76,7 +76,7 @@ abstract class Unit {
   /// Returns the unit derived from this unit using the specified converter.
   Unit transform(UnitConverter operation) {
     if (this is TransformedUnit) {
-      TransformedUnit tf = this;
+      TransformedUnit tf = this as TransformedUnit;
       var parent = tf.parentUnit;
       var toParent = tf.toParentUnit.concatenate(operation);
       if (toParent == UnitConverter.identity) return parent;

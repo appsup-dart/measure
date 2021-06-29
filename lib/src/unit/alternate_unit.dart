@@ -9,7 +9,7 @@ class AlternateUnit extends DerivedUnit {
   /// The parent unit from which this alternate unit is derived
   final Unit parent;
 
-  final Quantity _quantity;
+  final Quantity? _quantity;
 
   const AlternateUnit(this.symbol, this.parent, [this._quantity]) : super();
 

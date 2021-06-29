@@ -12,7 +12,7 @@ import 'unit.dart';
 /// dimension but are of different nature (vector for torque, scalar for
 /// energy).
 abstract class Quantities {
-  static const values = [
+  static const List<Quantity> values = <Quantity>[
     dimensionless,
     acceleration,
     amountOfSubstance,
@@ -1059,7 +1059,7 @@ class Torque extends Quantity {
 
   @override
   Unit get siUnit => AlternateUnit(
-      null,
+      'Nm',
       ProductUnit(
           [RationalPower<Unit>(SI.newton), RationalPower<Unit>(SI.metre)]),
       Quantities.torque);

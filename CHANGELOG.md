@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.1.0-dev.3
+## 0.1.0
 
+- Null safety
 - Support for dart 2
 - Remove dependency on package `typedparser`
 - move implementation of `intValue` to Measurable

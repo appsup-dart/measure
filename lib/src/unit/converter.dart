@@ -121,14 +121,14 @@ class AddConverter extends UnitConverter {
   @override
   UnitConverter concatenate(UnitConverter converter) {
     if (converter is AddConverter) {
-      double offset = this.offset + converter.offset;
+      var offset = this.offset + converter.offset;
       return _valueOf(offset);
     } else {
       return super.concatenate(converter);
     }
   }
 
-  static UnitConverter _valueOf(double offset) {
+  static UnitConverter _valueOf(num offset) {
     return offset == 0.0 ? UnitConverter.identity : AddConverter(offset);
   }
 

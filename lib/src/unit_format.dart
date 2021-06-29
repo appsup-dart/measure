@@ -12,7 +12,7 @@ abstract class UnitFormat {
   static final Map<String, UnitFormat> _localeFormats = {};
 
   /// Returns the unit format for the specified locale.
-  static UnitFormat getInstance([String inLocale]) => inLocale == null
+  static UnitFormat getInstance([String? inLocale]) => inLocale == null
       ? standardUnitFormat
       : _localeFormats.putIfAbsent(
           inLocale, () => _DefaultUnitFormat(inLocale));
@@ -98,7 +98,7 @@ abstract class UnitFormat {
       name != null && _unitIdentifier.end().accept(name);
 
   /// Returns the name for the specified unit or null if product unit.
-  String nameFor(Unit unit) {
+  String? nameFor(Unit unit) {
     // Searches label database.
     var label = _unitToName[unit];
     if (label != null) return label;
@@ -108,7 +108,7 @@ abstract class UnitFormat {
       var baseUnits = unit.standardUnit;
       var cvtr = unit.toStandardUnit();
       var result = StringBuffer();
-      var baseUnitName = nameFor(baseUnits);
+      var baseUnitName = nameFor(baseUnits)!;
 
       if (baseUnitName.contains('·') ||
           baseUnitName.contains('*') ||
@@ -143,11 +143,12 @@ abstract class UnitFormat {
   }
 
   /// Returns the unit for the specified name.
-  Unit unitFor(String name) =>
+  Unit? unitFor(String name) =>
       _nameToUnit[name] ?? SI.unitsBySymbol[name] ?? NonSI.unitsBySymbol[name];
 
   /// Returns a typed parser that produces a single unit.
-  Parser<Unit> get singleUnitParser => _mapParser(_unitIdentifier, (name) {
+  Parser<Unit> get singleUnitParser =>
+      _mapParser(_unitIdentifier, (dynamic name) {
         var unit = unitFor(name);
         if (unit == null) return failure('$name not recognized');
         return EpsilonParser(unit);
@@ -174,7 +175,8 @@ abstract class UnitFormat {
     term.set(factor.separatedBy(char('*')).map((l) =>
         l.length == 1 ? l.first : ProductUnit(l.map((v) => RationalPower(v)))));
 
-    var number = _mapParser(anyOf('012356789+-.E').plus().flatten(), (v) {
+    var number =
+        _mapParser(anyOf('012356789+-.E').plus().flatten(), (dynamic v) {
       try {
         return epsilonWith(num.parse(v));
       } catch (e) {
@@ -206,7 +208,7 @@ abstract class UnitFormat {
         .cast();
   }
 
-  String _formatPow(String symbol, int pow, int root) {
+  String? _formatPow(String? symbol, int pow, int root) {
     // TODO move to rational pow
     if ((pow != 1) || (root != 1)) {
       // Write exponent.
@@ -305,7 +307,7 @@ class _DefaultUnitFormat extends UnitFormat {
     SI.Em24
   ];
 
-  _DefaultUnitFormat([String locale]) {
+  _DefaultUnitFormat([String? locale]) {
     for (var i = 0; i < SI_UNITS.length; i++) {
       for (var j = 0; j < PREFIXES.length; j++) {
         var si = SI_UNITS[i];
@@ -474,11 +476,11 @@ class _ASCIIUnitFormat extends UnitFormat {
   }
 
   @override
-  String nameFor(Unit unit) =>
+  String? nameFor(Unit unit) =>
       _unitToName[unit] ?? UnitFormat.standardUnitFormat.nameFor(unit);
 
   @override
-  Unit unitFor(String name) =>
+  Unit? unitFor(String name) =>
       _nameToUnit[name] ?? UnitFormat.standardUnitFormat.unitFor(name);
 }
 
