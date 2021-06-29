@@ -157,14 +157,15 @@ abstract class UnitFormat {
   Parser<Unit> get productUnitParser {
     var term = undefined<Unit>();
 
-    var paren = (char('(').trim() & term & char(')').trim()).pick<Unit>(1);
+    var paren =
+        (char('(').trim() & term & char(')').trim()).pick(1).cast<Unit>();
 
-    var e = (anyOf('^¹²³').and() & _exponent).pick<RationalNumber>(1);
+    var e = (anyOf('^¹²³').and() & _exponent).pick(1).cast<RationalNumber>();
 
     var base =
         paren | singleUnitParser | _integer().map((v) => Unit.one.scaled(v));
 
-    var element = (base & e.optional(RationalNumber.one))
+    var element = (base & e.optionalWith(RationalNumber.one))
         .map((l) => RationalPower<Unit>(l[0], l[1]));
 
     var divisor = (char('/') & element).pick(1).map((v) => v.inverse);
@@ -175,7 +176,7 @@ abstract class UnitFormat {
 
     var number = _mapParser(anyOf('012356789+-.E').plus().flatten(), (v) {
       try {
-        return epsilon(num.parse(v));
+        return epsilonWith(num.parse(v));
       } catch (e) {
         return failure('$e');
       }
@@ -196,12 +197,13 @@ abstract class UnitFormat {
         anyOf('¹²³').map((v) => const {'¹': '1', '²': '2', '³': '3'}[v]);
     var positiveInteger =
         extendedDigit.plus().map((l) => l.join()).map(int.parse);
-    var sign = char('-').map((_) => -1).optional(1);
+    var sign = char('-').map((_) => -1).optionalWith(1);
     var integer = (sign & positiveInteger).map((l) => l[0] * l[1]);
     return (def.optional() &
-            (integer & (char(':') & integer).pick(1).optional(1))
+            (integer & (char(':') & integer).pick(1).optionalWith(1))
                 .map((l) => RationalNumber(l[0], l[1])))
-        .pick(1);
+        .pick(1)
+        .cast();
   }
 
   String _formatPow(String symbol, int pow, int root) {
@@ -497,6 +499,6 @@ Parser<int> _positiveInteger() => digit().plus().flatten().map(int.parse);
 Parser<int> _sign() => anyOf('-+').map((v) => v == '+' ? 1 : -1);
 
 Parser<int> _integer() =>
-    ((_sign() & whitespace().star()).pick<int>(1).optional(1) &
+    ((_sign() & whitespace().star()).pick(1).cast<int>().optionalWith(1) &
             _positiveInteger())
         .map((l) => l[0] * l[1]);
