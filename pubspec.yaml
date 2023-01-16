@@ -9,8 +9,8 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 dependencies:
   quiver: ^3.0.1
-  intl: ^0.17.0
-  petitparser: ^4.2.0
+  intl: ^0.18.0
+  petitparser: ^5.1.0
   collection: ^1.14.0
 
 dev_dependencies:
