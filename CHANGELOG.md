@@ -1,3 +1,7 @@
+## 0.1.1+1
+
+ - **FIX**: Support intl '>=0.17.0 <0.19.0'.
+
 ## 0.1.1
 
  - **FEAT**: Support intl v0.18.0 and petitparser v5.0.0.
