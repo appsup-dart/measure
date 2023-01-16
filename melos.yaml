@@ -1,0 +1,19 @@
+
+name: measure
+
+repository: https://github.com/appsup-dart/measure
+
+
+packages:
+  - .
+
+ide:
+  intellij: false
+
+
+scripts:
+  preversion: 
+    exec: dart test -j 1
+
+
+ 
