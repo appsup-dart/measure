@@ -1,3 +1,7 @@
+## 0.1.1
+
+ - **FEAT**: Support intl v0.19.0 and petitparser v5.0.0.
+
 
 ## 0.1.0
 
