@@ -2,6 +2,8 @@ name: measure
 description: Library for working with measurements, quantities and units.
 version: 0.1.0
 homepage: https://github.com/appsup-dart/measure
+funding:
+ - https://github.com/sponsors/rbellens
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
