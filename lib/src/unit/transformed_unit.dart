@@ -31,4 +31,7 @@ class TransformedUnit extends DerivedUnit {
 
   @override
   Quantity get quantity => parentUnit.quantity;
+
+  @override
+  Unit get baseUnit => parentUnit.baseUnit;
 }

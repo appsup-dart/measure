@@ -76,12 +76,13 @@ class ProductUnit extends DerivedUnit {
   List<RationalPower<Unit>> get elements => List.unmodifiable(_elements);
 
   @override
-  int get hashCode => quiver.hashObjects(_elements);
+  int get hashCode => DeepCollectionEquality.unordered().hash(_elements);
 
   @override
   bool operator ==(other) =>
       other is ProductUnit &&
-      const ListEquality().equals(other._elements, _elements);
+      const DeepCollectionEquality.unordered()
+          .equals(other._elements, _elements);
 
   @override
   Quantity get quantity {
@@ -98,5 +99,12 @@ class ProductUnit extends DerivedUnit {
       if (q != null) return q;
     }
     return unit.quantity;
+  }
+
+  @override
+  Unit get baseUnit {
+    return _elements
+        .map((v) => v.base.baseUnit.pow(v.pow))
+        .fold(Unit.one, (a, b) => a.times(b));
   }
 }

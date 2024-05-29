@@ -30,4 +30,7 @@ class AlternateUnit extends DerivedUnit {
 
   @override
   Quantity get quantity => _quantity ?? parent.quantity;
+
+  @override
+  Unit get baseUnit => parent.baseUnit;
 }

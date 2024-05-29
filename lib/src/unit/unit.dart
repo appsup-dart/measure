@@ -42,6 +42,9 @@ abstract class Unit {
   /// this unit is employed.
   Unit get standardUnit;
 
+  /// The [BaseUnit] or product of base units this unit is derived from.
+  Unit get baseUnit;
+
   /// Returns the converter from this unit to its standard unit.
   UnitConverter toStandardUnit();
 

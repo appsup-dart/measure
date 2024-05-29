@@ -108,7 +108,7 @@ abstract class UnitFormat {
       var baseUnits = unit.standardUnit;
       var cvtr = unit.toStandardUnit();
       var result = StringBuffer();
-      var baseUnitName = nameFor(baseUnits)!;
+      var baseUnitName = format(baseUnits);
 
       if (baseUnitName.contains('·') ||
           baseUnitName.contains('*') ||

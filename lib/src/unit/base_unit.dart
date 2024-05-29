@@ -17,6 +17,9 @@ class BaseUnit extends Unit {
   BaseUnit get standardUnit => this;
 
   @override
+  Unit get baseUnit => this;
+
+  @override
   UnitConverter toStandardUnit() => UnitConverter.identity;
 
   @override
