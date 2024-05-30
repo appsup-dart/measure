@@ -1,3 +1,10 @@
+## 0.1.2
+
+ - **FIX**: deriving quantity from product unit now works for more cases.
+ - **FIX**: fill in missing quantities for units without symbol.
+ - **FIX**: fill in missing quantities for si units definitions.
+ - **FEAT**: added `baseUnit` getter that returns the unit in terms of base units.
+
 ## 0.1.1+1
 
  - **FIX**: Support intl '>=0.17.0 <0.19.0'.
