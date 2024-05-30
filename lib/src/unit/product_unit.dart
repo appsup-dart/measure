@@ -47,6 +47,29 @@ class ProductUnit extends DerivedUnit {
     return ProductUnit._(elements.toList());
   }
 
+  Unit _simplifyDeep() {
+    var u = simplify();
+    if (u is! ProductUnit) return u;
+    for (var i = 0; i < u._elements.length; i++) {
+      var e = u._elements[i];
+      var b = e.base;
+      if (b is UnitForQuantity) {
+        b = b.parent;
+      }
+      if (b is ProductUnit) {
+        var v = ProductUnit([
+          ...u._elements.sublist(0, i),
+          ...b._elements
+              .map((s) => RationalPower(s.base, s.pow.times(e.pow)))
+              .toList(),
+          ...u._elements.sublist(i + 1),
+        ])._simplifyDeep();
+        if (v is! ProductUnit) return v;
+      }
+    }
+    return u;
+  }
+
   @override
   Unit get standardUnit {
     if (_hasOnlyStandardUnit()) return this;
@@ -91,17 +114,28 @@ class ProductUnit extends DerivedUnit {
   @override
   Quantity get quantity {
     var unit = standardUnit;
+    if (unit is ProductUnit) unit = unit._simplifyDeep();
     if (unit == this) {
       if (_elements.isEmpty) return Quantities.dimensionless;
-      var q = Quantities.values.firstWhereOrNull(
+
+      // Find the quantity that has this unit as definition
+      var q = Quantities.values.where(
         (q) =>
             (q.siUnit is UnitForQuantity
                 ? (q.siUnit as UnitForQuantity).parent
                 : q.siUnit) ==
             unit,
       );
-      if (q != null) return q;
-      throw StateError('No quantity found for $unit');
+      if (q.length == 1) return q.first;
+
+      // Find the quantity that has the same base unit
+      var b = baseUnit;
+      q = Quantities.values.where((q) => q.siUnit.baseUnit == b);
+      if (q.isEmpty) throw StateError('No quantity found for $b');
+      if (q.length > 1) {
+        throw StateError('Multiple quantities found for $b: $q');
+      }
+      return q.first;
     }
     return unit.quantity;
   }

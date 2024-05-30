@@ -52,6 +52,15 @@ void main() {
           Quantities.acceleration);
       expect(Quantities.angle.grade.divide(Quantities.duration.hour).quantity,
           Quantities.angularVelocity);
+
+      expect(SI.bit.divide(SI.second).quantity, Quantities.dataRate);
+      expect(SI.radian.divide(SI.second).quantity, Quantities.angularVelocity);
+      expect(SI.watt.times(SI.second).quantity, Quantities.energy);
+      expect(SI.joule.divide(SI.watt).quantity, Quantities.duration);
+      expect(
+          SI.ohm.times(SI.ampere).times(SI.ampere).quantity, Quantities.power);
+      expect(SI.volt.times(SI.ampere).quantity, Quantities.power);
+      expect(SI.joule.divide(SI.second).quantity, Quantities.power);
     });
   });
 
