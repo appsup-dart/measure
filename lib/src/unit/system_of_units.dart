@@ -146,7 +146,9 @@ abstract class SI extends SystemOfUnits {
   /// After Heinrich Rudolf Hertz (1857-1894), German physicist who was the
   /// first to produce radio waves artificially.
   static const AlternateUnit hertz = AlternateUnit(
-      'Hz', ProductUnit._([RationalPower<Unit>(second, RationalNumber._(-1))]));
+      'Hz',
+      ProductUnit._([RationalPower<Unit>(second, RationalNumber._(-1))]),
+      Quantities.frequency);
 
   /// The derived unit for force (`N`).
   ///
@@ -159,7 +161,8 @@ abstract class SI extends SystemOfUnits {
         RationalPower(metre),
         RationalPower(kilogram),
         RationalPower(second, RationalNumber._(-2))
-      ]));
+      ]),
+      Quantities.force);
 
   /// The derived unit for pressure, stress (`Pa`).
   ///
@@ -170,15 +173,18 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(newton),
         RationalPower<Unit>(metre, RationalNumber._(-2))
-      ]));
+      ]),
+      Quantities.pressure);
 
   /// The derived unit for energy, work, Quantities.of heat (`J`).
   ///
   /// One joule is the amount of work done when an applied force of 1 newton
   /// moves through a distance of 1 metre in the direction of the force.
   /// It is named after the English physicist James Prescott Joule (1818-1889).
-  static const AlternateUnit joule = AlternateUnit('J',
-      ProductUnit._([RationalPower<Unit>(newton), RationalPower<Unit>(metre)]));
+  static const AlternateUnit joule = AlternateUnit(
+      'J',
+      ProductUnit._([RationalPower<Unit>(newton), RationalPower<Unit>(metre)]),
+      Quantities.energy);
 
   /// The derived unit for power, radiant, flux (`W`).
   ///
@@ -189,7 +195,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(joule),
         RationalPower<Unit>(second, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.power);
 
   /// The derived unit for electric charge, Quantities.of electricity
   /// (`C`).
@@ -198,7 +205,9 @@ abstract class SI extends SystemOfUnits {
   /// by a steady current of one ampere. It is named after the French physicist
   /// Charles Augustin de Coulomb (1736-1806).
   static const AlternateUnit coulomb = AlternateUnit(
-      'C', ProductUnit._([RationalPower(second), RationalPower(ampere)]));
+      'C',
+      ProductUnit._([RationalPower(second), RationalPower(ampere)]),
+      Quantities.electricCharge);
 
   /// The derived unit for electric potential difference, electromotive force
   /// (`V`).
@@ -212,7 +221,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(watt),
         RationalPower<Unit>(ampere, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.electricPotential);
 
   /// The derived unit for capacitance (`F`).
   ///
@@ -223,7 +233,8 @@ abstract class SI extends SystemOfUnits {
   static const AlternateUnit farad = AlternateUnit(
       'F',
       ProductUnit._(
-          [RationalPower(coulomb), RationalPower(volt, RationalNumber._(-1))]));
+          [RationalPower(coulomb), RationalPower(volt, RationalNumber._(-1))]),
+      Quantities.electricCapacitance);
 
   /// The derived unit for electric resistance (`Ω` or `Ohm`).
   ///
@@ -235,7 +246,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(volt),
         RationalPower<Unit>(ampere, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.electricResistance);
 
   /// The derived unit for electric conductance (`S`).
   ///
@@ -246,7 +258,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(ampere),
         RationalPower<Unit>(volt, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.electricConductance);
 
   /// The derived unit for magnetic flux (`Wb`).
   ///
@@ -254,8 +267,10 @@ abstract class SI extends SystemOfUnits {
   /// turn produces in it an electromotive force of one volt as it is uniformly
   /// reduced to zero within one second. It is named after the German physicist
   /// Wilhelm Eduard Weber (1804-1891).
-  static const AlternateUnit weber = AlternateUnit('Wb',
-      ProductUnit._([RationalPower<Unit>(volt), RationalPower<Unit>(second)]));
+  static const AlternateUnit weber = AlternateUnit(
+      'Wb',
+      ProductUnit._([RationalPower<Unit>(volt), RationalPower<Unit>(second)]),
+      Quantities.magneticFlux);
 
   /// The derived unit for magnetic flux density (`T`).
   ///
@@ -267,7 +282,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(weber),
         RationalPower<Unit>(metre, RationalNumber._(-2))
-      ]));
+      ]),
+      Quantities.magneticFluxDensity);
 
   /// The derived unit for inductance (`H`).
   ///
@@ -280,15 +296,16 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(weber),
         RationalPower<Unit>(ampere, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.electricInductance);
 
   /// The derived unit for Celsius temperature (`℃`).
   ///
   /// This is a unit of temperature such as the freezing point of water
   /// (at one atmosphere of pressure) is 0 ℃, while the boiling point is
   /// 100 ℃.
-  static const Unit celsius =
-      AlternateUnit('℃', TransformedUnit(kelvin, AddConverter._(273.15)));
+  static const Unit celsius = AlternateUnit('℃',
+      TransformedUnit(kelvin, AddConverter._(273.15)), Quantities.temperature);
 
   /// The derived unit for luminous flux (`lm`).
   ///
@@ -297,7 +314,8 @@ abstract class SI extends SystemOfUnits {
   static const AlternateUnit lumen = AlternateUnit(
       'lm',
       ProductUnit._(
-          [RationalPower<Unit>(candela), RationalPower<Unit>(steradian)]));
+          [RationalPower<Unit>(candela), RationalPower<Unit>(steradian)]),
+      Quantities.luminousFlux);
 
   /// The derived unit for illuminance (`lx`).
   ///
@@ -307,7 +325,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(lumen),
         RationalPower<Unit>(meter, RationalNumber._(-2))
-      ]));
+      ]),
+      Quantities.illuminance);
 
   /// The derived unit for activity of a radionuclide (`Bq`).
   ///
@@ -319,7 +338,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(Unit.one),
         RationalPower<Unit>(second, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.radioactiveActivity);
 
   /// The derived unit for absorbed dose, specific energy (imparted), kerma
   /// (`Gy`).
@@ -355,7 +375,8 @@ abstract class SI extends SystemOfUnits {
       ProductUnit._([
         RationalPower<Unit>(mole),
         RationalPower<Unit>(second, RationalNumber._(-1))
-      ]));
+      ]),
+      Quantities.catalyticActivity);
 
   //////////////////////////////
   // SI DERIVED PRODUCT UNITS //

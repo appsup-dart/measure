@@ -9,9 +9,10 @@ class AlternateUnit extends DerivedUnit {
   /// The parent unit from which this alternate unit is derived
   final Unit parent;
 
-  final Quantity? _quantity;
+  @override
+  final Quantity quantity;
 
-  const AlternateUnit(this.symbol, this.parent, [this._quantity]) : super();
+  const AlternateUnit(this.symbol, this.parent, this.quantity) : super();
 
   @override
   AlternateUnit get standardUnit => this;
@@ -27,9 +28,6 @@ class AlternateUnit extends DerivedUnit {
       other is AlternateUnit &&
       other.symbol == symbol &&
       other.parent == parent;
-
-  @override
-  Quantity get quantity => _quantity ?? parent.quantity;
 
   @override
   Unit get baseUnit => parent.baseUnit;
