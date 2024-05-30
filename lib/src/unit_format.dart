@@ -1,3 +1,6 @@
+import 'package:collection/collection.dart';
+import 'package:measure/measure.dart';
+
 import 'unit.dart';
 import 'package:petitparser/petitparser.dart';
 import 'package:intl/intl.dart';
@@ -37,6 +40,7 @@ abstract class UnitFormat {
     var name = nameFor(unit);
     if (name != null) return name;
 
+    if (unit is UnitForQuantity) unit = unit.parent;
     if (unit is ProductUnit) {
       var posExponents = unit.elements
           .where((e) => e.pow.dividend >= 0)
@@ -184,7 +188,16 @@ abstract class UnitFormat {
       }
     });
     return (term & (char('+') & number).pick(1).optional())
-        .map((l) => l[1] == null ? l[0] : l[0].plus(l[1]));
+        .map((l) => l[1] == null ? l[0] : l[0].plus(l[1]))
+        .map((v) {
+      if (v is ProductUnit) {
+        var u = Quantities.values
+            .map((v) => v.siUnit)
+            .firstWhereOrNull((u) => u is UnitForQuantity && u.parent == v);
+        if (u != null) return u;
+      }
+      return v;
+    });
   }
 
   static Parser<String> get _unitIdentifier =>

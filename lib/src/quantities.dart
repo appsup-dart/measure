@@ -241,10 +241,12 @@ class AngularAcceleration extends Quantity {
   const AngularAcceleration._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower<Unit>(SI.radian),
         RationalPower<Unit>(SI.second, RationalNumber(-2, 1))
-      ]);
+      ]),
+      this);
 }
 
 /// The rate of change of angular displacement with respect to time.
@@ -254,10 +256,12 @@ class AngularVelocity extends Quantity {
   const AngularVelocity._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower<Unit>(SI.radian),
         RationalPower<Unit>(SI.second, RationalNumber(-1, 1))
-      ]);
+      ]),
+      this);
 }
 
 /// The extent of a planar region or of the surface of a solid measured in
@@ -322,10 +326,12 @@ class DataRate extends Quantity {
   const DataRate._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower<Unit>(SI.bit),
         RationalPower<Unit>(SI.second, RationalNumber(-1, 1))
-      ]);
+      ]),
+      this);
 }
 
 /// A period of existence or persistence.
@@ -385,8 +391,10 @@ class DynamicViscosity extends Quantity {
   const DynamicViscosity._();
 
   @override
-  Unit get siUnit => ProductUnit(
-      [RationalPower<Unit>(SI.pascal), RationalPower<Unit>(SI.second)]);
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit(
+          [RationalPower<Unit>(SI.pascal), RationalPower<Unit>(SI.second)]),
+      this);
 
   /// A unit of dynamic viscosity equal to `1 g/(cm·s)` (cgs unit).
   Unit get poise => NonSI.poise;
@@ -636,10 +644,12 @@ class KinematicViscosity extends Quantity {
   const KinematicViscosity._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower<Unit>(SI.metre, RationalNumber(2, 1)),
         RationalPower<Unit>(SI.second, RationalNumber(-1, 1))
-      ]);
+      ]),
+      this);
 
   /// A unit of kinematic viscosity equal to `1 cm²/s` (cgs unit).
   Unit get stoke => NonSI.stoke;
@@ -863,10 +873,12 @@ class MassFlowRate extends Quantity {
   const MassFlowRate._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower(SI.kilogram),
         RationalPower(SI.second, RationalNumber(-1, 1))
-      ]);
+      ]),
+      this);
 }
 
 /// The rate at which work is done.
@@ -1156,10 +1168,12 @@ class VolumetricDensity extends Quantity {
   const VolumetricDensity._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower(SI.kilogram),
         RationalPower(SI.metre, RationalNumber(-3, 1))
-      ]);
+      ]),
+      this);
 }
 
 /// The volume of fluid passing a point in a system per unit of time.
@@ -1169,8 +1183,10 @@ class VolumetricFlowRate extends Quantity {
   const VolumetricFlowRate._();
 
   @override
-  Unit get siUnit => ProductUnit([
+  Unit get siUnit => UnitForQuantity(
+      ProductUnit([
         RationalPower(SI.metre, RationalNumber(3, 1)),
         RationalPower(SI.second, RationalNumber(-1, 1))
-      ]);
+      ]),
+      this);
 }

@@ -383,30 +383,36 @@ abstract class SI extends SystemOfUnits {
   //////////////////////////////
 
   /// The metric unit for velocity quantities (`m/s`).
-  static const Unit metresPerSecond = ProductUnit._([
-    RationalPower<Unit>(metre),
-    RationalPower<Unit>(second, RationalNumber._(-1))
-  ]);
+  static const Unit metresPerSecond = UnitForQuantity(
+      ProductUnit._([
+        RationalPower<Unit>(metre),
+        RationalPower<Unit>(second, RationalNumber._(-1))
+      ]),
+      Quantities.velocity);
 
   /// Equivalent to [metresPerSecond] (American spelling).
   static const Unit metersPerSecond = metresPerSecond;
 
   /// The metric unit for acceleration quantities (`m/s²`).
-  static const Unit metresPerSquareSecond = ProductUnit._([
-    RationalPower<Unit>(metre),
-    RationalPower<Unit>(second, RationalNumber._(-2))
-  ]);
+  static const Unit metresPerSquareSecond = UnitForQuantity(
+      ProductUnit._([
+        RationalPower<Unit>(metre),
+        RationalPower<Unit>(second, RationalNumber._(-2))
+      ]),
+      Quantities.acceleration);
 
   /// Equivalent to [metresPerSquareSecond] (American spelling).
   static const Unit metersPerSquareSecond = metresPerSquareSecond;
 
   /// The metric unit for area quantities (`m²`).
-  static const Unit squareMetre =
-      ProductUnit._([RationalPower<Unit>(metre, RationalNumber._(2))]);
+  static const Unit squareMetre = UnitForQuantity(
+      ProductUnit._([RationalPower<Unit>(metre, RationalNumber._(2))]),
+      Quantities.area);
 
   /// The metric unit for volume quantities (`m³`).
-  static const Unit cubicMetre =
-      ProductUnit._([RationalPower<Unit>(metre, RationalNumber._(3))]);
+  static const Unit cubicMetre = UnitForQuantity(
+      ProductUnit._([RationalPower<Unit>(metre, RationalNumber._(3))]),
+      Quantities.volume);
 
   /// Equivalent to `KILO(METRE)`.
   static const Unit kilometre = TransformedUnit(metre, E3);

@@ -10,6 +10,10 @@ class ProductUnit extends DerivedUnit {
     var all = elements
         .expand((v) {
           var base = v.base;
+          if (base is AlternateUnit) return [v];
+          if (base is UnitForQuantity) {
+            base = base.parent;
+          }
           if (base is ProductUnit) {
             // TODO recursive
             return base._elements
@@ -91,12 +95,13 @@ class ProductUnit extends DerivedUnit {
       if (_elements.isEmpty) return Quantities.dimensionless;
       var q = Quantities.values.firstWhereOrNull(
         (q) =>
-            (q.siUnit is AlternateUnit
-                ? (q.siUnit as AlternateUnit).parent
+            (q.siUnit is UnitForQuantity
+                ? (q.siUnit as UnitForQuantity).parent
                 : q.siUnit) ==
             unit,
       );
       if (q != null) return q;
+      throw StateError('No quantity found for $unit');
     }
     return unit.quantity;
   }
