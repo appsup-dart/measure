@@ -1,3 +1,7 @@
+## 0.1.2+1
+
+ - **REFACTOR**: support for intl ^0.19.0.
+
 ## 0.1.2
 
  - **FIX**: deriving quantity from product unit now works for more cases.
