@@ -1,3 +1,7 @@
+## 0.1.2+2
+
+ - **REFACTOR**: support for petitparser ^6.0.0.
+
 ## 0.1.2+1
 
  - **REFACTOR**: support for intl ^0.19.0.
