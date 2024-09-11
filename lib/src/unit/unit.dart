@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// A determinate [Quantity] (as of length, time, heat, or value) adopted as a
 /// standard of measurement.

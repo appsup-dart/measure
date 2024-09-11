@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:measure/measure.dart';
 
-import 'unit.dart';
 import 'package:petitparser/petitparser.dart';
 import 'package:intl/intl.dart';
 
@@ -98,8 +97,7 @@ abstract class UnitFormat {
   }
 
   /// Indicates if the specified name can be used as unit identifier.
-  bool isValidIdentifier(String name) =>
-      name != null && _unitIdentifier.end().accept(name);
+  bool isValidIdentifier(String name) => _unitIdentifier.end().accept(name);
 
   /// Returns the name for the specified unit or null if product unit.
   String? nameFor(Unit unit) {
@@ -176,8 +174,9 @@ abstract class UnitFormat {
     var divisor = (char('/') & element).pick(1).map((v) => v.inverse);
     var factor = (element & divisor.star()).map(
         (l) => ProductUnit([l[0], ...(l[1] as Iterable).cast()]).simplify());
-    term.set(factor.separatedBy(char('*')).map((l) =>
-        l.length == 1 ? l.first : ProductUnit(l.map((v) => RationalPower(v)))));
+    term.set(factor.plusSeparated(char('*')).map((l) => l.elements.length == 1
+        ? l.elements.first
+        : ProductUnit(l.elements.map((v) => RationalPower(v)))));
 
     var number =
         _mapParser(anyOf('012356789+-.E').plus().flatten(), (dynamic v) {
@@ -244,7 +243,7 @@ abstract class UnitFormat {
 class _DefaultUnitFormat extends UnitFormat {
   ////////////////////////////////////////////////////////////////////////////
   // Initializes the standard unit database for SI units.
-  static const List<Unit> SI_UNITS = [
+  static const List<Unit> siUnits = [
     SI.ampere,
     SI.becquerel,
     SI.candela,
@@ -274,7 +273,7 @@ class _DefaultUnitFormat extends UnitFormat {
     SI.weber
   ];
 
-  static const List<String> PREFIXES = [
+  static const List<String> prefixes = [
     'Y',
     'Z',
     'E',
@@ -297,60 +296,60 @@ class _DefaultUnitFormat extends UnitFormat {
     'y'
   ];
 
-  static const List<UnitConverter> CONVERTERS = [
-    SI.E24,
-    SI.E21,
-    SI.E18,
-    SI.E15,
-    SI.E12,
-    SI.E9,
-    SI.E6,
-    SI.E3,
-    SI.E2,
-    SI.E1,
-    SI.Em1,
-    SI.Em2,
-    SI.Em3,
-    SI.Em6,
-    SI.Em9,
-    SI.Em12,
-    SI.Em15,
-    SI.Em18,
-    SI.Em21,
-    SI.Em24
+  static const List<UnitConverter> converters = [
+    SI.e24,
+    SI.e21,
+    SI.e18,
+    SI.e15,
+    SI.e12,
+    SI.e9,
+    SI.e6,
+    SI.e3,
+    SI.e2,
+    SI.e1,
+    SI.em1,
+    SI.em2,
+    SI.em3,
+    SI.em6,
+    SI.em9,
+    SI.em12,
+    SI.em15,
+    SI.em18,
+    SI.em21,
+    SI.em24
   ];
 
   _DefaultUnitFormat([String? locale]) {
-    for (var i = 0; i < SI_UNITS.length; i++) {
-      for (var j = 0; j < PREFIXES.length; j++) {
-        var si = SI_UNITS[i];
-        var u = si.transform(CONVERTERS[j]);
+    for (var i = 0; i < siUnits.length; i++) {
+      for (var j = 0; j < prefixes.length; j++) {
+        var si = siUnits[i];
+        var u = si.transform(converters[j]);
         var symbol = si is BaseUnit ? si.symbol : (si as AlternateUnit).symbol;
 
-        label(u, PREFIXES[j] + symbol);
+        label(u, prefixes[j] + symbol);
       }
     }
 
     // Special case for KILOGRAM.
     label(SI.gram, 'g');
-    for (var i = 0; i < PREFIXES.length; i++) {
-      if (CONVERTERS[i] == SI.E3) continue; // kg is already defined.
-      label(SI.kilogram.transform(CONVERTERS[i].concatenate(SI.Em3)),
-          PREFIXES[i] + 'g');
+    for (var i = 0; i < prefixes.length; i++) {
+      if (converters[i] == SI.e3) continue; // kg is already defined.
+      label(SI.kilogram.transform(converters[i].concatenate(SI.em3)),
+          '${prefixes[i]}g');
     }
 
     // Alias and ASCIIFormat for Ohm
     alias(SI.ohm, 'Ohm');
-    for (var i = 0; i < PREFIXES.length; i++) {
-      alias(SI.ohm.transform(CONVERTERS[i]), PREFIXES[i] + 'Ohm');
+    for (var i = 0; i < prefixes.length; i++) {
+      alias(SI.ohm.transform(converters[i]), '${prefixes[i]}Ohm');
     }
 
     // Special case for DEGREE_CElSIUS.
     label(SI.celsius, '℃');
     alias(SI.celsius, '°C');
-    for (var i = 0; i < PREFIXES.length; i++) {
-      label(SI.celsius.transform(CONVERTERS[i]), PREFIXES[i] + '℃');
-      alias(SI.celsius.transform(CONVERTERS[i]), PREFIXES[i] + '°C');
+    for (var i = 0; i < prefixes.length; i++) {
+      label(SI.celsius.transform(converters[i]), '${prefixes[i]}℃');
+      alias(SI.celsius.transform(converters[i]), '${prefixes[i]}°C');
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -453,30 +452,30 @@ class _ASCIIUnitFormat extends UnitFormat {
   }
 
   _ASCIIUnitFormat() {
-    var microIndex = _DefaultUnitFormat.PREFIXES.indexOf('µ');
-    var microCvtr = _DefaultUnitFormat.CONVERTERS[microIndex];
+    var microIndex = _DefaultUnitFormat.prefixes.indexOf('µ');
+    var microCvtr = _DefaultUnitFormat.converters[microIndex];
 
-    for (var si in _DefaultUnitFormat.SI_UNITS) {
+    for (var si in _DefaultUnitFormat.siUnits) {
       var u = si.transform(microCvtr);
       var symbol = si is BaseUnit ? si.symbol : (si as AlternateUnit).symbol;
-      label(u, 'micro' + symbol);
+      label(u, 'micro$symbol');
     }
 
     // Special case for KILOGRAM.
-    label(SI.kilogram.transform(microCvtr.concatenate(SI.Em3)), 'microg');
+    label(SI.kilogram.transform(microCvtr.concatenate(SI.em3)), 'microg');
 
     // Alias and ASCIIFormat for Ohm
     label(SI.ohm, 'Ohm');
-    for (var i = 0; i < _DefaultUnitFormat.PREFIXES.length; i++) {
-      label(SI.ohm.transform(_DefaultUnitFormat.CONVERTERS[i]),
-          _asciiPrefix(_DefaultUnitFormat.PREFIXES[i]) + 'Ohm');
+    for (var i = 0; i < _DefaultUnitFormat.prefixes.length; i++) {
+      label(SI.ohm.transform(_DefaultUnitFormat.converters[i]),
+          '${_asciiPrefix(_DefaultUnitFormat.prefixes[i])}Ohm');
     }
 
     // Special case for DEGREE_CElSIUS.
     label(SI.celsius, 'Celsius');
-    for (var i = 0; i < _DefaultUnitFormat.PREFIXES.length; i++) {
-      label(SI.celsius.transform(_DefaultUnitFormat.CONVERTERS[i]),
-          _asciiPrefix(_DefaultUnitFormat.PREFIXES[i]) + 'Celsius');
+    for (var i = 0; i < _DefaultUnitFormat.prefixes.length; i++) {
+      label(SI.celsius.transform(_DefaultUnitFormat.converters[i]),
+          '${_asciiPrefix(_DefaultUnitFormat.prefixes[i])}Celsius');
     }
 
     ////////////////////////////////////////////////////////////////////////////

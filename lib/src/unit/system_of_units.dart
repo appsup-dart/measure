@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// A system of units.
 ///
@@ -119,7 +119,7 @@ abstract class SI extends SystemOfUnits {
   /// The derived unit for mass quantities (`g`).
   ///
   /// The base unit for mass Quantities.is [kilogram].
-  static const Unit gram = TransformedUnit(kilogram, Em3);
+  static const Unit gram = TransformedUnit(kilogram, em3);
 
   /// The unit for plane angle quantities (`rad`).
   ///
@@ -415,19 +415,19 @@ abstract class SI extends SystemOfUnits {
       Quantities.volume);
 
   /// Equivalent to `KILO(METRE)`.
-  static const Unit kilometre = TransformedUnit(metre, E3);
+  static const Unit kilometre = TransformedUnit(metre, e3);
 
   /// Equivalent to [kilometre] (American spelling).
   static const Unit kilometer = kilometre;
 
   /// Equivalent to `CENTI(METRE)`.
-  static const Unit centimetre = TransformedUnit(metre, Em2);
+  static const Unit centimetre = TransformedUnit(metre, em2);
 
   /// Equivalent to [centimetre] (American spelling).
   static const Unit centimeter = centimetre;
 
   /// Equivalent to `MILLI(METRE)`.
-  static const Unit millimetre = TransformedUnit(metre, Em3);
+  static const Unit millimetre = TransformedUnit(metre, em3);
 
   /// Equivalent to [millimetre] (American spelling).
   static const Unit millimeter = millimetre;
@@ -437,121 +437,201 @@ abstract class SI extends SystemOfUnits {
   /////////////////
 
   /// Returns the specified unit multiplied by the factor `10<sup>24</sup>`
-  static Unit yotta(Unit unit) => unit.transform(E24);
+  static Unit yotta(Unit unit) => unit.transform(e24);
 
   /// Returns the specified unit multiplied by the factor `10<sup>21</sup>`
-  static Unit zetta(Unit unit) => unit.transform(E21);
+  static Unit zetta(Unit unit) => unit.transform(e21);
 
   /// Returns the specified unit multiplied by the factor `10<sup>18</sup>`
-  static Unit exa(Unit unit) => unit.transform(E18);
+  static Unit exa(Unit unit) => unit.transform(e18);
 
   /// Returns the specified unit multiplied by the factor `10<sup>15</sup>`
-  static Unit peta(Unit unit) => unit.transform(E15);
+  static Unit peta(Unit unit) => unit.transform(e15);
 
   /// Returns the specified unit multiplied by the factor `10<sup>12</sup>`
-  static Unit tera(Unit unit) => unit.transform(E12);
+  static Unit tera(Unit unit) => unit.transform(e12);
 
   /// Returns the specified unit multiplied by the factor `10<sup>9</sup>`
-  static Unit giga(Unit unit) => unit.transform(E9);
+  static Unit giga(Unit unit) => unit.transform(e9);
 
   /// Returns the specified unit multiplied by the factor `10<sup>6</sup>`
-  static Unit mega(Unit unit) => unit.transform(E6);
+  static Unit mega(Unit unit) => unit.transform(e6);
 
   /// Returns the specified unit multiplied by the factor `10<sup>3</sup>`
-  static Unit kilo(Unit unit) => unit.transform(E3);
+  static Unit kilo(Unit unit) => unit.transform(e3);
 
   /// Returns the specified unit multiplied by the factor `10<sup>2</sup>`
-  static Unit hecto(Unit unit) => unit.transform(E2);
+  static Unit hecto(Unit unit) => unit.transform(e2);
 
   /// Returns the specified unit multiplied by the factor `10<sup>1</sup>`
-  static Unit deka(Unit unit) => unit.transform(E1);
+  static Unit deka(Unit unit) => unit.transform(e1);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-1</sup>`
-  static Unit deci(Unit unit) => unit.transform(Em1);
+  static Unit deci(Unit unit) => unit.transform(em1);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-2</sup>`
-  static Unit centi(Unit unit) => unit.transform(Em2);
+  static Unit centi(Unit unit) => unit.transform(em2);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-3</sup>`
-  static Unit milli(Unit unit) => unit.transform(Em3);
+  static Unit milli(Unit unit) => unit.transform(em3);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-6</sup>`
-  static Unit micro(Unit unit) => unit.transform(Em6);
+  static Unit micro(Unit unit) => unit.transform(em6);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-9</sup>`
-  static Unit nano(Unit unit) => unit.transform(Em9);
+  static Unit nano(Unit unit) => unit.transform(em9);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-12</sup>`
-  static Unit pico(Unit unit) => unit.transform(Em12);
+  static Unit pico(Unit unit) => unit.transform(em12);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-15</sup>`
-  static Unit femto(Unit unit) => unit.transform(Em15);
+  static Unit femto(Unit unit) => unit.transform(em15);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-18</sup>`
-  static Unit atto(Unit unit) => unit.transform(Em18);
+  static Unit atto(Unit unit) => unit.transform(em18);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-21</sup>`
-  static Unit zepto(Unit unit) => unit.transform(Em21);
+  static Unit zepto(Unit unit) => unit.transform(em21);
 
   /// Returns the specified unit multiplied by the factor `10<sup>-24</sup>`
-  static Unit yocto(Unit unit) => unit.transform(Em24);
+  static Unit yocto(Unit unit) => unit.transform(em24);
 
   // Holds prefix converters (optimization).
 
-  static const MultiplyConverter E24 = MultiplyConverter._(1E24);
+  static const MultiplyConverter e24 = MultiplyConverter._(1E24);
 
-  static const MultiplyConverter E21 = MultiplyConverter._(1E21);
+  @Deprecated('Use `SI.e24` instead')
+  // ignore: constant_identifier_names
+  static const MultiplyConverter E24 = e24;
 
-  static const RationalConverter E18 =
+  static const MultiplyConverter e21 = MultiplyConverter._(1E21);
+
+  @Deprecated('Use `SI.e21` instead')
+  // ignore: constant_identifier_names
+  static const MultiplyConverter E21 = e21;
+
+  static const RationalConverter e18 =
       RationalConverter._(RationalNumber._(1000000000000000000));
 
-  static const RationalConverter E15 =
+  @Deprecated('Use `SI.e18` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E18 = e18;
+
+  static const RationalConverter e15 =
       RationalConverter._(RationalNumber._(1000000000000000));
 
-  static const RationalConverter E12 =
+  @Deprecated('Use `SI.e15` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E15 = e15;
+
+  static const RationalConverter e12 =
       RationalConverter._(RationalNumber._(1000000000000));
 
-  static const RationalConverter E9 =
+  @Deprecated('Use `SI.e12` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E12 = e12;
+
+  static const RationalConverter e9 =
       RationalConverter._(RationalNumber._(1000000000));
 
-  static const RationalConverter E6 =
+  @Deprecated('Use `SI.e9` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E9 = e9;
+
+  static const RationalConverter e6 =
       RationalConverter._(RationalNumber._(1000000));
 
-  static const RationalConverter E3 =
+  @Deprecated('Use `SI.e6` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E6 = e6;
+
+  static const RationalConverter e3 =
       RationalConverter._(RationalNumber._(1000));
 
-  static const RationalConverter E2 =
+  @Deprecated('Use `SI.e3` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E3 = e3;
+
+  static const RationalConverter e2 =
       RationalConverter._(RationalNumber._(100));
 
-  static const RationalConverter E1 = RationalConverter._(RationalNumber._(10));
+  @Deprecated('Use `SI.e2` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E2 = e2;
 
-  static const RationalConverter Em1 =
+  static const RationalConverter e1 = RationalConverter._(RationalNumber._(10));
+
+  @Deprecated('Use `SI.e1` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter E1 = e1;
+
+  static const RationalConverter em1 =
       RationalConverter._(RationalNumber._(1, 10));
 
-  static const RationalConverter Em2 =
+  @Deprecated('Use `SI.em1` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em1 = em1;
+
+  static const RationalConverter em2 =
       RationalConverter._(RationalNumber._(1, 100));
 
-  static const RationalConverter Em3 =
+  @Deprecated('Use `SI.em2` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em2 = em2;
+
+  static const RationalConverter em3 =
       RationalConverter._(RationalNumber._(1, 1000));
 
-  static const RationalConverter Em6 =
+  @Deprecated('Use `SI.em3` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em3 = em3;
+
+  static const RationalConverter em6 =
       RationalConverter._(RationalNumber._(1, 1000000));
 
-  static const RationalConverter Em9 =
+  @Deprecated('Use `SI.em6` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em6 = em6;
+
+  static const RationalConverter em9 =
       RationalConverter._(RationalNumber._(1, 1000000000));
 
-  static const RationalConverter Em12 =
+  @Deprecated('Use `SI.em9` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em9 = em9;
+
+  static const RationalConverter em12 =
       RationalConverter._(RationalNumber._(1, 1000000000000));
 
-  static const RationalConverter Em15 =
+  @Deprecated('Use `SI.em12` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em12 = em12;
+
+  static const RationalConverter em15 =
       RationalConverter._(RationalNumber._(1, 1000000000000000));
 
-  static const RationalConverter Em18 =
+  @Deprecated('Use `SI.em15` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em15 = em15;
+
+  static const RationalConverter em18 =
       RationalConverter._(RationalNumber._(1, 1000000000000000000));
 
-  static const MultiplyConverter Em21 = MultiplyConverter._(1E-21);
+  @Deprecated('Use `SI.em18` instead')
+  // ignore: constant_identifier_names
+  static const RationalConverter Em18 = em18;
 
-  static const MultiplyConverter Em24 = MultiplyConverter._(1E-24);
+  static const MultiplyConverter em21 = MultiplyConverter._(1E-21);
+
+  @Deprecated('Use `SI.em21` instead')
+  // ignore: constant_identifier_names
+  static const MultiplyConverter Em21 = em21;
+
+  static const MultiplyConverter em24 = MultiplyConverter._(1E-24);
+
+  @Deprecated('Use `SI.em24` instead')
+  // ignore: constant_identifier_names
+  static const MultiplyConverter Em24 = em24;
 }
 
 /// Contains units that are not part of the International System of Units, that
@@ -581,7 +661,7 @@ abstract class NonSI extends SystemOfUnits {
   ///////////////////
 
   /// A dimensionless unit equals to `0.01` (standard name `%`).
-  static const Unit percent = TransformedUnit(Unit.one, SI.Em2);
+  static const Unit percent = TransformedUnit(Unit.one, SI.em2);
 
   /// A logarithmic unit used to describe a ratio (standard name `dB`).
   static const Unit decibel = TransformedUnit(
@@ -737,7 +817,7 @@ abstract class NonSI extends SystemOfUnits {
       TransformedUnit(NonSI.pound, RationalConverter._(RationalNumber._(2240)));
 
   /// A unit of mass equal to `1000 kg` (metric ton, standard name `t`).
-  static const Unit metricTon = TransformedUnit(SI.kilogram, SI.E3);
+  static const Unit metricTon = TransformedUnit(SI.kilogram, SI.e3);
 
   /////////////////////
   // Electric charge //
@@ -794,7 +874,7 @@ abstract class NonSI extends SystemOfUnits {
       TransformedUnit(SI.radian, MultiplyConverter._(math.pi / 180 / 60 / 60));
 
   /// A unit of angle equal to `0.01 [SI.RADIAN]` (standard name `centiradian`).
-  static const Unit centiradian = TransformedUnit(SI.radian, SI.Em2);
+  static const Unit centiradian = TransformedUnit(SI.radian, SI.em2);
 
   /// A unit of angle measure equal to `1/400 [REVOLUTION]`
   /// (standard name `grade`).
@@ -853,11 +933,11 @@ abstract class NonSI extends SystemOfUnits {
 
   /// A unit of area equal to `100 m²`
   /// (standard name `a`).
-  static const Unit are = TransformedUnit(SI.squareMetre, SI.E2);
+  static const Unit are = TransformedUnit(SI.squareMetre, SI.e2);
 
   /// A unit of area equal to `100 [ARE]`
   /// (standard name `ha`).
-  static const Unit hectare = TransformedUnit(NonSI.are, SI.E2);
+  static const Unit hectare = TransformedUnit(NonSI.are, SI.e2);
 
   /////////////////
   // Data Amount //
@@ -985,11 +1065,11 @@ abstract class NonSI extends SystemOfUnits {
 
   /// A unit of radiation dose absorbed equal to a dose of 0.01 joule of
   /// energy per kilogram of mass (J/kg) (standard name `rd`).
-  static const Unit rad = TransformedUnit(SI.gray, SI.Em2);
+  static const Unit rad = TransformedUnit(SI.gray, SI.em2);
 
   /// A unit of radiation dose effective equal to `0.01 Sv`
   /// (standard name `rem`).
-  static const Unit rem = TransformedUnit(SI.sievert, SI.Em2);
+  static const Unit rem = TransformedUnit(SI.sievert, SI.em2);
 
   //////////////////////////
   // Radioactive activity //
@@ -1002,7 +1082,7 @@ abstract class NonSI extends SystemOfUnits {
 
   /// A unit of radioctive activity equal to 1 million radioactive
   /// disintegrations per second (standard name `Rd`).
-  static const Unit rutherford = TransformedUnit(SI.becquerel, SI.E6);
+  static const Unit rutherford = TransformedUnit(SI.becquerel, SI.e6);
 
   /////////////////
   // Solid angle //
@@ -1019,7 +1099,7 @@ abstract class NonSI extends SystemOfUnits {
 
   /// A unit of volume equal to one cubic decimeter (default label
   /// `L`, also recognized `µL, mL, cL, dL`).
-  static const Unit litre = TransformedUnit(SI.cubicMetre, SI.Em3);
+  static const Unit litre = TransformedUnit(SI.cubicMetre, SI.em3);
 
   /// Equivalent to [litre] (American spelling).
   static const Unit liter = litre;

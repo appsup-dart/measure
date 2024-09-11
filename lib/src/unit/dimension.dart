@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// The dimension of a unit.
 abstract class Dimension {

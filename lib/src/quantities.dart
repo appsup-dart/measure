@@ -1130,7 +1130,7 @@ class Volume extends Quantity {
 
   /// A unit of volume equal to one cubic decimeter (default label
   /// `L`, also recognized `µL, mL, cL, dL`).
-  Unit get litre => const TransformedUnit(SI.cubicMetre, SI.Em3);
+  Unit get litre => const TransformedUnit(SI.cubicMetre, SI.em3);
 
   /// Equivalent to [litre] (American spelling).
   Unit get liter => litre;

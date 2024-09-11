@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// A converter of numeric values.
 ///
@@ -32,8 +32,9 @@ abstract class UnitConverter {
   bool get isLinear;
 
   @override
-  bool operator ==(Object cvtr) =>
-      cvtr is UnitConverter && concatenate(cvtr.inverse) is _IdentityConverter;
+  bool operator ==(Object other) =>
+      other is UnitConverter &&
+      concatenate(other.inverse) is _IdentityConverter;
   // this might not work always because of limited precision, e.g. in case of extreme large multiplication factors
 
   @override
@@ -93,6 +94,9 @@ class _CompoundConverter extends UnitConverter {
       other is _CompoundConverter &&
       first == other.first &&
       second == other.second;
+
+  @override
+  int get hashCode => Object.hash(_CompoundConverter, first, second);
 }
 
 /// A converter adding a constant offset (approximated as a <code>double</code>)
@@ -113,7 +117,7 @@ class AddConverter extends UnitConverter {
   UnitConverter get inverse => AddConverter(-offset);
 
   @override
-  double convert(double amount) => amount + offset;
+  double convert(double x) => x + offset;
 
   @override
   bool get isLinear => false;
@@ -135,6 +139,9 @@ class AddConverter extends UnitConverter {
   @override
   bool operator ==(Object other) =>
       other is AddConverter && offset == other.offset;
+
+  @override
+  int get hashCode => Object.hash(AddConverter, offset);
 }
 
 /// A logarithmic converter.
@@ -151,16 +158,19 @@ class LogConverter extends UnitConverter {
   const LogConverter._(this.base) : super._();
 
   @override
-  _InverseLogConverter get inverse => _InverseLogConverter(this);
+  UnitConverter get inverse => _InverseLogConverter(this);
 
   @override
-  double convert(double amount) => invLogBase * math.log(amount);
+  double convert(double x) => invLogBase * math.log(x);
 
   @override
   bool get isLinear => false;
 
   @override
   bool operator ==(Object other) => other is LogConverter && base == other.base;
+
+  @override
+  int get hashCode => Object.hash(LogConverter, base);
 }
 
 class _InverseLogConverter extends UnitConverter {
@@ -178,6 +188,9 @@ class _InverseLogConverter extends UnitConverter {
   @override
   bool operator ==(Object other) =>
       other is _InverseLogConverter && inverse == other.inverse;
+
+  @override
+  int get hashCode => Object.hash(_InverseLogConverter, inverse);
 }
 
 /// A converter multiplying numeric values by a constant scaling factor
@@ -192,7 +205,7 @@ class MultiplyConverter extends UnitConverter {
   UnitConverter get inverse => MultiplyConverter._(1.0 / factor);
 
   @override
-  double convert(double amount) => factor * amount;
+  double convert(double x) => factor * x;
 
   @override
   bool get isLinear => true;
@@ -218,6 +231,9 @@ class MultiplyConverter extends UnitConverter {
   @override
   bool operator ==(Object other) =>
       other is MultiplyConverter && factor == other.factor;
+
+  @override
+  int get hashCode => Object.hash(MultiplyConverter, factor);
 }
 
 /// A converter multiplying numeric values by an exact scaling factor
@@ -234,7 +250,7 @@ class RationalConverter extends UnitConverter {
       : RationalNumber(factor.divisor, factor.dividend));
 
   @override
-  double convert(double amount) => amount * factor.dividend / factor.divisor;
+  double convert(double x) => x * factor.dividend / factor.divisor;
 
   @override
   bool get isLinear => true;
@@ -266,6 +282,9 @@ class RationalConverter extends UnitConverter {
   @override
   bool operator ==(Object other) =>
       other is RationalConverter && factor == other.factor;
+
+  @override
+  int get hashCode => Object.hash(RationalConverter, factor);
 }
 
 /// Signals that a problem of some sort has occurred either when creating a

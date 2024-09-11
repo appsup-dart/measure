@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// The units created by combining or transforming other units.
 abstract class DerivedUnit extends Unit {
@@ -24,7 +24,7 @@ class UnitForQuantity extends DerivedUnit {
   UnitConverter toStandardUnit() => UnitConverter.identity;
 
   @override
-  int get hashCode => Object.hash(parent, quantity);
+  int get hashCode => Object.hash(UnitForQuantity, parent, quantity);
 
   @override
   bool operator ==(other) =>

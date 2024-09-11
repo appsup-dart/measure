@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 abstract class Quantity {
   const Quantity();

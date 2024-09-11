@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// Units formed by the product of rational powers of existing units.
 class ProductUnit extends DerivedUnit {
@@ -59,9 +59,7 @@ class ProductUnit extends DerivedUnit {
       if (b is ProductUnit) {
         var v = ProductUnit([
           ...u._elements.sublist(0, i),
-          ...b._elements
-              .map((s) => RationalPower(s.base, s.pow.times(e.pow)))
-              .toList(),
+          ...b._elements.map((s) => RationalPower(s.base, s.pow.times(e.pow))),
           ...u._elements.sublist(i + 1),
         ])._simplifyDeep();
         if (v is! ProductUnit) return v;

@@ -1,4 +1,4 @@
-part of measure.unit;
+part of '../unit.dart';
 
 /// Units derived from other units using a [UnitConverter].
 class TransformedUnit extends DerivedUnit {
