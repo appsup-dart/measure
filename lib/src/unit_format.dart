@@ -152,7 +152,7 @@ abstract class UnitFormat {
   Parser<Unit> get singleUnitParser =>
       _mapParser(_unitIdentifier, (dynamic name) {
         var unit = unitFor(name);
-        if (unit == null) return failure('$name not recognized');
+        if (unit == null) return failure(message: '$name not recognized');
         return EpsilonParser(unit);
       });
 
@@ -183,7 +183,7 @@ abstract class UnitFormat {
       try {
         return epsilonWith(num.parse(v));
       } catch (e) {
-        return failure('$e');
+        return failure(message: '$e');
       }
     });
     return (term & (char('+') & number).pick(1).optional())
