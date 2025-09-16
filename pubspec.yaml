@@ -2,6 +2,7 @@ name: measure
 description: Library for working with measurements, quantities and units.
 version: 0.1.2+2
 homepage: https://github.com/appsup-dart/measure
+repository: https://github.com/appsup-dart/measure
 funding:
  - https://github.com/sponsors/rbellens
 
@@ -16,3 +17,18 @@ dependencies:
 dev_dependencies:
   test: ">=0.12.0 <2.0.0"
   lints: ^6.0.0
+  melos: ^7.0.0
+
+melos:
+  useRootAsPackage: true
+
+  ide:
+    intellij: false
+
+  command:
+    version:
+      linkToCommits: true
+
+  scripts:
+    preversion: 
+      exec: dart test -j 1
